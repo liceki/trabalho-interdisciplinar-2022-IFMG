@@ -1,0 +1,94 @@
+--CLIENTES 
+DROP TABLE IF EXISTS clientes CASCADE;
+
+CREATE TABLE clientes
+(
+   cliente_id        serial,
+   cliente_nome      varchar(150),
+   cliente_telefone  varchar(16),
+   cliente_email     varchar(175),
+   cliente_cpf       char(11)
+);
+
+-- Column cliente_id is associated with sequence gerenciamento_estoque.clientes_cliente_id_seq
+
+ALTER TABLE clientes
+   ADD CONSTRAINT clientes_pkey
+   PRIMARY KEY (cliente_id);
+
+COMMIT;
+
+-------------------------------------------------------------------------------------------
+--ENDERECOS
+DROP TABLE IF EXISTS enderecos CASCADE;
+
+CREATE TABLE enderecos
+(
+   estado      varchar(100),
+   cidade      varchar(100),
+   bairro      varchar(100),
+   rua         varchar(150),
+   numero      integer,
+   cliente_id  integer
+);
+
+ALTER TABLE enderecos
+  ADD CONSTRAINT enderecos_cliente_id_fkey FOREIGN KEY (cliente_id)
+  REFERENCES clientes (cliente_id) 
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+
+COMMIT;
+
+-------------------------------------------------------------------------------------------
+--PRODUTOS
+DROP TABLE IF EXISTS produtos CASCADE;
+
+CREATE TABLE produtos
+(
+   produto_id          serial,
+   produto_nome        varchar(175),
+   produto_categoria   varchar(150),
+   produto_tamanho     varchar(75),
+   produto_quantidade  integer,
+   preco_compra        float4,
+   preco_venda         float4,
+   data_entrada        date
+);
+
+-- Column produto_id is associated with sequence gerenciamento_estoque.produtos_produto_id_seq
+
+ALTER TABLE produtos
+   ADD CONSTRAINT produtos_pkey
+   PRIMARY KEY (produto_id);
+
+COMMIT;
+
+-------------------------------------------------------------------------------------------
+--VENDAS
+DROP TABLE IF EXISTS vendas CASCADE;
+
+CREATE TABLE vendas
+(
+   cliente_id  integer   NOT NULL,
+   produto_id  integer   NOT NULL,
+   venda_data  date
+);
+
+ALTER TABLE vendas
+   ADD CONSTRAINT vendas_pkey
+   PRIMARY KEY (cliente_id, produto_id);
+
+ALTER TABLE vendas
+  ADD CONSTRAINT vendas_cliente_id_fkey FOREIGN KEY (cliente_id)
+  REFERENCES clientes (cliente_id) 
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+
+ALTER TABLE vendas
+  ADD CONSTRAINT vendas_produto_id_fkey FOREIGN KEY (produto_id)
+  REFERENCES produtos (produto_id) 
+  ON UPDATE NO ACTION
+  ON DELETE NO ACTION;
+
+COMMIT;

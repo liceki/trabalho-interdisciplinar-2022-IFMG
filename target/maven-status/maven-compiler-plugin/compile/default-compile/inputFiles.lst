@@ -1,10 +1,11 @@
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DTO\ProdutoDTO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DAO\ClienteDAO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DTO\EnderecoDTO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DAO\ProdutoDAO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\main\Main.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DTO\ClienteDTO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\VIEW\ProdutoVIEW.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DAO\ConexaoDAO.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\VIEW\ClienteVIEW.java
-D:\IFMG\INFO II\Técnicas\Programação\CódigosTeste\gerenciamento_estoque_interdisciplinar_v0.1.2\src\main\java\DTO\VendaDTO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DTO\ProdutoDTO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DAO\ClienteDAO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\main\Main.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\VIEW\ProdutoVIEW.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DAO\ProdutoDAO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DAO\EnderecoDAO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\VIEW\ClienteVIEW.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DTO\ClienteDTO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DTO\VendaDTO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DAO\ConexaoDAO.java
+C:\Users\0063400\Documents\NetBeansProjects\trabalho-interdisplinar\trabalho-interdisciplinar-2022-IFMG\src\main\java\DTO\EnderecoDTO.java

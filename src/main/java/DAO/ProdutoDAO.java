@@ -21,7 +21,7 @@ public class ProdutoDAO {
     
     // --> MÉTODO PARA CADASTRAR PRODUTOS NO BANCO DE DADOS
     public void cadastrarProduto(ProdutoDTO objprodutodto){
-        String c = "INSERT INTO henrique_leao.produtos (produto_nome, produto_categoria, produto_tamanho, produto_quantidade, preco_compra, preco_venda, data_entrada) VALUES(?,?,?,?,?,?,?)";
+        String c = "INSERT INTO espaco_mix.produtos (produto_nome, produto_categoria, produto_tamanho, produto_quantidade, preco_compra, preco_venda, data_entrada) VALUES(?,?,?,?,?,?,?)";
         
         conn = new ConexaoDAO().conectaBD();
         
@@ -47,7 +47,7 @@ public class ProdutoDAO {
 
 // --> MÉTODO PARA CONSULTAR PRODUTOS NO BANCO DE DADOS
     public ArrayList<ProdutoDTO> consultarProdutos(String condition){
-        String c = "SELECT * FROM henrique_leao.produtos " + condition;
+        String c = "SELECT * FROM espaco_mix.produtos " + condition;
         conn = new ConexaoDAO().conectaBD();
         
         try {
@@ -82,7 +82,7 @@ public class ProdutoDAO {
     
 // --> MÉTODO PARA DELETAR PRODUTO PELO ID
     public void deletarProdutoPeloId(int idproduto){
-        String sql = "DELETE FROM henrique_leao.produtos WHERE produto_id = " + idproduto;
+        String sql = "DELETE FROM espaco_mix.produtos WHERE produto_id = " + idproduto;
         conn = new ConexaoDAO().conectaBD();
         
         try {
@@ -97,7 +97,7 @@ public class ProdutoDAO {
     
 // --> MÉTODO PARA ALTERAR PRODUTO PELO ID
     public void alterarProduto(ProdutoDTO objprodutodto, int produto_id){
-        String sql = "UPDATE henrique_leao.produtos SET produto_nome = ?, produto_categoria = ?, produto_tamanho = ?, produto_quantidade = ?, preco_compra = ?, preco_venda = ?"
+        String sql = "UPDATE espaco_mix.produtos SET produto_nome = ?, produto_categoria = ?, produto_tamanho = ?, produto_quantidade = ?, preco_compra = ?, preco_venda = ?"
                 + "WHERE produto_id = " + produto_id;
         Connection conn = new ConexaoDAO().conectaBD();
         

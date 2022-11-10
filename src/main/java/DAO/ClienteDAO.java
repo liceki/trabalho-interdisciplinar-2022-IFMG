@@ -17,7 +17,7 @@ public class ClienteDAO {
 
     //checando ultimo id cadastrado
     public int idCliente(){
-        String sql = "SELECT cliente_id FROM henrique_leao.clientes ;";
+        String sql = "SELECT cliente_id FROM espaco_mix.clientes ;";
         conn = new ConexaoDAO().conectaBD();
         int id = 0;
         
@@ -40,7 +40,7 @@ public class ClienteDAO {
     
     //cadastrando cliente no Banco de Dados
     public void cadastrarCliente(ClienteDTO cliente){
-        String sql = "INSERT INTO henrique_leao.clientes(cliente_nome, cliente_telefone, cliente_cpf, cliente_email) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO espaco_mix.clientes(cliente_nome, cliente_telefone, cliente_cpf, cliente_email) VALUES (?,?,?,?)";
         conn = new ConexaoDAO().conectaBD();
         
         try {
@@ -66,7 +66,7 @@ public class ClienteDAO {
         int id, endereco;
         String nome, telefone, email, cpf;
         
-        String sql = "SELECT * FROM henrique_leao.clientes ;";
+        String sql = "SELECT * FROM espaco_mix.clientes ;";
         conn = new ConexaoDAO().conectaBD();
         
         try {

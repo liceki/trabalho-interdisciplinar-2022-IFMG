@@ -16,7 +16,7 @@ public class EnderecoDAO {
 
     // cadastrando endereco do cliente no Banco de Dados
     public void cadastrarEndereco(EnderecoDTO enderecodto){
-        String sql = "INSERT INTO henrique_leao.enderecos(estado, cidade, bairro, rua, numero, cliente_id) VALUES(?,?,?,?,?,?);";
+        String sql = "INSERT INTO espaco_mix.enderecos(estado, cidade, bairro, rua, numero, cliente_id) VALUES(?,?,?,?,?,?);";
         conn = new ConexaoDAO().conectaBD();
         
         try {
@@ -44,7 +44,7 @@ public class EnderecoDAO {
         String estado, cidade, bairro, rua, endereco = "";
         int numero;
         
-        String sql = "SELECT * FROM henrique_leao.enderecos WHERE cliente_id = ?";
+        String sql = "SELECT * FROM espaco_mix.enderecos WHERE cliente_id = ?";
         conn = new ConexaoDAO().conectaBD();
         
         try {

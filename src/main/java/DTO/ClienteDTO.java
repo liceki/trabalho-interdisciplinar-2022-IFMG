@@ -14,7 +14,7 @@ public class ClienteDTO {
     public ClienteDTO(){
         
     }
-    //dados informados pelo usuário usuário
+    //dados informados pelo usuario
     public ClienteDTO(String cliente_nome, String cliente_telefone, String cliente_email, String cliente_cpf) {
         this.cliente_nome = cliente_nome;
         this.cliente_telefone = cliente_telefone;

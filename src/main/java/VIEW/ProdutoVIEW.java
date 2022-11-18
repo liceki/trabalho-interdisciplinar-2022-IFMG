@@ -319,7 +319,11 @@ public class ProdutoVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnFecharJanelaProdutos.setBackground(new java.awt.Color(0, 0, 0));
+        btnFecharJanelaProdutos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFecharJanelaProdutos.setForeground(new java.awt.Color(255, 255, 0));
         btnFecharJanelaProdutos.setText("FECHAR");
+        btnFecharJanelaProdutos.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 0)));
         btnFecharJanelaProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFecharJanelaProdutosActionPerformed(evt);
@@ -355,12 +359,12 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(29, 29, 29)
                 .addComponent(btnFecharJanelaProdutos)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,7 +385,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
                             .addComponent(txtDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         setJMenuBar(jMenuBar1);

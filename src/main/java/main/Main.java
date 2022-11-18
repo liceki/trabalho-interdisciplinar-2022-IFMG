@@ -1,6 +1,7 @@
 package main;
 
 import VIEW.ClienteVIEW;
+import VIEW.FornecedorVIEW;
 import VIEW.ProdutoVIEW;
 
 public class Main extends javax.swing.JFrame {
@@ -47,6 +48,11 @@ public class Main extends javax.swing.JFrame {
         btnFornecedores.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
         btnFornecedores.setContentAreaFilled(false);
         btnFornecedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFornecedoresActionPerformed(evt);
+            }
+        });
 
         btnProdutos.setBackground(new java.awt.Color(0, 0, 0));
         btnProdutos.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -142,6 +148,10 @@ public class Main extends javax.swing.JFrame {
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         ClienteVIEW.viewCliente();
     }//GEN-LAST:event_btnClientesActionPerformed
+
+    private void btnFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFornecedoresActionPerformed
+        FornecedorVIEW.iniciarFrameFornecedor();
+    }//GEN-LAST:event_btnFornecedoresActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));

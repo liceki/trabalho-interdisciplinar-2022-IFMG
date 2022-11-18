@@ -384,6 +384,7 @@ public class ClienteVIEW extends javax.swing.JFrame {
         btnFecharJanelaClientes.setForeground(new java.awt.Color(255, 255, 0));
         btnFecharJanelaClientes.setText("FECHAR");
         btnFecharJanelaClientes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 0)));
+        btnFecharJanelaClientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnFecharJanelaClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFecharJanelaClientesActionPerformed(evt);

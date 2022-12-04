@@ -203,7 +203,7 @@ public class SupplierView extends javax.swing.JFrame {
                 .addGap(80, 80, 80))
         );
 
-        javax.swing.GroupLayout layout = new GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)

@@ -7,6 +7,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "supplier", schema = "espaco_mix")
+//SQL=" WHERE ( tipo = "+tipo+" OR "+tipo+" = ''" );
+//SQL+=" AND ( fabricante = "+fabricante+" OR "+fabricante+"='' )";
 public class Supplier {
     @Id
     @Column(name = "supplier_id", nullable = false)

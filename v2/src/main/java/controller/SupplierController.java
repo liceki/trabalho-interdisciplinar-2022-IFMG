@@ -13,7 +13,6 @@ public class SupplierController {
     }
 
     public List<Supplier> getAllSuppliers(){
-        System.out.println("sai daqui");
         return repository.getAllSuppliers();
     }
 

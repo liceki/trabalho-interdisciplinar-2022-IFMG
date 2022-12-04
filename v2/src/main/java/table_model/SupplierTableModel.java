@@ -52,6 +52,14 @@ public class SupplierTableModel extends AbstractTableModel {
         this.suppliersList.add(supplier);
     }
 
+    public Supplier getSupplierAtRowIndex(int rowIndex){
+        return this.suppliersList.get(rowIndex);
+    }
+
+    public void removeSupplierAtRow(int rowIndex){
+        this.suppliersList.remove(rowIndex);
+    }
+
     public void setResults(List<Supplier> results){
         this.suppliersList = results;
     }

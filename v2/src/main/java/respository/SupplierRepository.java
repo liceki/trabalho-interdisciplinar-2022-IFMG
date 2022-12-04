@@ -36,9 +36,10 @@ public class SupplierRepository {
         return supplierToUpdate;
     }
 
-    public void deleteSupplier(Supplier supplier){
+    public void deleteSupplier(Supplier supplierToRemove){
+        supplierToRemove = findSupplier(supplierToRemove.getId());
         entityManager.getTransaction().begin();
-        entityManager.remove(supplier);
+        entityManager.remove(supplierToRemove);
         entityManager.getTransaction().commit();
     }
 

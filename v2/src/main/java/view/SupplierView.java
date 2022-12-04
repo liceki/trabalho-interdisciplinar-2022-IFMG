@@ -4,6 +4,7 @@ import controller.SupplierController;
 import model.Supplier;
 import table_model.SupplierTableModel;
 
+import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -36,7 +37,7 @@ public class SupplierView extends javax.swing.JFrame {
         //Panels
         jPanel1 = new JPanel();
         jPanel2 = new JPanel();
-        jPanel3 = new JPanel();
+        panelTable = new JPanel();
         //Labels
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
@@ -120,13 +121,13 @@ public class SupplierView extends javax.swing.JFrame {
         btnFecharJanelaFornecedor.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnFecharJanelaFornecedor.addActionListener((ActionEvent evt) -> btnFecharJanelaFornecedorActionPerformed(evt));
 
-        btnFecharJanelaFornecedor.setBackground(new Color(0, 0, 0));
-        btnFecharJanelaFornecedor.setFont(new Font("Segoe UI", 1, 14)); // NOI18N
-        btnFecharJanelaFornecedor.setForeground(new Color(255, 255, 0));
-        btnFecharJanelaFornecedor.setText("FECHAR");
-        btnFecharJanelaFornecedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
-        btnFecharJanelaFornecedor.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnFecharJanelaFornecedor.addActionListener((ActionEvent evt) -> btnFecharJanelaFornecedorActionPerformed(evt));
+        btnRemoveSupplier.setBackground(new Color(0, 0, 0));
+        btnRemoveSupplier.setFont(new Font("Segoe UI", 1, 14)); // NOI18N
+        btnRemoveSupplier.setForeground(new Color(255, 255, 0));
+        btnRemoveSupplier.setText("REMOVE");
+        btnRemoveSupplier.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
+        btnRemoveSupplier.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnRemoveSupplier.addActionListener((ActionEvent evt) -> btnRemoveSupplierFornecedorActionPerformed(evt));
 
         btnFilterSuppliers.setBackground(new Color(0, 0, 0));
         btnFilterSuppliers.setFont(new Font("Dialog", 1, 18)); // NOI18N
@@ -182,7 +183,7 @@ public class SupplierView extends javax.swing.JFrame {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new Color(0, 0, 0));
+        panelTable.setBackground(new Color(0, 0, 0));
 
         tblSuppliers.setBackground(new Color(0, 0, 0));
         tblSuppliers.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
@@ -205,8 +206,8 @@ public class SupplierView extends javax.swing.JFrame {
 
 
 
-        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
+        GroupLayout jPanel3Layout = new GroupLayout(panelTable);
+        panelTable.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -214,6 +215,8 @@ public class SupplierView extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(btnFecharJanelaFornecedor)
                     .addComponent(btnFilterSuppliers)
+                    .addGap(300)
+                    .addComponent(btnRemoveSupplier)
                     .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
@@ -223,6 +226,7 @@ public class SupplierView extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(btnFecharJanelaFornecedor)
                 .addGap(26, 26, 26)
+                .addComponent(btnRemoveSupplier)
                 .addComponent(btnFilterSuppliers )
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
@@ -236,16 +240,18 @@ public class SupplierView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3,GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelTable,GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelTable, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }
+
+
 
     private void txtRazaoSocialActionPerformed(ActionEvent evt) {
         // TODO add your handling code here:
@@ -264,6 +270,14 @@ public class SupplierView extends javax.swing.JFrame {
         String cnpj = txtFieldCnpj.getText();
         String email = txtFieldEmail.getText();
 
+        for(JTextField txtField: this.txtFieldsList){
+            if(txtField.getText().equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(this,
+                        "ALL the Fields must be filled out", "Error", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+        }
+
         Supplier supplier = this.controller.addSupplier(corporateName, cnpj, email);
         tableModel.addSupplier(supplier);
 
@@ -274,6 +288,21 @@ public class SupplierView extends javax.swing.JFrame {
     private void btnFilterSuppliersActionPerformed(ActionEvent evt){
         tableModel.setResults(this.controller.getFilteredSuppliers());
         tblSuppliers.updateUI();
+    }
+
+    private void btnRemoveSupplierFornecedorActionPerformed(ActionEvent evt) {
+        int rowIndex = tblSuppliers.getSelectedRow();
+        Supplier supplierToRemove = tableModel.getSupplierAtRowIndex(rowIndex);
+        int confirmation = JOptionPane.showConfirmDialog(this,
+                "Are you sure about removing " + supplierToRemove.getCorporateName() +
+                " of the Supplier's table?", "Confirmation", ConfirmationCallback.YES_NO_OPTION);
+
+        if(confirmation == 0){
+            tableModel.removeSupplierAtRow(rowIndex);
+            controller.removeSupplier(supplierToRemove);
+            tblSuppliers.updateUI();
+        }
+
     }
 
     private void btnFecharJanelaFornecedorActionPerformed(ActionEvent evt) {
@@ -288,19 +317,20 @@ public class SupplierView extends javax.swing.JFrame {
     private JButton btnCadastrarFornecedor;
     private JButton btnFecharJanelaFornecedor;
     private JButton btnRemoveSupplier;
+    private JButton btnFilterSuppliers;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
     private JLabel jLabel5;
     private JPanel jPanel1;
     private JPanel jPanel2;
-    private JPanel jPanel3;
+    private JPanel panelTable;
     private JScrollPane jScrollPane1;
     private JTable tblSuppliers;
     private JTextField txtFieldCnpj;
     private JTextField txtFieldEmail;
     private JTextField txtFieldCorporateName;
-    private JButton btnFilterSuppliers;
+
     // End of variables declaration
 
     private void clearTextFields(){

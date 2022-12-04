@@ -1,6 +1,7 @@
 package model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,8 @@ import java.util.List;
 public class Supplier {
     @Id
     @Column(name = "supplier_id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    //@GenericGenerator(name="increment", strategy = "increment")
     private int id;
 
     @Column(name = "corporate_name", length = 450)

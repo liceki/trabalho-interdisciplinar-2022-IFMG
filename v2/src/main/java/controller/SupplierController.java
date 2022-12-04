@@ -27,5 +27,9 @@ public class SupplierController {
         return repository.findSuppliersWithFilters(supplierFilter);
     }
 
+    public void removeSupplier(Supplier supplierToRemove){
+        repository.deleteSupplier(supplierToRemove);
+    }
+
 
 }

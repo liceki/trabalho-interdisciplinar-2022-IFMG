@@ -46,6 +46,13 @@ public class SupplierRepository {
         return entityManager.createQuery("SELECT s FROM Supplier s").getResultList();
     }
 
+    public List<Supplier> findSuppliersWithFilters(Supplier supplierFilter){
+        Query query = entityManager.createNamedQuery("FIND_SUPPLIERS_WITH_FILTERS");
+        query.setParameter("corporateName", supplierFilter.getCorporateName());
+        query.setParameter("email", supplierFilter.getEmail());
+        return query.getResultList();
+    }
+
     public void close(){
         this.entityManager.close();
         this.entityManagerFactory.close();

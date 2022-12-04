@@ -12,11 +12,20 @@ public class SupplierController {
         repository = new SupplierRepository();
     }
 
+    public Supplier addSupplier(String corporateName, String cnpf, String email){
+        return repository.createSupplier(new Supplier(corporateName, cnpf, email));
+    }
+
     public List<Supplier> getAllSuppliers(){
         return repository.getAllSuppliers();
     }
 
-    public Supplier addSupplier(String corporateName, String cnpf, String email){
-        return repository.createSupplier(new Supplier(corporateName, cnpf, email));
+    public List<Supplier> getFilteredSuppliers(){
+        Supplier supplierFilter = new Supplier();
+        supplierFilter.setCorporateName("es");
+        supplierFilter.setEmail("@");
+        return repository.findSuppliersWithFilters(supplierFilter);
     }
+
+
 }

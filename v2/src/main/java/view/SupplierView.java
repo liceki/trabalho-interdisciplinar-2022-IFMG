@@ -7,10 +7,13 @@ import table_model.SupplierTableModel;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class SupplierView extends javax.swing.JFrame {
     SupplierController controller;
     SupplierTableModel tableModel;
+
+    ArrayList<JTextField> txtFieldsList;
     public SupplierView() {
         initComponents();
 
@@ -22,6 +25,10 @@ public class SupplierView extends javax.swing.JFrame {
     private void myInitComponents(){
         this.tableModel = new SupplierTableModel();
         this.tblSuppliers.setModel(tableModel);
+        this.txtFieldsList = new ArrayList<>();
+        this.txtFieldsList.add(txtFieldCnpj);
+        this.txtFieldsList.add(txtFieldCorporateName);
+        this.txtFieldsList.add(txtFieldEmail);
     }
 
     private void initComponents() {
@@ -39,6 +46,7 @@ public class SupplierView extends javax.swing.JFrame {
         btnCadastrarFornecedor = new JButton();
         btnFecharJanelaFornecedor = new JButton();
         btnRemoveSupplier = new JButton();
+        btnFilterSuppliers = new JButton();
         //Text Fields
         txtFieldCnpj = new JTextField();
         txtFieldCorporateName = new JTextField();
@@ -47,7 +55,6 @@ public class SupplierView extends javax.swing.JFrame {
         jScrollPane1 = new JScrollPane();
         //Tables
         tblSuppliers = new JTable();
-
 
 
         GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
@@ -66,14 +73,22 @@ public class SupplierView extends javax.swing.JFrame {
 
         jPanel2.setBackground(new Color(0, 0, 0));
 
+
         txtFieldCorporateName.setBackground(new Color(0, 0, 0));
         txtFieldCorporateName.setForeground(new Color(255, 255, 255));
         txtFieldCorporateName.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 204, 0)));
-        txtFieldCorporateName.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                txtRazaoSocialActionPerformed(evt);
-            }
-        });
+        txtFieldCorporateName.addActionListener((ActionEvent evt) -> txtRazaoSocialActionPerformed(evt));
+
+        txtFieldCnpj.setBackground(new Color(0, 0, 0));
+        txtFieldCnpj.setForeground(new Color(255, 255, 255));
+        txtFieldCnpj.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 204, 0)));
+        txtFieldCnpj.addActionListener((ActionEvent evt) -> txtCnpjActionPerformed(evt));
+
+        txtFieldEmail.setBackground(new Color(0, 0, 0));
+        txtFieldEmail.setForeground(new Color(255, 255, 255));
+        txtFieldEmail.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(255, 204, 0)));
+        txtFieldEmail.addActionListener((ActionEvent evt) -> txtEmailActionPerformed(evt));
+
 
         jLabel1.setForeground(new Color(255, 255, 0));
         jLabel1.setText("Razão Social");
@@ -81,34 +96,48 @@ public class SupplierView extends javax.swing.JFrame {
         jLabel2.setForeground(new Color(255, 255, 0));
         jLabel2.setText("CNPJ");
 
-        txtFieldCnpj.setBackground(new Color(0, 0, 0));
-        txtFieldCnpj.setForeground(new Color(255, 255, 255));
-        txtFieldCnpj.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 204, 0)));
-        txtFieldCnpj.addActionListener((ActionEvent evt) -> txtCnpjActionPerformed(evt));
-
-
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel3.setForeground(new  Color(255, 255, 0));
         jLabel3.setText("Email");
 
-        txtFieldEmail.setBackground(new Color(0, 0, 0));
-        txtFieldEmail.setForeground(new Color(255, 255, 255));
-        txtFieldEmail.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 204, 0)));
-        txtFieldEmail.addActionListener((ActionEvent evt) -> txtEmailActionPerformed(evt));
-
-        btnCadastrarFornecedor.setBackground(new java.awt.Color(0, 0, 0));
-        btnCadastrarFornecedor.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnCadastrarFornecedor.setForeground(new java.awt.Color(255, 255, 0));
-        btnCadastrarFornecedor.setText("Cadastrar Fornecedor");
-        btnCadastrarFornecedor.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 153, 153)));
-        btnCadastrarFornecedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCadastrarFornecedor.addActionListener((ActionEvent evt) -> btnCadastrarFornecedorActionPerformed(evt));
-
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setFont(new  Font("Dialog", 1, 24)); // NOI18N
+        jLabel5.setForeground(new Color(153, 153, 153));
         jLabel5.setText("CADASTRO DE FORNECEDORES");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+
+        btnCadastrarFornecedor.setBackground(new Color(0, 0, 0));
+        btnCadastrarFornecedor.setFont(new Font("Dialog", 1, 18)); // NOI18N
+        btnCadastrarFornecedor.setForeground(new Color(255, 255, 0));
+        btnCadastrarFornecedor.setText("Cadastrar Fornecedor");
+        btnCadastrarFornecedor.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(153, 153, 153)));
+        btnCadastrarFornecedor.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnCadastrarFornecedor.addActionListener((ActionEvent evt) -> btnCadastrarFornecedorActionPerformed(evt));
+
+        btnFecharJanelaFornecedor.setBackground(new Color(0, 0, 0));
+        btnFecharJanelaFornecedor.setFont(new Font("Segoe UI", 1, 14)); // NOI18N
+        btnFecharJanelaFornecedor.setForeground(new Color(255, 255, 0));
+        btnFecharJanelaFornecedor.setText("FECHAR");
+        btnFecharJanelaFornecedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
+        btnFecharJanelaFornecedor.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnFecharJanelaFornecedor.addActionListener((ActionEvent evt) -> btnFecharJanelaFornecedorActionPerformed(evt));
+
+        btnFecharJanelaFornecedor.setBackground(new Color(0, 0, 0));
+        btnFecharJanelaFornecedor.setFont(new Font("Segoe UI", 1, 14)); // NOI18N
+        btnFecharJanelaFornecedor.setForeground(new Color(255, 255, 0));
+        btnFecharJanelaFornecedor.setText("FECHAR");
+        btnFecharJanelaFornecedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
+        btnFecharJanelaFornecedor.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnFecharJanelaFornecedor.addActionListener((ActionEvent evt) -> btnFecharJanelaFornecedorActionPerformed(evt));
+
+        btnFilterSuppliers.setBackground(new Color(0, 0, 0));
+        btnFilterSuppliers.setFont(new Font("Dialog", 1, 18)); // NOI18N
+        btnFilterSuppliers.setForeground(new Color(255, 255, 0));
+        btnFilterSuppliers.setText("Filtrar Busca");
+        btnFilterSuppliers.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(153, 153, 153)));
+        btnFilterSuppliers.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnFilterSuppliers.addActionListener((ActionEvent evt) -> btnFilterSuppliersActionPerformed(evt));
+
+
+        GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +182,9 @@ public class SupplierView extends javax.swing.JFrame {
                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel3.setBackground(new Color(0, 0, 0));
 
-        tblSuppliers.setBackground(new java.awt.Color(0, 0, 0));
+        tblSuppliers.setBackground(new Color(0, 0, 0));
         tblSuppliers.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new Color(255, 255, 0)));
         tblSuppliers.setFont(new Font("Dialog", 0, 12)); // NOI18N
         tblSuppliers.setForeground(new Color(204, 204, 204));
@@ -172,17 +201,11 @@ public class SupplierView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblSuppliers);
         tblSuppliers.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        btnFecharJanelaFornecedor.setBackground(new Color(0, 0, 0));
-        btnFecharJanelaFornecedor.setFont(new Font("Segoe UI", 1, 14)); // NOI18N
-        btnFecharJanelaFornecedor.setForeground(new Color(255, 255, 0));
-        btnFecharJanelaFornecedor.setText("FECHAR");
-        btnFecharJanelaFornecedor.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 0)));
-        btnFecharJanelaFornecedor.setCursor(new Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnFecharJanelaFornecedor.addActionListener((ActionEvent evt) -> btnFecharJanelaFornecedorActionPerformed(evt));
 
 
 
-        javax.swing.GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
+
+        GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -190,6 +213,7 @@ public class SupplierView extends javax.swing.JFrame {
                 .addGap(90, 90, 90)
                 .addGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(btnFecharJanelaFornecedor)
+                    .addComponent(btnFilterSuppliers)
                     .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 504, GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(90, Short.MAX_VALUE))
         );
@@ -198,6 +222,8 @@ public class SupplierView extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(btnFecharJanelaFornecedor)
+                .addGap(26, 26, 26)
+                .addComponent(btnFilterSuppliers )
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
@@ -245,6 +271,11 @@ public class SupplierView extends javax.swing.JFrame {
         clearTextFields();
     }
 
+    private void btnFilterSuppliersActionPerformed(ActionEvent evt){
+        tableModel.setResults(this.controller.getFilteredSuppliers());
+        tblSuppliers.updateUI();
+    }
+
     private void btnFecharJanelaFornecedorActionPerformed(ActionEvent evt) {
         this.dispose();
     }
@@ -254,26 +285,27 @@ public class SupplierView extends javax.swing.JFrame {
         EventQueue.invokeLater(() -> new SupplierView().setVisible(true));
     }
 
-    private javax.swing.JButton btnCadastrarFornecedor;
-    private javax.swing.JButton btnFecharJanelaFornecedor;
-    private javax.swing.JButton btnRemoveSupplier;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblSuppliers;
-    private javax.swing.JTextField txtFieldCnpj;
-    private javax.swing.JTextField txtFieldEmail;
-    private javax.swing.JTextField txtFieldCorporateName;
+    private JButton btnCadastrarFornecedor;
+    private JButton btnFecharJanelaFornecedor;
+    private JButton btnRemoveSupplier;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLabel jLabel5;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JScrollPane jScrollPane1;
+    private JTable tblSuppliers;
+    private JTextField txtFieldCnpj;
+    private JTextField txtFieldEmail;
+    private JTextField txtFieldCorporateName;
+    private JButton btnFilterSuppliers;
     // End of variables declaration
 
     private void clearTextFields(){
-        txtFieldCorporateName.setText("");
-        txtFieldCnpj.setText("");
-        txtFieldEmail.setText("");
+        for(JTextField txtField: this.txtFieldsList){
+            txtField.setText("");
+        }
     }
 }

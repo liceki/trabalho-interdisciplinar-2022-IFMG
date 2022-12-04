@@ -7,6 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "supplier", schema = "espaco_mix")
+@NamedQueries({
+        @NamedQuery(name = "FIND_SUPPLIERS_WITH_FILTERS",
+                query = "SELECT s FROM Supplier s " +
+                        "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '')" +
+                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '')")
+})
 //SQL=" WHERE ( tipo = "+tipo+" OR "+tipo+" = ''" );
 //SQL+=" AND ( fabricante = "+fabricante+" OR "+fabricante+"='' )";
 public class Supplier {

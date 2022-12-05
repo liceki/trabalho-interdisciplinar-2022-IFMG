@@ -1,4 +1,4 @@
-package respository;
+package repository;
 
 import jakarta.persistence.*;
 import model.Supplier;
@@ -14,37 +14,34 @@ public class SupplierRepository {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public Supplier createSupplier(Supplier supplier){
+    public Supplier saveSupplier(Supplier supplier){
         entityManager.getTransaction().begin();
         entityManager.persist(supplier);
         entityManager.getTransaction().commit();
         return supplier;
     }
 
-    public Supplier findSupplier(int id){
+    public Supplier findSupplierById(int id){
         return entityManager.find(Supplier.class, id);
     }
 
     public Supplier updateSupplier(Supplier supplier){
-        Supplier supplierToUpdate = findSupplier(supplier.getId());
+        Supplier supplierToUpdate = findSupplierById(supplier.getId());
         entityManager.getTransaction().begin();
-        supplierToUpdate.setCnpj(supplier.getCnpj());
-        supplierToUpdate.setCorporateName(supplier.getCorporateName());
-        supplierToUpdate.setEmail(supplierToUpdate.getEmail());
-        supplierToUpdate.setSuppliedProducts(supplier.getSuppliedProducts());
+        supplierToUpdate.updateSupplier(supplier);
         entityManager.getTransaction().commit();
         return supplierToUpdate;
     }
 
     public void deleteSupplier(Supplier supplierToRemove){
-        supplierToRemove = findSupplier(supplierToRemove.getId());
+        supplierToRemove = findSupplierById(supplierToRemove.getId());
         entityManager.getTransaction().begin();
         entityManager.remove(supplierToRemove);
         entityManager.getTransaction().commit();
     }
 
     public List<Supplier> getAllSuppliers(){
-        return entityManager.createQuery("SELECT s FROM Supplier s").getResultList();
+        return entityManager.createNamedQuery("GET_ALL_SUPPLIERS").getResultList();
     }
 
     public List<Supplier> findSuppliersWithFilters(Supplier supplierFilter){

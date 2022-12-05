@@ -278,7 +278,7 @@ public class SupplierView extends javax.swing.JFrame {
             }
         }
 
-        Supplier supplier = this.controller.addSupplier(corporateName, cnpj, email);
+        Supplier supplier = this.controller.saveSupplier(corporateName, cnpj, email);
         tableModel.addSupplier(supplier);
 
         tblSuppliers.updateUI();

@@ -1,7 +1,6 @@
 package model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +8,8 @@ import java.util.List;
 @Entity
 @Table(name = "supplier", schema = "espaco_mix")
 @NamedQueries({
+        @NamedQuery(name = "GET_ALL_SUPPLIERS",
+                query = "SELECT s FROM Supplier s"),
         @NamedQuery(name = "FIND_SUPPLIERS_WITH_FILTERS",
                 query = "SELECT s FROM Supplier s " +
                         "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '')" +
@@ -20,7 +21,6 @@ public class Supplier {
     @Id
     @Column(name = "supplier_id", nullable = false)
     @GeneratedValue(generator = "increment")
-    //@GenericGenerator(name="increment", strategy = "increment")
     private int id;
 
     @Column(name = "corporate_name", length = 450)
@@ -89,6 +89,14 @@ public class Supplier {
     public void addSupliedProduct(Product product){
         this.suppliedProducts.add(product);
     }
+
+    public void updateSupplier(Supplier supplier){
+        this.corporateName = supplier.getCorporateName();
+        this.cnpj = supplier.getCnpj();
+        this.email = supplier.getEmail();
+        this.suppliedProducts = supplier.getSuppliedProducts();
+    }
+
     @Override
     public String toString() {
         return "Supplier{" +

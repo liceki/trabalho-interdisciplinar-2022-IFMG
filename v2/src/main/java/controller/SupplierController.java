@@ -1,7 +1,7 @@
 package controller;
 
 import model.Supplier;
-import respository.SupplierRepository;
+import repository.SupplierRepository;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ public class SupplierController {
         repository = new SupplierRepository();
     }
 
-    public Supplier addSupplier(String corporateName, String cnpf, String email){
-        return repository.createSupplier(new Supplier(corporateName, cnpf, email));
+    public Supplier saveSupplier(String corporateName, String cnpf, String email){
+        return repository.saveSupplier(new Supplier(corporateName, cnpf, email));
     }
 
     public List<Supplier> getAllSuppliers(){

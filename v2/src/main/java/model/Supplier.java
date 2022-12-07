@@ -32,7 +32,7 @@ public class Supplier {
     @Column(name = "email", length = 450)
     private String email;
 
-    @OneToMany(mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE)
     private List<Product> suppliedProducts;
 
 
@@ -104,7 +104,6 @@ public class Supplier {
                 ", corporateName='" + corporateName + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", email='" + email + '\'' +
-                ", suppliedProducts=" + suppliedProducts +
                 '}';
     }
 }

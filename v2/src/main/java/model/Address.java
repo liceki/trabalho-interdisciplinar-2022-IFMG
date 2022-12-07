@@ -14,12 +14,15 @@ public class Address {
     @Column(name = "address_id")
     private int id;
 
+    //@PrimaryKeyJoinColumn(name = "address")
     @OneToOne(mappedBy = "address")
-    @PrimaryKeyJoinColumn(name = "address_client_id")
     private Client client;
 
     @Column(name = "state", length = 450)
     private String state;
+
+    @Column(name = "city", length = 450)
+    private String city;
 
     @Column(name = "neighbourhood", length = 450)
     private String neighbourhood;
@@ -36,9 +39,19 @@ public class Address {
     public Address() {
     }
 
-    public Address(Client client, String state, String neighbourhood, String postalCode, String street, int number) {
+    public Address(String state, String city, String neighbourhood, String postalCode, String street, int number) {
+        this.state = state;
+        this.city = city;
+        this.neighbourhood = neighbourhood;
+        this.postalCode = postalCode;
+        this.street = street;
+        this.number = number;
+    }
+
+    public Address(Client client, String state, String city, String neighbourhood, String postalCode, String street, int number) {
         this.client = client;
         this.state = state;
+        this.city = city;
         this.neighbourhood = neighbourhood;
         this.postalCode = postalCode;
         this.street = street;
@@ -67,6 +80,14 @@ public class Address {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getNeighbourhood() {
@@ -116,6 +137,7 @@ public class Address {
                 "id=" + id +
                 ", client=" + client +
                 ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
                 ", neighbourhood='" + neighbourhood + '\'' +
                 ", postalCode='" + postalCode + '\'' +
                 ", street='" + street + '\'' +

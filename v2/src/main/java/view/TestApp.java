@@ -2,14 +2,11 @@ package view;
 
 import model.*;
 import repository.*;
-import view.*;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-public class Main {
+public class TestApp {
 
     public static void main(String[] args) {
         AddressRepository addressRepository = new AddressRepository();

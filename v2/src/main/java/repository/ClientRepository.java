@@ -3,6 +3,7 @@ package repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import model.Address;
 import model.Client;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class ClientRepository {
         Client clientToUpdate = findClientById(client.getId());
         entityManager.getTransaction().begin();
         clientToUpdate.updateClient(client);
+        //entityManager.refresh(clientToUpdate);
         entityManager.getTransaction().commit();
         return clientToUpdate;
     }
@@ -41,6 +43,14 @@ public class ClientRepository {
         entityManager.remove(clientToRemove);
         entityManager.getTransaction().commit();
     }
+
+//    public Client setAddress(Client clientToSetAddress, Address address){
+//        clientToSetAddress = findClientById(clientToSetAddress.getId());
+//        entityManager.getTransaction().begin();
+//        clientToSetAddress.setAddress(address);
+//        entityManager.getTransaction().commit();
+//        return clientToSetAddress;
+//    }
 
     public List<Client> getAllClients(){
         return entityManager.createNamedQuery("GET_ALL_CLIENTS").getResultList();

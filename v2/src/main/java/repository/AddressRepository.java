@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import model.Address;
+import model.Client;
 
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class AddressRepository {
         Address addressToUpdate = findAddressById(address.getId());
         entityManager.getTransaction().begin();
         addressToUpdate.updateAddress(address);
+        //entityManager.refresh(addressToUpdate);
         entityManager.getTransaction().commit();
         return addressToUpdate;
     }

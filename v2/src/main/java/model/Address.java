@@ -14,10 +14,6 @@ public class Address {
     @Column(name = "address_id")
     private int id;
 
-    //@PrimaryKeyJoinColumn(name = "address")
-    @OneToOne(mappedBy = "address")
-    private Client client;
-
     @Column(name = "state", length = 450)
     private String state;
 
@@ -35,6 +31,10 @@ public class Address {
 
     @Column(name = "number")
     private int number;
+
+    //@PrimaryKeyJoinColumn(name = "address")
+    @OneToOne(mappedBy = "address")
+    private Client client;
 
     public Address() {
     }

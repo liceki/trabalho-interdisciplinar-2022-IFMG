@@ -22,8 +22,8 @@ public class SupplierController {
 
     public List<Supplier> getFilteredSuppliers(){
         Supplier supplierFilter = new Supplier();
-        supplierFilter.setCorporateName("es");
-        supplierFilter.setEmail("@");
+        supplierFilter.setCorporateName("Rei");
+        supplierFilter.setEmail("zao");
         return repository.findSuppliersWithFilters(supplierFilter);
     }
 

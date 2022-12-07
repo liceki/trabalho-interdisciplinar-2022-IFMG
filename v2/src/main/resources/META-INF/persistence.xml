@@ -5,10 +5,10 @@
     http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
              version="2.1">
 
-    <persistence-unit name="interdisciplinar" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="interdisciplinar-mysql" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/espaco_mix?useSSL=false&amp;serverTimezone=UTC" />
+                      value="jdbc:mysql://localhost:3307/espaco_mix?useSSL=false&amp;serverTimezone=UTC" />
 
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="root" />
@@ -18,6 +18,22 @@
 
             <!-- https://docs.jboss.org/hibernate/orm/5.4/javadocs/org/hibernate/dialect/package-summary.html -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="interdisciplinar-postgresql" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://localhost:5432/espaco_mix" />
+
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="jakarta.persistence.jdbc.user" value="postgres" />
+            <property name="jakarta.persistence.jdbc.password" value="postgres" />
+
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+
+            <!-- https://docs.jboss.org/hibernate/orm/5.4/javadocs/org/hibernate/dialect/package-summary.html -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
         </properties>
     </persistence-unit>
 </persistence>

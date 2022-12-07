@@ -10,7 +10,7 @@ public class InvoiceRepository {
     private EntityManager entityManager;
 
     public InvoiceRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar");
+        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

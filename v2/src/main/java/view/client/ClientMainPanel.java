@@ -41,16 +41,15 @@ public class ClientMainPanel extends javax.swing.JPanel {
         this.clientPropertiesPanel = new ClientPropertiesPanel();
         
         this.add(clientFiltersPanel);
-        clientFiltersPanel.setBounds(0, 0, 400, 800);
+        clientFiltersPanel.setBounds(0, 0, 300, 800);
         
         this.add(clientTablePanel);
-        clientTablePanel.setBounds(400, 0, 400, 800);
+        clientTablePanel.setBounds(300, 0, 600, 800);
         
         this.add(clientPropertiesPanel);
-        clientPropertiesPanel.setBounds(800, 0, 1200, 800);
+        clientPropertiesPanel.setBounds(900, 0, 300, 800);
         
         
-        //this.clientTablePanel.setVisible(true);
     }
     
 

@@ -32,21 +32,22 @@ public class TestApp {
         Supplier supplier = new Supplier("Pitanga Doce", "1112223334455",
                 "contato@pitanga.com");
 
-//        Supplier s = supplierRepository.findSupplierById(1);
-//        System.out.println(s.toString());
-//        for(Product p: s.getSuppliedProducts()){
-//            System.out.println(p.toString());
-//        }
+        Supplier s = supplierRepository.findSupplierById(1);
+        System.out.println(s.toString());
+        for(Product p: s.getSuppliedProducts()){
+            System.out.println(p.toString());
+        }
 
-        addressRepository.saveAddress(address);
-        client.setAddress(address);
-        clientRepository.saveClient(client);
 
-        supplierRepository.saveSupplier(supplier);
-        product.setSupplier(supplier);
-        product2.setSupplier(supplier);
-        productRepository.saveProduct(product);
-        productRepository.saveProduct(product2);
+//        client.setAddress(address);
+//        clientRepository.saveClient(client);
+//        addressRepository.saveAddress(address);
+
+//        supplierRepository.saveSupplier(supplier);
+//        product.setSupplier(supplier);
+//        product2.setSupplier(supplier);
+//        productRepository.saveProduct(product);
+//        productRepository.saveProduct(product2);
 
 
 
@@ -56,7 +57,7 @@ public class TestApp {
         product.setInvoice(invoice);
         product2.setInvoice(invoice);
 
-        productRepository.
-        invoiceRepository.saveInvoice(invoice);
+//        productRepository.
+//        invoiceRepository.saveInvoice(invoice);
     }
 }

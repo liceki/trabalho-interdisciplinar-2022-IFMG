@@ -13,7 +13,7 @@ public class ClientRepository {
     private EntityManager entityManager;
 
     public ClientRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar");
+        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

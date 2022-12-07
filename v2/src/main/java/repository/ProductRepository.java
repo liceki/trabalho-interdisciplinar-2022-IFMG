@@ -10,7 +10,7 @@ public class ProductRepository {
     private EntityManager entityManager;
 
     public ProductRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar");
+        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

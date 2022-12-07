@@ -10,7 +10,7 @@ public class SupplierRepository {
     private EntityManager entityManager;
 
     public SupplierRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar");
+        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

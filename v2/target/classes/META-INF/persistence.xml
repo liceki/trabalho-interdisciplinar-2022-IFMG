@@ -8,7 +8,7 @@
     <persistence-unit name="interdisciplinar" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:mysql://localhost/espaco-mix?useSSL=false&amp;serverTimezone=UTC" />
+                      value="jdbc:mysql://localhost/espaco_mix?useSSL=false&amp;serverTimezone=UTC" />
 
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="root" />

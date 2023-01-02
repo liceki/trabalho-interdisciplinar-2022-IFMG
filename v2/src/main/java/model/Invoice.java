@@ -68,4 +68,26 @@ public class Invoice {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public void updateInvoice(Invoice invoice){
+        this.client = invoice.getClient();
+        this.cart = invoice.getCart();
+        this.date = invoice.getDate();
+    }
+
+    @Override
+    public String toString() {
+        String stringToReturn = "";
+        stringToReturn += "Invoice{"+
+                "id=" + id +
+                ", date=" + date +
+                "\n     client=" + client.toStringFromInvoice() +
+                "\n     cart= ";
+        for(Product p: this.cart){
+            stringToReturn += "\n          " + p.toStringFromInvoice() + ", ";
+        }
+        return stringToReturn;
+    }
+
+
 }

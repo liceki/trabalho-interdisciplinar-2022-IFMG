@@ -10,7 +10,7 @@ public class InvoiceRepository {
     private EntityManager entityManager;
 
     public InvoiceRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
@@ -19,5 +19,9 @@ public class InvoiceRepository {
         entityManager.persist(invoice);
         entityManager.getTransaction().commit();
         return invoice;
+    }
+
+    public Invoice findInvoiceById(int id){
+        return entityManager.find(Invoice.class, id);
     }
 }

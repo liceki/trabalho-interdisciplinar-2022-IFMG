@@ -3,8 +3,7 @@ package repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import model.Address;
-import model.Client;
+import model.*;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class ClientRepository {
     private EntityManager entityManager;
 
     public ClientRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

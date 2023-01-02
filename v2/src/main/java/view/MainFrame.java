@@ -36,14 +36,15 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("interdisciplinar");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
-        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setLocationByPlatform(true);
+        setMaximumSize(new java.awt.Dimension(1600, 1000));
+        setMinimumSize(new java.awt.Dimension(1600, 1000));
         setName("mainFrame"); // NOI18N
 
         tabbedPaneMain.setMaximumSize(new java.awt.Dimension(1920, 1080));
         tabbedPaneMain.setMinimumSize(new java.awt.Dimension(1200, 800));
         tabbedPaneMain.setName("tabbedPane"); // NOI18N
-        tabbedPaneMain.setPreferredSize(new java.awt.Dimension(1200, 800));
+        tabbedPaneMain.setPreferredSize(new java.awt.Dimension(1600, 1000));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

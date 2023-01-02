@@ -10,7 +10,7 @@ public class ProductRepository {
     private EntityManager entityManager;
 
     public ProductRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
@@ -21,5 +21,16 @@ public class ProductRepository {
         return product;
     }
 
+    public Product findProductById(int id){
+        return entityManager.find(Product.class, id);
+    }
+
+    public Product updateProduct(Product product){
+        Product productToUpdate = findProductById(product.getId());
+        entityManager.getTransaction().begin();
+        productToUpdate.updateProduct(product);
+        entityManager.getTransaction().commit();
+        return productToUpdate;
+    }
 
 }

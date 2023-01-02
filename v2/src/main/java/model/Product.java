@@ -123,6 +123,17 @@ public  class Product {
         this.invoice = invoice;
     }
 
+    public void updateProduct(Product product){
+        this.name = product.getName();
+        this.sellingPrice = product.getSellingPrice();
+        this.costPrice = product.getCostPrice();
+        this.profit = product.getProfit();
+        this.inStock = product.isInStock();
+        this.image = product.getImage();
+        this.supplier = product.getSupplier();
+        this.invoice = product.getInvoice();
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -135,6 +146,19 @@ public  class Product {
                 ", image='" + image + '\'' +
                 ", supplier=" + supplier +
                 ", invoice=" + invoice +
+                '}';
+    }
+
+    public String toStringFromInvoice(){
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sellingPrice=" + sellingPrice +
+                ", costPrice=" + costPrice +
+                ", profit=" + profit +
+                ", inStock=" + inStock +
+                ", image='" + image + '\'' +
+                ", supplier=" + supplier.toStringFromProduct() +
                 '}';
     }
 }

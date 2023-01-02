@@ -13,7 +13,7 @@ public class AddressRepository {
     private EntityManager entityManager;
 
     public AddressRepository() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("interdisciplinar-mysql");
+        entityManagerFactory = Persistence.createEntityManagerFactory("postgresql");
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 

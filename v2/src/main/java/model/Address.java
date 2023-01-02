@@ -32,7 +32,6 @@ public class Address {
     @Column(name = "number")
     private int number;
 
-    //@PrimaryKeyJoinColumn(name = "address")
     @OneToOne(mappedBy = "address")
     private Client client;
 
@@ -135,7 +134,19 @@ public class Address {
     public String toString() {
         return "Address{" +
                 "id=" + id +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", neighbourhood='" + neighbourhood + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", street='" + street + '\'' +
+                ", number=" + number +
                 ", client=" + client +
+                '}';
+    }
+
+    public String toStringFromClient(){
+        return "Address{" +
+                "id=" + id +
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", neighbourhood='" + neighbourhood + '\'' +

@@ -104,6 +104,16 @@ public class Supplier {
                 ", corporateName='" + corporateName + '\'' +
                 ", cnpj='" + cnpj + '\'' +
                 ", email='" + email + '\'' +
+                ", suppliedProducts=" + suppliedProducts +
+                '}';
+    }
+
+    public String toStringFromProduct(){
+        return "Supplier{" +
+                "id=" + id +
+                ", corporateName='" + corporateName + '\'' +
+                ", cnpj='" + cnpj + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

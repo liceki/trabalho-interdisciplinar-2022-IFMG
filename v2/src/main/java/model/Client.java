@@ -157,14 +157,27 @@ public class Client {
     public String toString() {
         return "Client{" +
                 "id=" + id +
-                ", cpf=" + cpf +
+                ", cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", gender='" + gender + '\'' +
                 ", birthDate=" + birthDate +
                 ", address=" + address +
-                ", purchases=" + invoices +
+                ", invoices=" + invoices +
+                '}';
+    }
+
+    public String toStringFromInvoice(){
+        return "Client{" +
+                "id=" + id +
+                ", cpf='" + cpf + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthDate=" + birthDate +
+                "\n     , address=" + address.toStringFromClient() +
                 '}';
     }
 }

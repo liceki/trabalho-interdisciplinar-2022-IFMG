@@ -63,4 +63,6 @@ public class SupplierTableModel extends AbstractTableModel {
     public void setResults(List<Supplier> results){
         this.suppliersList = results;
     }
+    
+    
 }

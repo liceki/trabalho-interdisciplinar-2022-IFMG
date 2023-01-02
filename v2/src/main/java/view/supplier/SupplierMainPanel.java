@@ -17,18 +17,19 @@ public class SupplierMainPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(204, 204, 204));
-        setMaximumSize(new java.awt.Dimension(1920, 1080));
-        setMinimumSize(new java.awt.Dimension(1200, 800));
+        setMaximumSize(new java.awt.Dimension(1600, 1000));
+        setMinimumSize(new java.awt.Dimension(1600, 1000));
+        setPreferredSize(new java.awt.Dimension(1600, 1000));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1600, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -38,13 +39,13 @@ public class SupplierMainPanel extends javax.swing.JPanel {
         this.supplierPropertiesPanel = new SupplierPropertiesPanel();
         
         this.add(supplierFiltersPanel);
-        supplierFiltersPanel.setBounds(0, 0, 300, 800);
+        supplierFiltersPanel.setBounds(0, 0, 400, 1000);
         
         this.add(supplierTablePanel);
-        supplierTablePanel.setBounds(300, 0, 600, 800);
+        supplierTablePanel.setBounds(400, 0, 800, 1000);
         
         this.add(supplierPropertiesPanel);
-        supplierPropertiesPanel.setBounds(900, 0, 300, 800);
+        supplierPropertiesPanel.setBounds(1200, 0, 400, 1000);
         
     }
 

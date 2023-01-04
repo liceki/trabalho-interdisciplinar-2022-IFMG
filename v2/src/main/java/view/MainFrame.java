@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import view.client.ClientMainPanel;
 import view.product.ProductMainPanel;
 import view.supplier.SupplierMainPanel;
@@ -11,13 +12,17 @@ public class MainFrame extends javax.swing.JFrame {
     
     public MainFrame() {
         initComponents();
+        
+        this.setLayout(new BorderLayout());
+        this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        
         configureTabbedPane();
     }
     
     private void configureTabbedPane(){
+        this.supplierMainPanel = new SupplierMainPanel();
         this.clientMainPanel = new ClientMainPanel();
         this.productMainPanel = new ProductMainPanel();
-        this.supplierMainPanel = new SupplierMainPanel();
         
         this.tabbedPaneMain.addTab("SUPPLIER", supplierMainPanel); 
         this.tabbedPaneMain.addTab("CLIENT", clientMainPanel);
@@ -37,14 +42,13 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("interdisciplinar");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(1600, 1000));
         setMinimumSize(new java.awt.Dimension(1600, 1000));
         setName("mainFrame"); // NOI18N
 
         tabbedPaneMain.setMaximumSize(new java.awt.Dimension(1920, 1080));
         tabbedPaneMain.setMinimumSize(new java.awt.Dimension(1200, 800));
         tabbedPaneMain.setName("tabbedPane"); // NOI18N
-        tabbedPaneMain.setPreferredSize(new java.awt.Dimension(1600, 1000));
+        tabbedPaneMain.setPreferredSize(new java.awt.Dimension(1680, 1000));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

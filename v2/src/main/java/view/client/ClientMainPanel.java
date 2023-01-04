@@ -1,15 +1,19 @@
 package view.client;
 
 import java.awt.BorderLayout;
+import javax.swing.JScrollPane;
 
 public class ClientMainPanel extends javax.swing.JPanel {
-    ClientFiltersPanel clientFiltersPanel;
-    ClientTablePanel clientTablePanel;
-    ClientPropertiesPanel clientPropertiesPanel;
+    JScrollPane clientFiltersPanel;
+    JScrollPane clientTablePanel;
+    JScrollPane clientPropertiesPanel;
     
     
     public ClientMainPanel() {
         initComponents();
+        
+        this.setLayout(new BorderLayout());
+        
         configurePanel();
         
     }
@@ -36,18 +40,18 @@ public class ClientMainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void configurePanel() {
-        this.clientFiltersPanel = new ClientFiltersPanel();
-        this.clientTablePanel = new ClientTablePanel();
-        this.clientPropertiesPanel = new ClientPropertiesPanel();
+        this.clientFiltersPanel = new JScrollPane(new ClientFiltersPanel());
+        this.clientTablePanel = new JScrollPane(new ClientTablePanel());
+        this.clientPropertiesPanel = new JScrollPane(new ClientPropertiesPanel());
         
         this.add(clientFiltersPanel);
-        clientFiltersPanel.setBounds(0, 0, 300, 800);
+        clientFiltersPanel.setBounds(0, 0, 400, 1000);
         
         this.add(clientTablePanel);
-        clientTablePanel.setBounds(300, 0, 600, 800);
+        clientTablePanel.setBounds(400, 0, 800, 1000);
         
         this.add(clientPropertiesPanel);
-        clientPropertiesPanel.setBounds(900, 0, 300, 800);
+        clientPropertiesPanel.setBounds(1200, 0, 400, 1000);
         
         
     }

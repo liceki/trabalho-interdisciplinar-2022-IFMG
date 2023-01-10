@@ -47,6 +47,7 @@ public class SupplierRepository {
     public List<Supplier> findSuppliersWithFilters(Supplier supplierFilter){
         Query query = entityManager.createNamedQuery("FIND_SUPPLIERS_WITH_FILTERS");
         query.setParameter("corporateName", supplierFilter.getCorporateName());
+        query.setParameter("cnpj", supplierFilter.getCnpj());
         query.setParameter("email", supplierFilter.getEmail());
         return query.getResultList();
     }

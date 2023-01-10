@@ -20,11 +20,8 @@ public class SupplierController {
         return repository.getAllSuppliers();
     }
 
-    public List<Supplier> getFilteredSuppliers(){
-        Supplier supplierFilter = new Supplier();
-        supplierFilter.setCorporateName("Rei");
-        supplierFilter.setEmail("zao");
-        return repository.findSuppliersWithFilters(supplierFilter);
+    public List<Supplier> getFilteredSuppliers(String corporateName, String cnpf, String email){
+        return repository.findSuppliersWithFilters(new Supplier(corporateName, cnpf, email));
     }
 
     public void removeSupplier(Supplier supplierToRemove){

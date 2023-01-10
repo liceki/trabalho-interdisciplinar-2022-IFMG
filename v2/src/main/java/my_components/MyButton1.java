@@ -6,7 +6,8 @@ import javax.swing.JButton;
 
 public class MyButton1 extends JButton{
 
-    public MyButton1() {    
+    public MyButton1() {   
+        super();
         ConfigureButton();
     }
 
@@ -33,6 +34,7 @@ public class MyButton1 extends JButton{
     private void ConfigureButton(){
         this.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         this.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        this.setPreferredSize(new java.awt.Dimension(80, 40));
+        this.setPreferredSize(new java.awt.Dimension(100, 40));
+        this.setText("");
     }
 }

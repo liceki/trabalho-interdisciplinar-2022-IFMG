@@ -20,7 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     private void configureTabbedPane(){
-        this.supplierMainPanel = new SupplierMainPanel();
+        this.supplierMainPanel = new SupplierMainPanel(this);
         this.clientMainPanel = new ClientMainPanel();
         this.productMainPanel = new ProductMainPanel();
         

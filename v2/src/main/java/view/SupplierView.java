@@ -286,7 +286,7 @@ public class SupplierView extends javax.swing.JFrame {
     }
 
     private void btnFilterSuppliersActionPerformed(ActionEvent evt){
-        tableModel.setResults(this.controller.getFilteredSuppliers());
+        //tableModel.setResults(this.controller.getFilteredSuppliers());
         tblSuppliers.updateUI();
     }
 

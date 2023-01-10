@@ -8,12 +8,12 @@ import java.util.List;
 
 public class SupplierTableModel extends AbstractTableModel {
     private List<Supplier> suppliersList;
-
-    SupplierController controller;
-    private String[] header = {"Id", "Corporate Name", "CNPJ", "Email"};
+    private SupplierController controller;
+    private String[] header = {"Id", "Corporate Name", "CNPJ", "Email", "Nº of Products"};
 
     public SupplierTableModel() {
         this.controller = new SupplierController();
+        
         loadSuppliers();
     }
 
@@ -35,6 +35,7 @@ public class SupplierTableModel extends AbstractTableModel {
             case 1: return supplierTemp.getCorporateName();
             case 2: return supplierTemp.getCnpj();
             case 3: return supplierTemp.getEmail();
+            case 4: return supplierTemp.getSuppliedProducts().size();
             default: return null;
         }
     }

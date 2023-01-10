@@ -1,15 +1,21 @@
 package view.supplier;
 
 import controller.SupplierController;
+import javax.swing.JTable;
+import table_model.SupplierTableModel;
 
 public class SupplierResgistrationDialog extends javax.swing.JDialog {
 
-    SupplierController controller;
+    private SupplierController controller;
+    private SupplierTableModel tableModel;
+    private JTable tableSupplier;
     
-    public SupplierResgistrationDialog(java.awt.Frame parent, boolean modal) {
+    public SupplierResgistrationDialog(java.awt.Frame parent, boolean modal, SupplierTableModel tableModel, JTable tableSupplier) {
         super(parent, modal);
         initComponents();
         this.controller = new SupplierController();
+        this.tableModel = tableModel;
+        this.tableSupplier = tableSupplier;
     }
 
     @SuppressWarnings("unchecked")
@@ -32,7 +38,6 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog {
         setTitle("REGISTRATION - SUPPLIER");
         setMaximumSize(new java.awt.Dimension(600, 800));
         setMinimumSize(new java.awt.Dimension(600, 800));
-        setPreferredSize(new java.awt.Dimension(600, 800));
 
         myScrollPane11.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -153,7 +158,10 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog {
             .addComponent(myScrollPane11, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
 
-        setBounds(500, 100, 616, 808);
+        getAccessibleContext().setAccessibleParent(null);
+
+        setSize(new java.awt.Dimension(616, 808));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtFieldCorporateNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFieldCorporateNameActionPerformed
@@ -173,58 +181,18 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_myButton12ActionPerformed
 
     private void myButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton11ActionPerformed
-        this.controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText());
-        
+        tableModel.addSupplier(
+                controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
+        tableSupplier.updateUI();
         clearFields();
     }//GEN-LAST:event_myButton11ActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SupplierResgistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SupplierResgistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SupplierResgistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SupplierResgistrationDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SupplierResgistrationDialog dialog = new SupplierResgistrationDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegisterSupplier;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private my_components.MyButton1 myButton11;
     private my_components.MyButton1 myButton12;

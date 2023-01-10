@@ -12,8 +12,9 @@ import java.util.List;
                 query = "SELECT s FROM Supplier s"),
         @NamedQuery(name = "FIND_SUPPLIERS_WITH_FILTERS",
                 query = "SELECT s FROM Supplier s " +
-                        "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '')" +
-                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '')")
+                        "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
+                        "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
+                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') ")
 })
 //SQL=" WHERE ( tipo = "+tipo+" OR "+tipo+" = ''" );
 //SQL+=" AND ( fabricante = "+fabricante+" OR "+fabricante+"='' )";

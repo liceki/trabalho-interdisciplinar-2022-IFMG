@@ -45,6 +45,8 @@ public class MainFrame extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1600, 1000));
         setName("mainFrame"); // NOI18N
 
+        tabbedPaneMain.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+        tabbedPaneMain.setToolTipText("");
         tabbedPaneMain.setMaximumSize(new java.awt.Dimension(1920, 1080));
         tabbedPaneMain.setMinimumSize(new java.awt.Dimension(1200, 800));
         tabbedPaneMain.setName("tabbedPane"); // NOI18N

@@ -1,5 +1,8 @@
 package view.supplier;
 
+import java.awt.BorderLayout;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel {
@@ -12,6 +15,7 @@ public class SupplierTablePanel extends javax.swing.JPanel {
    
     public SupplierTablePanel() {
         initComponents();
+        
         configureTable();
     }
     
@@ -23,6 +27,12 @@ public class SupplierTablePanel extends javax.swing.JPanel {
     private void configureTable(){
         this.tableModel = new SupplierTableModel();
         this.tableSupplier.setModel(tableModel);
+        
+        
+        tableSupplier.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            supplierPropertiesPanel.getjLabel2().setText(tableModel.getSupplierAtRowIndex(tableSupplier.getSelectedRow()).toString());
+        });
+        
         this.tableSupplier.getColumnModel().getColumn(0).setPreferredWidth(100);
         this.tableSupplier.getColumnModel().getColumn(1).setPreferredWidth(300);
         this.tableSupplier.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -58,6 +68,7 @@ public class SupplierTablePanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
+        tableSupplier.setSelectionBackground(new java.awt.Color(52, 58, 64));
         jScrollPane1.setViewportView(tableSupplier);
         if (tableSupplier.getColumnModel().getColumnCount() > 0) {
             tableSupplier.getColumnModel().getColumn(0).setMinWidth(80);

@@ -44,6 +44,8 @@
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabbedPaneMain">
       <Properties>
+        <Property name="tabLayoutPolicy" type="int" value="1"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[1920, 1080]"/>
         </Property>

@@ -1,8 +1,7 @@
 package view.supplier;
 
 import controller.SupplierController;
-import javax.swing.JTable;
-import table_model.SupplierTableModel;
+import java.awt.BorderLayout;
 
 public class SupplierFiltersPanel extends javax.swing.JPanel {
     //relations with other panels
@@ -10,11 +9,10 @@ public class SupplierFiltersPanel extends javax.swing.JPanel {
     private SupplierPropertiesPanel supplierPropertiesPanel;
     
     private SupplierController controller;
-//    private JTable tableSupplier;
-//    private SupplierTableModel tableModel;
 
-    public SupplierFiltersPanel() {
+    public SupplierFiltersPanel() {  
         this.controller = new SupplierController();
+        
         initComponents();
     }
     

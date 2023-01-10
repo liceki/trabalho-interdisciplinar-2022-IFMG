@@ -20,7 +20,6 @@ public class SupplierMainPanel extends javax.swing.JPanel {
     public SupplierMainPanel(JFrame parent) {
         this.parent = parent;
         
-        
         initComponents();
         this.setLayout(new BorderLayout());
         configurePanel();

@@ -1,12 +1,15 @@
 package view.supplier;
 
 import controller.SupplierController;
-import java.awt.BorderLayout;
+import interfaces.FiltersPanel;
+import interfaces.PropertiesPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
 
-public class SupplierFiltersPanel extends javax.swing.JPanel {
+public class SupplierFiltersPanel extends javax.swing.JPanel implements RelationalPanel, FiltersPanel{
     //relations with other panels
-    private SupplierTablePanel supplierTablePanel;
-    private SupplierPropertiesPanel supplierPropertiesPanel;
+    private TablePanel supplierTablePanel;
+    private PropertiesPanel supplierPropertiesPanel;
     
     private SupplierController controller;
 
@@ -16,9 +19,10 @@ public class SupplierFiltersPanel extends javax.swing.JPanel {
         initComponents();
     }
     
-    public void setRelations(SupplierTablePanel supplierTablePanel, SupplierPropertiesPanel supplierPropertiesPanel){
-        this.supplierTablePanel = supplierTablePanel;
-        this.supplierPropertiesPanel = supplierPropertiesPanel;
+    @Override
+    public void setRelations(RelationalPanel supplierTablePanel, RelationalPanel supplierPropertiesPanel){
+        this.supplierTablePanel = (TablePanel) supplierTablePanel;
+        this.supplierPropertiesPanel = (PropertiesPanel) supplierPropertiesPanel;
     }
 
     @SuppressWarnings("unchecked")
@@ -109,14 +113,14 @@ public class SupplierFiltersPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFilterResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterResultsActionPerformed
-        supplierTablePanel.tableModel.setResults(
+        supplierTablePanel.getTableModel().setResults(
             controller.getFilteredSuppliers(
                     txtFieldCorporateNameFilter.getText(),
                     txtFieldCnpjFilter.getText(), 
                     txtFieldEmailFilter.getText())
         );
         
-        this.supplierTablePanel.tableSupplier.updateUI();
+        this.supplierTablePanel.updateTable();
     }//GEN-LAST:event_btnFilterResultsActionPerformed
 
 

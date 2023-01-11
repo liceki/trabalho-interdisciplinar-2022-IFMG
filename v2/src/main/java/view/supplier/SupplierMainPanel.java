@@ -3,18 +3,23 @@ package view.supplier;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
+import interfaces.MainPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
+import javax.swing.JPanel;
 import my_components.MyScrollPane1;
+import my_components.MySplitPane1;
 
 
-public class SupplierMainPanel extends javax.swing.JPanel {
+public class SupplierMainPanel extends javax.swing.JPanel implements MainPanel{
     public static JFrame parent;
     
-    MyScrollPane1 supplierFiltersScrollPane;
-    MyScrollPane1 supplierTableScrollPane;
-    MyScrollPane1 supplierPropertiesScrollPane;
+    RelationalPanel filtersPanel;
+    RelationalPanel tablePanel;
+    RelationalPanel propertiesPanel;
     
-    JSplitPane splitPaneFiltersTable;
-    JSplitPane splitPaneFiltersTableProperties;
+    MySplitPane1 splitPaneFiltersTable;
+    MySplitPane1 splitPaneFiltersTableProperties;
     
     
     public SupplierMainPanel(JFrame parent) {
@@ -23,7 +28,7 @@ public class SupplierMainPanel extends javax.swing.JPanel {
         initComponents();
         this.setLayout(new BorderLayout());
         configurePanel();
-    }
+    }  
 
     
     @SuppressWarnings("unchecked")
@@ -48,32 +53,48 @@ public class SupplierMainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void configurePanel() {
-        SupplierFiltersPanel supplierFiltersPanel = new SupplierFiltersPanel();
-        SupplierTablePanel supplierTablePanel = new SupplierTablePanel();
-        SupplierPropertiesPanel supplierPropertiesPanel = new SupplierPropertiesPanel();
+        // inicializing the panels
+        this.filtersPanel = new SupplierFiltersPanel();
+        this.tablePanel = new SupplierTablePanel();
+        this.propertiesPanel = new SupplierPropertiesPanel();
         
+        // setting relations between the panels
+        filtersPanel.setRelations(tablePanel, propertiesPanel);
+        tablePanel.setRelations(filtersPanel, propertiesPanel);
+        propertiesPanel.setRelations(filtersPanel, tablePanel);
         
-        supplierFiltersPanel.setRelations(supplierTablePanel, supplierPropertiesPanel);
-        supplierTablePanel.setRelations(supplierFiltersPanel, supplierPropertiesPanel);
-        supplierPropertiesPanel.setRelations(supplierFiltersPanel, supplierTablePanel);
-        
-        this.supplierFiltersScrollPane = new MyScrollPane1(supplierFiltersPanel);
-        this.supplierTableScrollPane = new MyScrollPane1(supplierTablePanel);
-        this.supplierPropertiesScrollPane = new MyScrollPane1(supplierPropertiesPanel);
-        
-        this.splitPaneFiltersTable = new JSplitPane(
-                JSplitPane.HORIZONTAL_SPLIT, this.supplierFiltersScrollPane, this.supplierTableScrollPane);           
+        // creating JSplitPane 1
+        this.splitPaneFiltersTable = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, 
+                new MyScrollPane1((JPanel) filtersPanel), 
+                (JPanel) this.tablePanel);          
         this.splitPaneFiltersTable.setDividerLocation(400);
         
-        this.splitPaneFiltersTableProperties = new JSplitPane(
-                JSplitPane.HORIZONTAL_SPLIT, splitPaneFiltersTable, this.supplierPropertiesScrollPane);           
+        // creating JSplitPane 2
+        this.splitPaneFiltersTableProperties = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, splitPaneFiltersTable, 
+                new MyScrollPane1((JPanel) propertiesPanel));           
         this.splitPaneFiltersTableProperties.setDividerLocation(1280);
         
+        // adding the JSplitPane to the main panel
         this.add(splitPaneFiltersTableProperties);
         
         //validate();
-        
     }
+    
+    @Override
+    public void resizeComponents(){
+        if(this.splitPaneFiltersTableProperties == null) return;
+            
+        int firstDividerLocation = this.splitPaneFiltersTable.getDividerLocation();
+        int secondDividerLocation = this.splitPaneFiltersTableProperties.getDividerLocation();
+        
+        ((TablePanel)tablePanel).resizeScrollPanelTable(firstDividerLocation, secondDividerLocation);
+    }
+    
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

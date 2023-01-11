@@ -5,8 +5,9 @@ import model.Supplier;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
+import interfaces.TableModel;
 
-public class SupplierTableModel extends AbstractTableModel {
+public class SupplierTableModel extends AbstractTableModel implements TableModel{
     private List<Supplier> suppliersList;
     private SupplierController controller;
     private String[] header = {"Id", "Corporate Name", "CNPJ", "Email", "Nº of Products"};
@@ -14,7 +15,7 @@ public class SupplierTableModel extends AbstractTableModel {
     public SupplierTableModel() {
         this.controller = new SupplierController();
         
-        loadSuppliers();
+        loadObjects();
     }
 
     @Override
@@ -45,25 +46,34 @@ public class SupplierTableModel extends AbstractTableModel {
         return header[column];
     }
 
-    public void loadSuppliers(){
+    
+    //methods from interface TableModel
+    @Override
+    public void loadObjects(){
         this.suppliersList = this.controller.getAllSuppliers();
     }
-
-    public void addSupplier(Supplier supplier){
-        this.suppliersList.add(supplier);
+    
+    @Override
+    public void setResults(List results){
+        this.suppliersList = results;
+    }
+    
+    @Override
+    public void addObject(Object supplier){
+        this.suppliersList.add((Supplier) supplier);
     }
 
-    public Supplier getSupplierAtRowIndex(int rowIndex){
+    @Override
+    public Supplier getObjectAtRowIndex(int rowIndex){
         return this.suppliersList.get(rowIndex);
     }
 
-    public void removeSupplierAtRow(int rowIndex){
+    @Override
+    public void removeObjectAtRowIndex(int rowIndex){
         this.suppliersList.remove(rowIndex);
     }
 
-    public void setResults(List<Supplier> results){
-        this.suppliersList = results;
-    }
+
     
     
 }

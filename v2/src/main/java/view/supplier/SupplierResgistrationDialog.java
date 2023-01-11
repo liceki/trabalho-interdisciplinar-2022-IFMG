@@ -1,21 +1,19 @@
 package view.supplier;
 
 import controller.SupplierController;
-import javax.swing.JTable;
-import table_model.SupplierTableModel;
+import interfaces.RegistrationDialog;
+import interfaces.TablePanel;
 
-public class SupplierResgistrationDialog extends javax.swing.JDialog {
+public class SupplierResgistrationDialog extends javax.swing.JDialog implements RegistrationDialog{
 
     private SupplierController controller;
-    private SupplierTableModel tableModel;
-    private JTable tableSupplier;
+    private TablePanel supplierTablePanel;
     
-    public SupplierResgistrationDialog(java.awt.Frame parent, boolean modal, SupplierTableModel tableModel, JTable tableSupplier) {
+    public SupplierResgistrationDialog(java.awt.Frame parent, boolean modal, TablePanel supplierTablePanel) {
         super(parent, modal);
         initComponents();
         this.controller = new SupplierController();
-        this.tableModel = tableModel;
-        this.tableSupplier = tableSupplier;
+        this.supplierTablePanel= supplierTablePanel;
     }
 
     @SuppressWarnings("unchecked")
@@ -181,9 +179,9 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_myButton12ActionPerformed
 
     private void myButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton11ActionPerformed
-        tableModel.addSupplier(
+        supplierTablePanel.getTableModel().addObject(
                 controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
-        tableSupplier.updateUI();
+        supplierTablePanel.updateTable();
         clearFields();
     }//GEN-LAST:event_myButton11ActionPerformed
 

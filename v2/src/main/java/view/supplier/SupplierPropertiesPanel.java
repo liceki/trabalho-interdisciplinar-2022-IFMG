@@ -1,21 +1,32 @@
 package view.supplier;
 
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
+import interfaces.FiltersPanel;
+import interfaces.PropertiesPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
+import model.Supplier;
 
-public class SupplierPropertiesPanel extends javax.swing.JPanel {
-    private SupplierFiltersPanel supplierFiltersPanel;
-    private SupplierTablePanel supplierTablePanel;
+public class SupplierPropertiesPanel extends javax.swing.JPanel implements RelationalPanel, PropertiesPanel{
+    private FiltersPanel supplierFiltersPanel;
+    private TablePanel supplierTablePanel;
     
     public SupplierPropertiesPanel() {
         initComponents();
     }
     
-    public void setRelations(SupplierFiltersPanel supplierFiltersPanel, SupplierTablePanel supplierPropertiesPanel){
-        this.supplierFiltersPanel = supplierFiltersPanel;
-        this.supplierTablePanel = supplierTablePanel;
+    @Override
+    public void setRelations(RelationalPanel supplierFiltersPanel, RelationalPanel supplierTablePanel){
+        this.supplierFiltersPanel = (FiltersPanel) supplierFiltersPanel;
+        this.supplierTablePanel = (TablePanel) supplierTablePanel;
     }
 
+    @Override
+    public void showProperties(Object obj) {
+        Supplier supplier = (Supplier) obj;
+        jLabel2.setText(supplier.toString());
+    }
+
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,18 +64,11 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel {
                 .addContainerGap(1032, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    public JLabel getjLabel2() {
-        return jLabel2;
-    }
-
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
-    }
-    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
+
 }

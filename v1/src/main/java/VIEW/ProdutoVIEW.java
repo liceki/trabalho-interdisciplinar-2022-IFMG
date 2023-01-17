@@ -424,7 +424,7 @@ public class ProdutoVIEW extends javax.swing.JFrame {
         }
         
         listarProdutos();
-        limparCamposCadastro();
+        //limparCamposCadastro();
         
         
         

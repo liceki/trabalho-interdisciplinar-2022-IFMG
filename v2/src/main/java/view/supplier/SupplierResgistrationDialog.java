@@ -6,8 +6,8 @@ import interfaces.TablePanel;
 
 public class SupplierResgistrationDialog extends javax.swing.JDialog implements RegistrationDialog{
 
-    private SupplierController controller;
-    private TablePanel supplierTablePanel;
+    private final SupplierController controller;
+    private final TablePanel supplierTablePanel;
     
     public SupplierResgistrationDialog(java.awt.Frame parent, boolean modal, TablePanel supplierTablePanel) {
         super(parent, modal);
@@ -182,7 +182,7 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         supplierTablePanel.getTableModel().addObject(
                 controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
         supplierTablePanel.updateTable();
-        clearFields();
+        //clearFields();
     }//GEN-LAST:event_myButton11ActionPerformed
 
 

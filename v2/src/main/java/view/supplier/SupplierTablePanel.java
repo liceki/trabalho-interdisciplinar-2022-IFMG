@@ -42,7 +42,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     @Override
     public void resizeScrollPanelTable(int firstDivider, int secondDivider){
         int width = (secondDivider - firstDivider) - 80;
-        this.scrollPanelTable.setPreferredSize(new Dimension(width, scrollPanelTable.getHeight()));
+        this.jScrollPane7.setPreferredSize(new Dimension(width, jScrollPane7.getHeight()));
     }
     
     private void configureTable(){
@@ -88,8 +88,10 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             }
         });
 
+        scrollPanelTable.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPanelTable.setMinimumSize(new java.awt.Dimension(16, 20));
 
+        tableSupplier.setAutoCreateRowSorter(true);
         tableSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -101,9 +103,11 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
+        tableSupplier.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tableSupplier.setMaximumSize(new java.awt.Dimension(1000, 999999));
         tableSupplier.setMinimumSize(new java.awt.Dimension(1000, 800));
         tableSupplier.setPreferredSize(new java.awt.Dimension(1000, 800));
+        tableSupplier.setRowSelectionAllowed(false);
         tableSupplier.setSelectionBackground(new java.awt.Color(52, 58, 64));
         jScrollPane7.setViewportView(tableSupplier);
 
@@ -113,15 +117,15 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
                 .addGap(2, 2, 2))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 836, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         scrollPanelTable.setViewportView(jPanel1);
@@ -133,10 +137,10 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 561, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addGap(30, 30, 30))
         );
@@ -148,8 +152,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 840, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -167,12 +171,6 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private my_components.MyScrollPane1 scrollPanelTable;
     private javax.swing.JTable tableSupplier;

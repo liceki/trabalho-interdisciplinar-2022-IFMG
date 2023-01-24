@@ -53,7 +53,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         
         
         tableSupplier.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-            supplierPropertiesPanel.showProperties(tableModel.getObjectAtRowIndex(tableSupplier.getSelectedRow()));
+            supplierPropertiesPanel.showProperties(tableSupplier.getSelectedRow(),
+                    tableModel.getObjectAtRowIndex(tableSupplier.getSelectedRow()));
         });
         
         this.tableSupplier.getColumnModel().getColumn(0).setPreferredWidth(100);

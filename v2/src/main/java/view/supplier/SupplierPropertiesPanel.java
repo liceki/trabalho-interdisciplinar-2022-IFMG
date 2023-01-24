@@ -5,6 +5,9 @@ import interfaces.FiltersPanel;
 import interfaces.PropertiesPanel;
 import interfaces.RelationalPanel;
 import interfaces.TablePanel;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import model.Product;
 import model.Supplier;
 
 public class SupplierPropertiesPanel extends javax.swing.JPanel implements RelationalPanel, PropertiesPanel{
@@ -13,10 +16,15 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     
     private SupplierController controller;
     private Supplier selectedSupplier;
+    private int rowIndex;
+    private DefaultListModel<String> productsSuppliedListModel;
     
     public SupplierPropertiesPanel() {
         initComponents();
+        
         controller = new SupplierController();
+        this.productsSuppliedListModel = new DefaultListModel<>();
+        this.listProductsSupplied.setModel(productsSuppliedListModel);
     }
     
     @Override
@@ -26,12 +34,25 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     }
 
     @Override
-    public void showProperties(Object obj) {
+    public void showProperties(int rowIndex, Object obj) {
+        this.rowIndex = rowIndex;
+        
         this.selectedSupplier = (Supplier) obj;
         labelId.setText(selectedSupplier.getId()+"");
         txtFieldCorporateName.setText(selectedSupplier.getCorporateName());
         txtFieldCnpj.setText(selectedSupplier.getCnpj());
         txtFieldEmail.setText(selectedSupplier.getEmail());
+        
+        enableButtons();
+        
+        this.productsSuppliedListModel.clear();
+        
+        List<Product> products = this.selectedSupplier.getSuppliedProducts();
+        
+        for(Product p: products){
+            p.toStringFromInvoice();
+            this.productsSuppliedListModel.addElement(p.toStringFromInvoice());
+        }
     }
 
     
@@ -49,9 +70,9 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
         jLabel6 = new javax.swing.JLabel();
         labelId = new javax.swing.JLabel();
         btnDeleteSupllier = new javax.swing.JButton();
-        btnUpdateSupllier1 = new javax.swing.JButton();
+        btnUpdateSupllier = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listProductsSupplied = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(52, 58, 64));
 
@@ -89,23 +110,18 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
             }
         });
 
-        btnUpdateSupllier1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnUpdateSupllier1.setText("UPDATE");
-        btnUpdateSupllier1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        btnUpdateSupllier1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUpdateSupllier1.setPreferredSize(new java.awt.Dimension(80, 40));
-        btnUpdateSupllier1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateSupllier.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnUpdateSupllier.setText("UPDATE");
+        btnUpdateSupllier.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        btnUpdateSupllier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdateSupllier.setPreferredSize(new java.awt.Dimension(80, 40));
+        btnUpdateSupllier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateSupllier1ActionPerformed(evt);
+                btnUpdateSupllierActionPerformed(evt);
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listProductsSupplied);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,7 +137,7 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdateSupllier1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdateSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel5)
@@ -161,7 +177,7 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdateSupllier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(292, 292, 292))
         );
@@ -170,33 +186,51 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     private void btnDeleteSupllierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSupllierActionPerformed
         controller.removeSupplier(this.selectedSupplier);
         
-        updateSupplierTable();
+        this.supplierTablePanel.getTableModel().removeObjectAtRowIndex(this.rowIndex);
+        this.supplierTablePanel.updateTable();
+        clearFields();
+        disableButtonsIfNeeded();
     }//GEN-LAST:event_btnDeleteSupllierActionPerformed
 
-    private void btnUpdateSupllier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSupllier1ActionPerformed
+    private void btnUpdateSupllierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSupllierActionPerformed
         this.selectedSupplier.setCorporateName(txtFieldCorporateName.getText());
         this.selectedSupplier.setCnpj(txtFieldCnpj.getText());
         this.selectedSupplier.setEmail(txtFieldEmail.getText());
         
-        updateSupplierTable();
-    }//GEN-LAST:event_btnUpdateSupllier1ActionPerformed
-  
-    private void updateSupplierTable(){
-        this.supplierTablePanel.getTableModel().loadObjects();
-        this.supplierTablePanel.updateTable();
-    }
+        controller.updateSupplier(this.selectedSupplier);
+ 
+    }//GEN-LAST:event_btnUpdateSupllierActionPerformed
 
+    private void disableButtonsIfNeeded(){
+        if(labelId.getText().equals("")){
+            btnDeleteSupllier.setEnabled(false);
+            btnUpdateSupllier.setEnabled(false);
+        }
+    }
+    
+    private void enableButtons(){
+        btnDeleteSupllier.setEnabled(true);
+        btnUpdateSupllier.setEnabled(true);
+    }
+    
+    private void clearFields(){
+        labelId.setText("");
+        txtFieldCorporateName.setText("");
+        txtFieldCnpj.setText("");
+        txtFieldEmail.setText("");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteSupllier;
-    private javax.swing.JButton btnUpdateSupllier1;
+    private javax.swing.JButton btnUpdateSupllier;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelId;
+    private javax.swing.JList<String> listProductsSupplied;
     private my_components.MyTextField1 txtFieldCnpj;
     private my_components.MyTextField1 txtFieldCorporateName;
     private my_components.MyTextField1 txtFieldEmail;

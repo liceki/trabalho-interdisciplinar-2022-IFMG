@@ -1,5 +1,6 @@
 package repository;
 
+import interfaces.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -8,7 +9,7 @@ import model.Client;
 
 import java.util.List;
 
-public class AddressRepository {
+public class AddressRepository implements Repository{
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 

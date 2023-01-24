@@ -1,5 +1,6 @@
 package repository;
 
+import interfaces.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -7,7 +8,7 @@ import model.*;
 
 import java.util.List;
 
-public class ClientRepository {
+public class ClientRepository implements Repository {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 

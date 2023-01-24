@@ -50,6 +50,8 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
         labelId = new javax.swing.JLabel();
         btnDeleteSupllier = new javax.swing.JButton();
         btnUpdateSupllier1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(52, 58, 64));
 
@@ -98,6 +100,13 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
             }
         });
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,22 +118,22 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(btnUpdateSupllier1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFieldEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFieldCnpj, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtFieldCorporateName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(labelId, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnUpdateSupllier1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5)
+                            .addComponent(txtFieldEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtFieldCnpj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFieldCorporateName, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelId, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -148,23 +157,34 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdateSupllier1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(638, Short.MAX_VALUE))
+                .addGap(292, 292, 292))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteSupllierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteSupllierActionPerformed
         controller.removeSupplier(this.selectedSupplier);
-        this.supplierTablePanel.updateTable();
+        
+        updateSupplierTable();
     }//GEN-LAST:event_btnDeleteSupllierActionPerformed
 
     private void btnUpdateSupllier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateSupllier1ActionPerformed
-        this.supplierTablePanel.updateTable();
+        this.selectedSupplier.setCorporateName(txtFieldCorporateName.getText());
+        this.selectedSupplier.setCnpj(txtFieldCnpj.getText());
+        this.selectedSupplier.setEmail(txtFieldEmail.getText());
+        
+        updateSupplierTable();
     }//GEN-LAST:event_btnUpdateSupllier1ActionPerformed
   
+    private void updateSupplierTable(){
+        this.supplierTablePanel.getTableModel().loadObjects();
+        this.supplierTablePanel.updateTable();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeleteSupllier;
@@ -174,6 +194,8 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelId;
     private my_components.MyTextField1 txtFieldCnpj;
     private my_components.MyTextField1 txtFieldCorporateName;

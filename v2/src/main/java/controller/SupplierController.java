@@ -20,6 +20,10 @@ public class SupplierController {
         return repository.getAllSuppliers();
     }
 
+    public Supplier updateSupplier(Supplier supplier){
+        return repository.updateSupplier(supplier);
+    }
+    
     public List<Supplier> getFilteredSuppliers(String corporateName, String cnpf, String email){
         return repository.findSuppliersWithFilters(new Supplier(corporateName, cnpf, email));
     }

@@ -61,6 +61,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         this.tableSupplier.getColumnModel().getColumn(2).setPreferredWidth(150);
         this.tableSupplier.getColumnModel().getColumn(3).setPreferredWidth(350);
         this.tableSupplier.getColumnModel().getColumn(4).setPreferredWidth(100);
+        
     }
 
     

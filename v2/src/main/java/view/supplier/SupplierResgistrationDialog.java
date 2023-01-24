@@ -23,7 +23,7 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         myScrollPane11 = new my_components.MyScrollPane1();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        myButton11 = new my_components.MyButton1();
+        btnRegisterSupplier = new my_components.MyButton1();
         txtFieldCorporateName = new my_components.MyTextField1();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -47,10 +47,10 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         jLabel2.setForeground(new java.awt.Color(152, 158, 164));
         jLabel2.setText("SUPPLIER REGISTRATION");
 
-        myButton11.setText("REGISTER");
-        myButton11.addActionListener(new java.awt.event.ActionListener() {
+        btnRegisterSupplier.setText("REGISTER");
+        btnRegisterSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton11ActionPerformed(evt);
+                btnRegisterSupplierActionPerformed(evt);
             }
         });
 
@@ -105,7 +105,7 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
                                 .addComponent(jLabel2))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addGap(250, 250, 250)
-                                .addComponent(myButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnRegisterSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(100, Short.MAX_VALUE)
@@ -139,7 +139,7 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
                 .addGap(124, 124, 124)
                 .addComponent(myButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
-                .addComponent(myButton11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegisterSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
         );
 
@@ -178,21 +178,21 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         // TODO add your handling code here:
     }//GEN-LAST:event_myButton12ActionPerformed
 
-    private void myButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton11ActionPerformed
+    private void btnRegisterSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterSupplierActionPerformed
         supplierTablePanel.getTableModel().addObject(
                 controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
         supplierTablePanel.updateTable();
         //clearFields();
-    }//GEN-LAST:event_myButton11ActionPerformed
+    }//GEN-LAST:event_btnRegisterSupplierActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private my_components.MyButton1 btnRegisterSupplier;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
-    private my_components.MyButton1 myButton11;
     private my_components.MyButton1 myButton12;
     private my_components.MyScrollPane1 myScrollPane11;
     private my_components.MyTextField1 txtFieldCnpj;

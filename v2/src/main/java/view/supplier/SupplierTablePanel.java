@@ -36,6 +36,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
 
     @Override
     public void updateTable() {
+        this.tableSupplier.revalidate();
         this.tableSupplier.updateUI();
     }
 
@@ -45,7 +46,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         this.jScrollPane7.setPreferredSize(new Dimension(width, jScrollPane7.getHeight()));
     }
     
-    private void configureTable(){
+    @Override
+    public void configureTable(){
         this.tableModel = new SupplierTableModel();
         this.tableSupplier.setModel((SupplierTableModel) tableModel);
         
@@ -104,11 +106,14 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             }
         ));
         tableSupplier.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tableSupplier.setFillsViewportHeight(true);
+        tableSupplier.setFocusCycleRoot(true);
         tableSupplier.setMaximumSize(new java.awt.Dimension(1000, 999999));
         tableSupplier.setMinimumSize(new java.awt.Dimension(1000, 800));
         tableSupplier.setPreferredSize(new java.awt.Dimension(1000, 800));
-        tableSupplier.setRowSelectionAllowed(false);
         tableSupplier.setSelectionBackground(new java.awt.Color(52, 58, 64));
+        tableSupplier.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableSupplier.setShowGrid(true);
         jScrollPane7.setViewportView(tableSupplier);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -125,7 +130,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         scrollPanelTable.setViewportView(jPanel1);

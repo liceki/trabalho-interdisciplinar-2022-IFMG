@@ -16,6 +16,8 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
         this.controller = new SupplierController();
         
         loadObjects();
+        
+        System.out.println(suppliersList.size());
     }
 
     @Override
@@ -30,13 +32,19 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        System.out.println(rowIndex);
         Supplier supplierTemp = this.suppliersList.get(rowIndex);
         switch (columnIndex){
             case 0: return supplierTemp.getId();
             case 1: return supplierTemp.getCorporateName();
             case 2: return supplierTemp.getCnpj();
             case 3: return supplierTemp.getEmail();
-            case 4: return supplierTemp.getSuppliedProducts().size();
+            case 4: 
+                if(supplierTemp.getSuppliedProducts() != null){
+                    return supplierTemp.getSuppliedProducts().size();
+                } else {
+                    return 0;
+                }
             default: return null;
         }
     }

@@ -95,7 +95,7 @@ public class Supplier {
         this.corporateName = supplier.getCorporateName();
         this.cnpj = supplier.getCnpj();
         this.email = supplier.getEmail();
-        this.suppliedProducts = supplier.getSuppliedProducts();
+        //this.suppliedProducts = supplier.getSuppliedProducts();
     }
 
     @Override

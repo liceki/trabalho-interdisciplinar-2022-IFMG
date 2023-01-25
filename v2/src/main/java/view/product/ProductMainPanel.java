@@ -1,35 +1,84 @@
 package view.product;
 
-public class ProductMainPanel extends javax.swing.JPanel {
-    ProductFiltersPanel productFiltersPanel;
-    ProductTablePanel productTablePanel;
-    ProductPropertiesPanel productPropertiesPanel;
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JSplitPane;
+import interfaces.MainPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
+import javax.swing.JPanel;
+import my_components.MyScrollPane1;
+import my_components.MySplitPane1;
 
-    public ProductMainPanel() {
+
+public class ProductMainPanel extends javax.swing.JPanel implements MainPanel{
+    public static JFrame parent;
+    
+    RelationalPanel filtersPanel;
+    RelationalPanel tablePanel;
+    RelationalPanel propertiesPanel;
+    
+    MySplitPane1 splitPaneFiltersTable;
+    MySplitPane1 splitPaneFiltersTableProperties;
+    
+    
+    public ProductMainPanel(JFrame parent) {
+        this.parent = parent;
+        
         initComponents();
+        this.setLayout(new BorderLayout());
         configurePanel();
-    }
+    }  
+                      
 
     private void configurePanel() {
-        this.productFiltersPanel = new ProductFiltersPanel();
-        this.productTablePanel = new ProductTablePanel();
-        this.productPropertiesPanel = new ProductPropertiesPanel();
-
-        this.add(productFiltersPanel);
-        productFiltersPanel.setBounds(0, 0, 300, 800);
-
-        this.add(productTablePanel);
-        productTablePanel.setBounds(300, 0, 600, 800);
-
-        this.add(productPropertiesPanel);
-        productPropertiesPanel.setBounds(900, 0, 300, 800);
+        // inicializing the panels
+        this.filtersPanel = new ProductFiltersPanel();
+        this.tablePanel = new ProductTablePanel();
+        this.propertiesPanel = new ProductPropertiesPanel();
+        
+        // setting relations between the panels
+        filtersPanel.setRelations(tablePanel, propertiesPanel);
+        tablePanel.setRelations(filtersPanel, propertiesPanel);
+        propertiesPanel.setRelations(filtersPanel, tablePanel);
+        
+        // creating JSplitPane 1
+        this.splitPaneFiltersTable = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, 
+                new MyScrollPane1((JPanel) filtersPanel), 
+                (JPanel) this.tablePanel);          
+        this.splitPaneFiltersTable.setDividerLocation(400);
+        
+        // creating JSplitPane 2
+        this.splitPaneFiltersTableProperties = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, splitPaneFiltersTable, 
+                new MyScrollPane1((JPanel) propertiesPanel));           
+        this.splitPaneFiltersTableProperties.setDividerLocation(1280);
+        
+        // adding the JSplitPane to the main panel
+        this.add(splitPaneFiltersTableProperties);
+        
+        //validate();
     }
+    
+    @Override
+    public void resizeComponents(){
+        if(this.splitPaneFiltersTableProperties == null) return;
+            
+        int firstDividerLocation = this.splitPaneFiltersTable.getDividerLocation();
+        int secondDividerLocation = this.splitPaneFiltersTableProperties.getDividerLocation();
+        
+        ((TablePanel)tablePanel).resizeScrollPanelTable(firstDividerLocation, secondDividerLocation);
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 0));
+        setBackground(new java.awt.Color(255, 0, 255));
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1200, 800));
         setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -45,8 +94,6 @@ public class ProductMainPanel extends javax.swing.JPanel {
             .addGap(0, 800, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

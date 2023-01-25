@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import javax.swing.event.ListSelectionEvent;
 import interfaces.TableModel;
 import interfaces.TablePanel;
+import javax.swing.ImageIcon;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel implements RelationalPanel, TablePanel{
@@ -21,6 +22,15 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     public SupplierTablePanel() {
         initComponents();
         configureTable();
+        
+        /*labelImagemDado.setIcon(
+            new ImageIcon(getClass().getResource("/imagens/inverted-dice-" + valorDado + ".png")));*/
+        //try{
+        //    btnRefreshTable.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
+        //}catch(Exception ex){
+        //    JOptionPane.showMessageDialog(this, ex.getMessage());
+        //}
+        
     }
     
     @Override
@@ -72,11 +82,12 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnAddSupplier = new javax.swing.JButton();
         scrollPanelTable = new my_components.MyScrollPane1();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableSupplier = new javax.swing.JTable();
+        btnRefreshTable = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(73, 80, 87));
 
@@ -84,11 +95,11 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         jLabel1.setForeground(new java.awt.Color(152, 158, 164));
         jLabel1.setText("TABLE");
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("ADD SUPPLIER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddSupplier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAddSupplier.setText("ADD SUPPLIER");
+        btnAddSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAddSupplierActionPerformed(evt);
             }
         });
 
@@ -137,6 +148,14 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
 
         scrollPanelTable.setViewportView(jPanel1);
 
+        btnRefreshTable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRefreshTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRefreshTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,34 +167,43 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                        .addComponent(btnRefreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAddSupplier)))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 872, Short.MAX_VALUE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnAddSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addGap(9, 9, 9)
+                .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     
     
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
         this.registrationDialog = new SupplierResgistrationDialog(SupplierMainPanel.parent, true, this);
         
         this.registrationDialog.setVisible(true);
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAddSupplierActionPerformed
+
+    private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRefreshTableActionPerformed
       
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAddSupplier;
+    private javax.swing.JButton btnRefreshTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane7;

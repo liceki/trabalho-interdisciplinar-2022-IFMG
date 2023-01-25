@@ -1,7 +1,14 @@
 package view.product;
 
-public class ProductFiltersPanel extends javax.swing.JPanel {
+import interfaces.FiltersPanel;
+import interfaces.PropertiesPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
 
+public class ProductFiltersPanel extends javax.swing.JPanel implements RelationalPanel, FiltersPanel {
+    private TablePanel productTablePanel;
+    private PropertiesPanel productPropertiesPanel;
+    
     public ProductFiltersPanel() {
         initComponents();
     }
@@ -23,6 +30,12 @@ public class ProductFiltersPanel extends javax.swing.JPanel {
             .addGap(0, 800, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    @Override
+    public void setRelations(RelationalPanel productTablePanel, RelationalPanel productPropertiesPanel) {
+        this.productTablePanel = (TablePanel) productTablePanel;
+        this.productPropertiesPanel = (PropertiesPanel) productPropertiesPanel;
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

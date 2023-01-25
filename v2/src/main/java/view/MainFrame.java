@@ -24,7 +24,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         this.supplierMainPanel = new SupplierMainPanel(this);
         this.clientMainPanel = new ClientMainPanel();
-        this.productMainPanel = new ProductMainPanel();
+        this.productMainPanel = new ProductMainPanel(this);
         
         changeContent(this.supplierMainPanel);
         
@@ -55,6 +55,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        menuItemSuppliers = new javax.swing.JMenuItem();
+        menuItemProducts = new javax.swing.JMenuItem();
+        menuItemClients = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("interdisciplinar");
@@ -89,6 +94,40 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jMenu1.setText("WINDOW");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        menuItemSuppliers.setText("SUPPLIERS");
+        menuItemSuppliers.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuItemSuppliers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSuppliersActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemSuppliers);
+
+        menuItemProducts.setText("PRODUCTS");
+        menuItemProducts.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuItemProducts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemProductsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemProducts);
+
+        menuItemClients.setText("CLIENTS");
+        menuItemClients.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuItemClients.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemClientsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemClients);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,6 +141,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuItemProductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductsActionPerformed
+        changeContent(this.productMainPanel);
+    }//GEN-LAST:event_menuItemProductsActionPerformed
+
+    private void menuItemSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSuppliersActionPerformed
+        changeContent(this.supplierMainPanel);
+    }//GEN-LAST:event_menuItemSuppliersActionPerformed
+
+    private void menuItemClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemClientsActionPerformed
+        changeContent(this.clientMainPanel);
+    }//GEN-LAST:event_menuItemClientsActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -134,6 +185,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem menuItemClients;
+    private javax.swing.JMenuItem menuItemProducts;
+    private javax.swing.JMenuItem menuItemSuppliers;
     // End of variables declaration//GEN-END:variables
 }

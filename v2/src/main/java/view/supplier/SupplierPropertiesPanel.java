@@ -5,9 +5,6 @@ import interfaces.FiltersPanel;
 import interfaces.PropertiesPanel;
 import interfaces.RelationalPanel;
 import interfaces.TablePanel;
-import java.util.List;
-import javax.swing.DefaultListModel;
-import model.Product;
 import model.Supplier;
 
 public class SupplierPropertiesPanel extends javax.swing.JPanel implements RelationalPanel, PropertiesPanel{
@@ -17,14 +14,13 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     private SupplierController controller;
     private Supplier selectedSupplier;
     private int rowIndex;
-    private DefaultListModel<String> productsSuppliedListModel;
+   
     
     public SupplierPropertiesPanel() {
         initComponents();
         
         controller = new SupplierController();
-        this.productsSuppliedListModel = new DefaultListModel<>();
-        this.listProductsSupplied.setModel(productsSuppliedListModel);
+
     }
     
     @Override
@@ -45,14 +41,6 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
         
         enableButtons();
         
-        this.productsSuppliedListModel.clear();
-        
-        List<Product> products = this.selectedSupplier.getSuppliedProducts();
-        
-        for(Product p: products){
-            p.toStringFromInvoice();
-            this.productsSuppliedListModel.addElement(p.toStringFromInvoice());
-        }
     }
 
     
@@ -71,8 +59,6 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
         labelId = new javax.swing.JLabel();
         btnDeleteSupllier = new javax.swing.JButton();
         btnUpdateSupllier = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listProductsSupplied = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(52, 58, 64));
 
@@ -121,8 +107,6 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
             }
         });
 
-        jScrollPane1.setViewportView(listProductsSupplied);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +132,7 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelId, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1))))
+                                .addComponent(labelId, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -173,9 +156,7 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87)
+                .addGap(400, 400, 400)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdateSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeleteSupllier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -196,9 +177,9 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
         this.selectedSupplier.setCorporateName(txtFieldCorporateName.getText());
         this.selectedSupplier.setCnpj(txtFieldCnpj.getText());
         this.selectedSupplier.setEmail(txtFieldEmail.getText());
-        
+        System.out.println(this.selectedSupplier.getId());
         controller.updateSupplier(this.selectedSupplier);
- 
+        this.supplierTablePanel.updateTable();
     }//GEN-LAST:event_btnUpdateSupllierActionPerformed
 
     private void disableButtonsIfNeeded(){
@@ -228,9 +209,7 @@ public class SupplierPropertiesPanel extends javax.swing.JPanel implements Relat
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelId;
-    private javax.swing.JList<String> listProductsSupplied;
     private my_components.MyTextField1 txtFieldCnpj;
     private my_components.MyTextField1 txtFieldCorporateName;
     private my_components.MyTextField1 txtFieldEmail;

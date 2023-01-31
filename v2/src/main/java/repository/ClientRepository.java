@@ -4,7 +4,8 @@ import interfaces.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import model.*;
+import jakarta.persistence.Query;
+import model.Client;
 
 import java.util.List;
 
@@ -17,45 +18,52 @@ public class ClientRepository implements Repository {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public Client saveClient(Client client){
+    @Override
+    public Object saveObject(Object obj){
+        Client client = (Client) obj;
         entityManager.getTransaction().begin();
         entityManager.persist(client);
         entityManager.getTransaction().commit();
         return client;
     }
 
-    public Client findClientById(int id){
+    @Override
+    public Object findObjectById(int id){
         return entityManager.find(Client.class, id);
     }
 
-    public Client updateClient(Client client){
-        Client clientToUpdate = findClientById(client.getId());
+    @Override
+    public Object updateObject(Object obj){
+        Client client = (Client) obj;
+        Client clientToUpdate = (Client) findObjectById(client.getId());
         entityManager.getTransaction().begin();
         clientToUpdate.updateClient(client);
-        //entityManager.refresh(clientToUpdate);
         entityManager.getTransaction().commit();
         return clientToUpdate;
     }
 
-    public void deleteClient(Client clientToRemove){
-        clientToRemove = findClientById(clientToRemove.getId());
+    @Override
+    public void deleteObject(Object objToRemove){
+        Client clientToRemove = (Client) objToRemove;
+        clientToRemove = (Client) findObjectById(clientToRemove.getId());
         entityManager.getTransaction().begin();
         entityManager.remove(clientToRemove);
         entityManager.getTransaction().commit();
     }
 
-//    public Client setAddress(Client clientToSetAddress, Address address){
-//        clientToSetAddress = findClientById(clientToSetAddress.getId());
-//        entityManager.getTransaction().begin();
-//        clientToSetAddress.setAddress(address);
-//        entityManager.getTransaction().commit();
-//        return clientToSetAddress;
-//    }
-
-    public List<Client> getAllClients(){
-        return entityManager.createNamedQuery("GET_ALL_CLIENTS").getResultList();
+    @Override
+    public List getAllObjects(){
+        return entityManager.createNamedQuery("GET_ALL_SUPPLIERS").getResultList();
     }
 
+    @Override
+    public List findObjectsWithFilters(Object objFilter){
+        Client supplierFilter = (Client) objFilter;
+        Query query = entityManager.createNamedQuery("FIND_CLIENTS_WITH_FILTERS");
+        return query.getResultList();
+    }
+
+    @Override
     public void close(){
         this.entityManager.close();
         this.entityManagerFactory.close();

@@ -22,7 +22,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="postgresql-localhost" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="postgresql" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:postgresql://localhost:5432/espaco_mix" />
@@ -39,10 +39,10 @@
         </properties>
     </persistence-unit>
     
-    <persistence-unit name="postgresql" >
+    <persistence-unit name="postgresql-aula" >
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:postgresql://10.90.24.54/aula" />
+                      value="jdbc:postgresql://200.18.128.54/aula" />
 
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="aula" />

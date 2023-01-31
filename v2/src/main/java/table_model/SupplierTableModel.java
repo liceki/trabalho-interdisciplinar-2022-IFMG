@@ -39,7 +39,7 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
             case 3: return supplierTemp.getEmail();
             case 4: 
                 if(supplierTemp.getSuppliedProducts() != null){
-                    return supplierTemp.getSuppliedProducts().size();
+                    return 0;
                 } else {
                     return 0;
                 }

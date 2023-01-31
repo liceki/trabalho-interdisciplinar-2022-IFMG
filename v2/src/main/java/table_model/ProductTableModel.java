@@ -7,9 +7,10 @@ import javax.swing.table.AbstractTableModel;
 import model.Product;
 
 public class ProductTableModel extends AbstractTableModel implements TableModel{
- private List<Product> productsList;
+    private List<Product> productsList;
     private ProductController controller;
-    private String[] header = {"ID", "", ""};
+    private String[] header = {"ID", "NAME", "AVAILABLE", 
+        "COST PRICE", "SELLING PRICE", "PROFIT", "SUPPLIER"};
 
     public ProductTableModel() {
         this.controller = new ProductController();
@@ -30,11 +31,15 @@ public class ProductTableModel extends AbstractTableModel implements TableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Product productsTemp = this.productsList.get(rowIndex);
+        Product productTemp = this.productsList.get(rowIndex);
         switch (columnIndex){
-            case 0: return productsTemp.getId();
-
-            
+            case 0: return productTemp.getId();
+            case 1: return productTemp.getName();
+            case 2: return productTemp.isAvailableInStock();
+            case 3: return productTemp.getCostPrice();
+            case 4: return productTemp.getSellingPrice();
+            case 5: return productTemp.getProfit();
+            case 6: return productTemp.getSupplier().getCnpj() + " - " + productTemp.getSupplier().getCorporateName();
             default: return null;
         }
     }

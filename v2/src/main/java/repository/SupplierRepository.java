@@ -1,11 +1,12 @@
 package repository;
 
+import interfaces.Repository;
 import jakarta.persistence.*;
 import model.Supplier;
 
 import java.util.List;
 
-public class SupplierRepository {
+public class SupplierRepository implements Repository {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
 
@@ -14,37 +15,47 @@ public class SupplierRepository {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public Supplier saveSupplier(Supplier supplier){
+    @Override
+    public Object saveObject(Object obj){
+        Supplier supplier = (Supplier) obj;
         entityManager.getTransaction().begin();
         entityManager.persist(supplier);
         entityManager.getTransaction().commit();
         return supplier;
     }
 
-    public Supplier findSupplierById(int id){
+    @Override
+    public Object findObjectById(int id){
         return entityManager.find(Supplier.class, id);
     }
 
-    public Supplier updateSupplier(Supplier supplier){
-        Supplier supplierToUpdate = findSupplierById(supplier.getId());
+    @Override
+    public Object updateObject(Object obj){
+        Supplier supplier = (Supplier) obj;
+        Supplier supplierToUpdate = (Supplier) findObjectById(supplier.getId());
         entityManager.getTransaction().begin();
         supplierToUpdate.updateSupplier(supplier);
         entityManager.getTransaction().commit();
         return supplierToUpdate;
     }
 
-    public void deleteSupplier(Supplier supplierToRemove){
-        supplierToRemove = findSupplierById(supplierToRemove.getId());
+    @Override
+    public void deleteObject(Object objToRemove){
+        Supplier supplierToRemove = (Supplier) objToRemove;
+        supplierToRemove = (Supplier) findObjectById(supplierToRemove.getId());
         entityManager.getTransaction().begin();
         entityManager.remove(supplierToRemove);
         entityManager.getTransaction().commit();
     }
 
-    public List<Supplier> getAllSuppliers(){
+    @Override
+    public List getAllObjects(){
         return entityManager.createNamedQuery("GET_ALL_SUPPLIERS").getResultList();
     }
 
-    public List<Supplier> findSuppliersWithFilters(Supplier supplierFilter){
+    @Override
+    public List findObjectsWithFilters(Object objFilter){
+        Supplier supplierFilter = (Supplier) objFilter;
         Query query = entityManager.createNamedQuery("FIND_SUPPLIERS_WITH_FILTERS");
         query.setParameter("corporateName", supplierFilter.getCorporateName());
         query.setParameter("cnpj", supplierFilter.getCnpj());
@@ -52,6 +63,7 @@ public class SupplierRepository {
         return query.getResultList();
     }
 
+    @Override
     public void close(){
         this.entityManager.close();
         this.entityManagerFactory.close();

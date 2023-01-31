@@ -13,23 +13,23 @@ public class SupplierController {
     }
 
     public Supplier saveSupplier(String corporateName, String cnpf, String email){
-        return repository.saveSupplier(new Supplier(corporateName, cnpf, email));
+        return (Supplier) repository.saveObject(new Supplier(corporateName, cnpf, email));
     }
 
     public List<Supplier> getAllSuppliers(){
-        return repository.getAllSuppliers();
+        return (List<Supplier>) repository.getAllObjects();
     }
 
-    public Supplier updateSupplier(Supplier supplier){
-        return repository.updateSupplier(supplier);
+    public Supplier updateSupplier(Object supplier){
+        return (Supplier) repository.updateObject(supplier);
     }
     
     public List<Supplier> getFilteredSuppliers(String corporateName, String cnpf, String email){
-        return repository.findSuppliersWithFilters(new Supplier(corporateName, cnpf, email));
+        return (List<Supplier>) repository.findObjectsWithFilters(new Supplier(corporateName, cnpf, email));
     }
 
     public void removeSupplier(Supplier supplierToRemove){
-        repository.deleteSupplier(supplierToRemove);
+        repository.deleteObject(supplierToRemove);
     }
 
 

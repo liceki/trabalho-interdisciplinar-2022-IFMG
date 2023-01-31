@@ -16,23 +16,23 @@ public class ProductController implements Controller {
     public Product saveProduct(String name, String sellingPriceString, String costPriceString, boolean inStock){
         BigDecimal sellingPrice = BigDecimal.valueOf(Double.parseDouble(sellingPriceString));
         BigDecimal costPrice = BigDecimal.valueOf(Double.parseDouble(costPriceString));
-        return repository.saveProduct(new Product(name, sellingPrice, costPrice, inStock, image));
+        return (Product) repository.saveObject(new Product(name, sellingPrice, costPrice, inStock));
     }
 
     public List<Product> getAllProducts(){
-        return repository.getAllProducts();
+        return (List<Product>) repository.getAllObjects();
     }
 
     public Product updateProduct(Product product){
-        return repository.updateProduct(product);
+        return (Product) repository.updateObject(product);
     }
     
     public List<Product> getFilteredProducts(String nome, BigDecimal sellingPrice){
-        return repository.findProductsWithFilters(new Product());
+        return (List<Product>) repository.findObjectsWithFilters(new Product());
     }
 
     public void removeProduct(Product productToRemove){
-        repository.deleteProduct(productToRemove);
+        repository.deleteObject(productToRemove);
     }
     
 }

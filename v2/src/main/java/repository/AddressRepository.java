@@ -18,19 +18,24 @@ public class AddressRepository implements Repository{
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    public Address saveAddress(Address address){
+    @Override
+    public Object saveObject(Object obj){
+        Address address = (Address) obj;
         entityManager.getTransaction().begin();
         entityManager.persist(address);
         entityManager.getTransaction().commit();
         return address;
     }
 
-    public Address findAddressById(int id){
+    @Override
+    public Object findObjectById(int id){
         return entityManager.find(Address.class, id);
     }
 
-    public Address updateAddress(Address address){
-        Address addressToUpdate = findAddressById(address.getId());
+    @Override
+    public Object updateObject(Object obj){
+        Address address = (Address) obj;
+        Address addressToUpdate = (Address) findObjectById(address.getId());
         entityManager.getTransaction().begin();
         addressToUpdate.updateAddress(address);
         //entityManager.refresh(addressToUpdate);
@@ -38,19 +43,30 @@ public class AddressRepository implements Repository{
         return addressToUpdate;
     }
 
-    public void deleteAddress(Address addressToRemove){
-        addressToRemove = findAddressById(addressToRemove.getId());
+    @Override
+    public void deleteObject(Object objToRemove){
+        Address addressToRemove = (Address) objToRemove;
+        addressToRemove = (Address) findObjectById(addressToRemove.getId());
         entityManager.getTransaction().begin();
         entityManager.remove(addressToRemove);
         entityManager.getTransaction().commit();
     }
 
-    public List<Address> getAllAddresses(){
+    @Override
+    public List getAllObjects(){
         return entityManager.createNamedQuery("GET_ALL_ADDRESSES").getResultList();
     }
-
+    
+    @Override
+    public List findObjectsWithFilters(Object objFilter) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    @Override
     public void close(){
         this.entityManager.close();
         this.entityManagerFactory.close();
     }
+
+    
 }

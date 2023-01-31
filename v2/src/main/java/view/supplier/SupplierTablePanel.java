@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import javax.swing.event.ListSelectionEvent;
 import interfaces.TableModel;
 import interfaces.TablePanel;
-import table_model.ProductTableModel;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel implements RelationalPanel, TablePanel{
@@ -22,8 +21,6 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     public SupplierTablePanel() {
         initComponents();
         configureTable();
-        
-        this.tableModel = new ProductTableModel();
     }
     
     @Override
@@ -90,6 +87,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
 
         btnAddSupplier.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnAddSupplier.setText("ADD SUPPLIER");
+        btnAddSupplier.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAddSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddSupplierActionPerformed(evt);
@@ -114,6 +112,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         tableSupplier.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tableSupplier.setFillsViewportHeight(true);
         tableSupplier.setFocusCycleRoot(true);
+        tableSupplier.setFocusTraversalPolicyProvider(true);
         tableSupplier.setMaximumSize(new java.awt.Dimension(1000, 999999));
         tableSupplier.setMinimumSize(new java.awt.Dimension(1000, 800));
         tableSupplier.setPreferredSize(new java.awt.Dimension(1000, 800));

@@ -5,6 +5,15 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "product", schema = "espaco_mix")
+@NamedQueries({
+        @NamedQuery(name = "GET_ALL_PRODUCTS",
+                query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "FIND_PRODUCTS_WITH_FILTERS",
+                query = "SELECT p FROM Product p " + ""
+                        /*"WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
+                        "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
+                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') "*/)
+})
 public  class Product {
     @Id
     @Column(name = "product_id", nullable = false)
@@ -23,8 +32,8 @@ public  class Product {
     @Column(name = "profit")
     private BigDecimal profit;
 
-    @Column(name = "in_stock")
-    private boolean inStock;
+    @Column(name = "available_in_stock")
+    private Boolean availableInStock;
 
     @Column(name = "image", length = 2048)
     private String image;
@@ -41,13 +50,13 @@ public  class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal sellingPrice, BigDecimal costPrice, boolean inStock, String image) {
+    public Product(String name, BigDecimal sellingPrice, BigDecimal costPrice, Boolean availableInStock) {
         this.name = name;
         this.sellingPrice = sellingPrice;
         this.costPrice = costPrice;
         this.profit = sellingPrice.subtract(costPrice);
-        this.inStock = inStock;
-        this.image = image;
+        this.availableInStock = availableInStock;
+        //this.image = image;
 
     }
 
@@ -91,12 +100,12 @@ public  class Product {
         this.profit = profit;
     }
 
-    public boolean isInStock() {
-        return inStock;
+    public boolean isAvailableInStock() {
+        return availableInStock;
     }
 
-    public void setInStock(boolean inStock) {
-        this.inStock = inStock;
+    public void setAvailableInStock(boolean availableInStock) {
+        this.availableInStock = availableInStock;
     }
 
     public String getImage() {
@@ -128,7 +137,7 @@ public  class Product {
         this.sellingPrice = product.getSellingPrice();
         this.costPrice = product.getCostPrice();
         this.profit = product.getProfit();
-        this.inStock = product.isInStock();
+        this.availableInStock = product.isAvailableInStock();
         this.image = product.getImage();
         this.supplier = product.getSupplier();
         this.invoice = product.getInvoice();
@@ -142,7 +151,7 @@ public  class Product {
                 ", sellingPrice=" + sellingPrice +
                 ", costPrice=" + costPrice +
                 ", profit=" + profit +
-                ", inStock=" + inStock +
+                ", inStock=" + availableInStock +
                 ", image='" + image + '\'' +
                 ", supplier=" + supplier +
                 ", invoice=" + invoice +
@@ -156,7 +165,7 @@ public  class Product {
                 ", sellingPrice=" + sellingPrice +
                 ", costPrice=" + costPrice +
                 ", profit=" + profit +
-                ", inStock=" + inStock +
+                ", inStock=" + availableInStock +
                 ", image='" + image + '\'' +
                 ", supplier=" + supplier.toStringFromProduct() +
                 '}';

@@ -22,7 +22,7 @@
         </properties>
     </persistence-unit>
 
-    <persistence-unit name="postgresql" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="postgresql-localhost" transaction-type="RESOURCE_LOCAL">
         <properties>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:postgresql://localhost:5432/espaco_mix" />
@@ -30,6 +30,23 @@
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="postgres" />
             <property name="jakarta.persistence.jdbc.password" value="postgres" />
+
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.default_schema" value="espaco_mix"/>
+            <property name="show_sql" value="true"/>
+            <!-- https://docs.jboss.org/hibernate/orm/5.4/javadocs/org/hibernate/dialect/package-summary.html -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+        </properties>
+    </persistence-unit>
+    
+    <persistence-unit name="postgresql" transaction-type="JTA">
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:postgresql://10.90.24.54:5432/aula" />
+
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="jakarta.persistence.jdbc.user" value="aula" />
+            <property name="jakarta.persistence.jdbc.password" value="aulas" />
 
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.default_schema" value="espaco_mix"/>

@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import javax.swing.event.ListSelectionEvent;
 import interfaces.TableModel;
 import interfaces.TablePanel;
-import javax.swing.ImageIcon;
+import table_model.ProductTableModel;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel implements RelationalPanel, TablePanel{
@@ -23,14 +23,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         initComponents();
         configureTable();
         
-        /*labelImagemDado.setIcon(
-            new ImageIcon(getClass().getResource("/imagens/inverted-dice-" + valorDado + ".png")));*/
-        //try{
-        //    btnRefreshTable.setIcon(new ImageIcon(getClass().getResource("/icon.png")));
-        //}catch(Exception ex){
-        //    JOptionPane.showMessageDialog(this, ex.getMessage());
-        //}
-        
+        this.tableModel = new ProductTableModel();
     }
     
     @Override

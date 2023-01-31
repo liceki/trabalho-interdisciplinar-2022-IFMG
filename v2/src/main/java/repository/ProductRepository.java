@@ -3,6 +3,8 @@ package repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
+import java.util.List;
 import model.Product;
 
 public class ProductRepository {
@@ -31,6 +33,30 @@ public class ProductRepository {
         productToUpdate.updateProduct(product);
         entityManager.getTransaction().commit();
         return productToUpdate;
+    }
+    
+    public void deleteProduct(Product productsToRemove){
+        productsToRemove = findProductById(productsToRemove.getId());
+        entityManager.getTransaction().begin();
+        entityManager.remove(productsToRemove);
+        entityManager.getTransaction().commit();
+    }
+
+    public List<Product> getAllProducts(){
+        return entityManager.createNamedQuery("GET_ALL_SUPPLIERS").getResultList();
+    }
+
+    public List<Product> findProductsWithFilters(Product productFilter){
+        Query query = entityManager.createNamedQuery("FIND_SUPPLIERS_WITH_FILTERS");
+//        query.setParameter("corporateName", supplierFilter.getCorporateName());
+//        query.setParameter("cnpj", supplierFilter.getCnpj());
+//        query.setParameter("email", supplierFilter.getEmail());
+        return query.getResultList();
+    }
+
+    public void close(){
+        this.entityManager.close();
+        this.entityManagerFactory.close();
     }
 
 }

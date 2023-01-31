@@ -1,6 +1,7 @@
 package controller;
 
 import interfaces.Controller;
+import java.math.BigDecimal;
 import java.util.List;
 import model.Product;
 import repository.ProductRepository;
@@ -12,8 +13,10 @@ public class ProductController implements Controller {
         repository = new ProductRepository();
     }
 
-    public Product saveProduct(String corporateName, String cnpf, String email){
-        return repository.saveProduct(new Product());
+    public Product saveProduct(String name, String sellingPriceString, String costPriceString, boolean inStock){
+        BigDecimal sellingPrice = BigDecimal.valueOf(Double.parseDouble(sellingPriceString));
+        BigDecimal costPrice = BigDecimal.valueOf(Double.parseDouble(costPriceString));
+        return repository.saveProduct(new Product(name, sellingPrice, costPrice, inStock, image));
     }
 
     public List<Product> getAllProducts(){
@@ -24,7 +27,7 @@ public class ProductController implements Controller {
         return repository.updateProduct(product);
     }
     
-    public List<Product> getFilteredProducts(String corporateName, String cnpf, String email){
+    public List<Product> getFilteredProducts(String nome, BigDecimal sellingPrice){
         return repository.findProductsWithFilters(new Product());
     }
 

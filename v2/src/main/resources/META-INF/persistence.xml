@@ -39,14 +39,14 @@
         </properties>
     </persistence-unit>
     
-    <persistence-unit name="postgresql" transaction-type="JTA">
+    <persistence-unit name="postgresql" >
         <properties>
             <property name="jakarta.persistence.jdbc.url"
-                      value="jdbc:postgresql://10.90.24.54:5432/aula" />
+                      value="jdbc:postgresql://10.90.24.54/aula" />
 
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="jakarta.persistence.jdbc.user" value="aula" />
-            <property name="jakarta.persistence.jdbc.password" value="aulas" />
+            <property name="jakarta.persistence.jdbc.password" value="aula" />
 
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.default_schema" value="espaco_mix"/>

@@ -10,7 +10,7 @@ public class ProductTableModel extends AbstractTableModel implements TableModel{
     private List<Product> productsList;
     private ProductController controller;
     private String[] header = {"ID", "NAME", "AVAILABLE", "COST PRICE", "SELLING PRICE", 
-        "PROFIT", "CATEGORY", "SUBCATEGORY", "SIZE", "SUPPLIER"};
+        "PROFIT", "CATEGORY", "SUBCATEGORY", "SIZE", "SUPPLIER (CNPF)", "SUPPLIER (CORPORATE NAME)"};
 
     public ProductTableModel() {
         this.controller = new ProductController();
@@ -42,7 +42,8 @@ public class ProductTableModel extends AbstractTableModel implements TableModel{
             case 6: return productTemp.getCategory();
             case 7: return productTemp.getSubCategory();
             case 8: return productTemp.getSize();
-            case 9: return productTemp.getSupplier().getCnpj() + "         -         " + productTemp.getSupplier().getCorporateName();
+            case 9: return productTemp.getSupplier().getCnpj();
+            case 10: return productTemp.getSupplier().getCorporateName();
             default: return null;
         }
     }

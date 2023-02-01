@@ -64,8 +64,8 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         this.tableProduct.getColumnModel().getColumn(6).setPreferredWidth(300);
         this.tableProduct.getColumnModel().getColumn(7).setPreferredWidth(300);
         this.tableProduct.getColumnModel().getColumn(8).setPreferredWidth(200);
-        this.tableProduct.getColumnModel().getColumn(9).setPreferredWidth(600);
-        
+        this.tableProduct.getColumnModel().getColumn(9).setPreferredWidth(300);
+        this.tableProduct.getColumnModel().getColumn(10).setPreferredWidth(400);
  
     }
     

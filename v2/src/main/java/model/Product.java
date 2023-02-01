@@ -14,7 +14,7 @@ import java.math.BigDecimal;
                         "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
                         "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') "*/)
 })
-public  class Product {
+public class Product {
     public static final String[] CATEGORIES = {"FEMALE CLOTHES", "MALE CLOTHES", "ACCESSORIES", "COSMETICS"};
     
     public static final String[] SUB_CATEGORIES_CLOTHES = {"JEANS", "T-SHIRT", "DRESS", "CROPPED"};
@@ -27,39 +27,39 @@ public  class Product {
     private int id;
 
     @Column(name = "name", length = 450)
-    private String name;
+    protected String name;
 
     @Column(name = "selling_price")
-    private BigDecimal sellingPrice;
+    protected BigDecimal sellingPrice;
 
     @Column(name = "cost_price")
-    private BigDecimal costPrice;
+    protected BigDecimal costPrice;
 
     @Column(name = "profit")
-    private BigDecimal profit;
+    protected BigDecimal profit;
 
     @Column(name = "available_in_stock")
-    private Boolean availableInStock;
+    protected Boolean availableInStock;
 
     @Column(name = "image", length = 2048)
-    private String image;
+    protected String image;
     
     @Column(name = "category", length = 2048)
-    private String category;
+    protected String category;
 
     @Column(name = "sub_category", length = 2048)
-    private String subCategory;
+    protected String subCategory;
     
     @Column(name = "size", length = 2048)
-    private String size;
+    protected String size;
     
     @ManyToOne
     @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
+    protected Supplier supplier;
 
     @ManyToOne
     @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
+    protected Invoice invoice;
 
 
     public Product() {

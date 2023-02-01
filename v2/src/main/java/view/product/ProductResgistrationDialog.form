@@ -476,17 +476,17 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="listSupplier16" alignment="0" pref="414" max="32767" attributes="0"/>
+                              <Component id="listSupplier" alignment="0" pref="414" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="listSupplier16" alignment="0" pref="3000" max="32767" attributes="0"/>
+                              <Component id="listSupplier" alignment="0" pref="3000" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JList" name="listSupplier16">
+                        <Component class="javax.swing.JList" name="listSupplier">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="40" green="3a" red="34" type="rgb"/>

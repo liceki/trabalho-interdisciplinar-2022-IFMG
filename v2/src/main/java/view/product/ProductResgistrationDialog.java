@@ -6,6 +6,7 @@ import interfaces.RegistrationDialog;
 import interfaces.TablePanel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import model.Product;
 import model.Supplier;
 
@@ -18,7 +19,7 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
     
     private DefaultComboBoxModel<String> categoryComboBoxModel;
     private DefaultComboBoxModel<String> subCategoryComboBoxModel;
-     private DefaultComboBoxModel<String> sizesComboBoxModel;
+    private DefaultComboBoxModel<String> sizesComboBoxModel;
     
     public ProductResgistrationDialog(java.awt.Frame parent, boolean modal, TablePanel supplierTablePanel) {
         super(parent, modal);
@@ -63,23 +64,15 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         dialogScrollPane = new my_components.MyScrollPane1();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        searchSupplier = new my_components.MyButton1();
         txtFieldProductName = new my_components.MyTextField1();
         jLabel3 = new javax.swing.JLabel();
         checkBoxAvailableInStock = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtFieldSellingPrice = new my_components.MyTextField1();
-        supplierListScrollPane = new my_components.MyScrollPane1();
-        jPanel3 = new javax.swing.JPanel();
-        listSupplier = new javax.swing.JList<>();
         jLabel9 = new javax.swing.JLabel();
         txtFieldCostPrice = new my_components.MyTextField1();
         jLabel10 = new javax.swing.JLabel();
-        txtFieldSupplierCnpj = new my_components.MyTextField1();
-        jLabel11 = new javax.swing.JLabel();
-        txtFieldSupplierCorporateName = new my_components.MyTextField1();
-        jLabel12 = new javax.swing.JLabel();
         btnRegisterProduct1 = new my_components.MyButton1();
         comboBoxCategory = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
@@ -88,6 +81,15 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         comboBoxSize = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        jPanel19 = new javax.swing.JPanel();
+        supplierListScrollPane16 = new my_components.MyScrollPane1();
+        jPanel20 = new javax.swing.JPanel();
+        listSupplier = new javax.swing.JList<>();
+        jLabel12 = new javax.swing.JLabel();
+        txtFieldSupplierCorporateName = new my_components.MyTextField1();
+        searchSupplier = new my_components.MyButton1();
+        txtFieldSupplierCnpj = new my_components.MyTextField1();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRATION - SUPPLIER");
@@ -103,14 +105,6 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(152, 158, 164));
         jLabel2.setText("PRODUCT REGISTRATION");
-
-        searchSupplier.setText("SEARCH");
-        searchSupplier.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        searchSupplier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchSupplierActionPerformed(evt);
-            }
-        });
 
         txtFieldProductName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,29 +141,6 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
             }
         });
 
-        supplierListScrollPane.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(152, 158, 154)));
-        supplierListScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-        listSupplier.setBackground(new java.awt.Color(52, 58, 64));
-        listSupplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        listSupplier.setForeground(new java.awt.Color(152, 158, 164));
-        listSupplier.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listSupplier.setSelectionBackground(new java.awt.Color(40, 46, 58));
-        listSupplier.setValueIsAdjusting(true);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, 3000, Short.MAX_VALUE)
-        );
-
-        supplierListScrollPane.setViewportView(jPanel3);
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(152, 158, 164));
         jLabel9.setText("Cost Price:");
@@ -183,26 +154,6 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(152, 158, 164));
         jLabel10.setText("R$");
-
-        txtFieldSupplierCnpj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldSupplierCnpjActionPerformed(evt);
-            }
-        });
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(152, 158, 164));
-        jLabel11.setText("CNPJ:");
-
-        txtFieldSupplierCorporateName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFieldSupplierCorporateNameActionPerformed(evt);
-            }
-        });
-
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(152, 158, 164));
-        jLabel12.setText("Corporate Name:");
 
         btnRegisterProduct1.setText("REGISTER");
         btnRegisterProduct1.addActionListener(new java.awt.event.ActionListener() {
@@ -235,6 +186,7 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         jLabel14.setText("Sub Category:");
 
         comboBoxSize.setBackground(new java.awt.Color(52, 58, 64));
+        comboBoxSize.setEditable(true);
         comboBoxSize.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxSize.setForeground(new java.awt.Color(52, 58, 64));
         comboBoxSize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -252,6 +204,93 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         jLabel16.setForeground(new java.awt.Color(152, 158, 164));
         jLabel16.setText("Supplier:");
 
+        jPanel19.setBackground(new java.awt.Color(52, 58, 64));
+        jPanel19.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(152, 158, 164)));
+
+        supplierListScrollPane16.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(152, 158, 154)));
+        supplierListScrollPane16.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        listSupplier.setBackground(new java.awt.Color(52, 58, 64));
+        listSupplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        listSupplier.setForeground(new java.awt.Color(152, 158, 164));
+        listSupplier.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listSupplier.setSelectionBackground(new java.awt.Color(40, 46, 58));
+        listSupplier.setValueIsAdjusting(true);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(listSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(listSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, 3000, Short.MAX_VALUE)
+        );
+
+        supplierListScrollPane16.setViewportView(jPanel20);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(152, 158, 164));
+        jLabel12.setText("Corporate Name:");
+
+        txtFieldSupplierCorporateName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldSupplierCorporateNameActionPerformed(evt);
+            }
+        });
+
+        searchSupplier.setText("SEARCH");
+        searchSupplier.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        searchSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSupplierActionPerformed(evt);
+            }
+        });
+
+        txtFieldSupplierCnpj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFieldSupplierCnpjActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(152, 158, 164));
+        jLabel11.setText("CNPJ:");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFieldSupplierCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFieldSupplierCorporateName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(supplierListScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addComponent(supplierListScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtFieldSupplierCorporateName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11)
+                        .addComponent(txtFieldSupplierCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -261,46 +300,35 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 193, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel13)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtFieldSupplierCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(searchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtFieldSupplierCorporateName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabel3)
-                                .addComponent(txtFieldProductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(checkBoxAvailableInStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(supplierListScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel10)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtFieldCostPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel9))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txtFieldSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(comboBoxCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel14)
-                                .addComponent(comboBoxSubCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel15)
-                                .addComponent(comboBoxSize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel16))))
+                            .addComponent(jLabel3)
+                            .addComponent(txtFieldProductName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(checkBoxAvailableInStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFieldCostPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFieldSellingPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(comboBoxCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14)
+                            .addComponent(comboBoxSubCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel15)
+                            .addComponent(comboBoxSize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel16)
+                            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -344,21 +372,11 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(supplierListScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtFieldSupplierCorporateName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(txtFieldSupplierCnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(btnRegisterProduct1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
@@ -419,10 +437,8 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
 
     private void btnRegisterProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterProduct1ActionPerformed
         int idSelectedSupplier = Integer.parseInt(listSupplier.getSelectedValue().split("-")[0].trim());
-        
-        System.out.println(supplierController.getSupplierById(idSelectedSupplier).getCorporateName());
-        
-        productController.saveProduct(
+
+        Product p = productController.saveProduct(
                 txtFieldProductName.getText(), // name
                 txtFieldSellingPrice.getText(), // sellingPrice
                 txtFieldCostPrice.getText(), // costPrice
@@ -432,6 +448,20 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
                 (String) comboBoxSize.getSelectedItem(), // size
                 supplierController.getSupplierById(idSelectedSupplier) // supplier
         );
+        
+        int option = JOptionPane.showConfirmDialog(
+                this, 
+                "Wanna register another product?", 
+                "PRODUCT REGISTERED SUCCESSFULLY!", 
+                JOptionPane.YES_NO_OPTION);
+        
+        if(option != JOptionPane.YES_OPTION){
+            this.dispose();
+        } else{
+            clearFields();
+        }
+        this.productTablePanel.getTableModel().addObject(p);
+        this.productTablePanel.updateTable();
     }//GEN-LAST:event_btnRegisterProduct1ActionPerformed
 
     private void comboBoxCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCategoryActionPerformed
@@ -480,11 +510,12 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel20;
     private javax.swing.JList<String> listSupplier;
     private my_components.MyButton1 searchSupplier;
-    private my_components.MyScrollPane1 supplierListScrollPane;
+    private my_components.MyScrollPane1 supplierListScrollPane16;
     private my_components.MyTextField1 txtFieldCostPrice;
     private my_components.MyTextField1 txtFieldProductName;
     private my_components.MyTextField1 txtFieldSellingPrice;

@@ -4,10 +4,20 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "user", schema = "espaco_mix")
+@NamedQueries({
+        @NamedQuery(name = "GET_ALL_USERS",
+                query = "SELECT u FROM User u"),
+        @NamedQuery(name = "VERIFY_LOGIN",
+                query = "SELECT u FROM User u " +
+                        "WHERE (u.login) = (:login)" +
+                        "AND (u.password) = (:password)")
+    })
 public class User {
     @Id
     @Column(name = "user_id", nullable = false)
@@ -76,6 +86,8 @@ public class User {
         this.password = password;
     }
     
-    
+    public void updateUser(User user){
+        
+    }
     
 }

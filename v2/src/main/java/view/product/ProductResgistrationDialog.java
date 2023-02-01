@@ -410,9 +410,6 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
             System.out.println(s.getCorporateName());
             supplierListModel.addElement(s.getId() + "   -   " + s.getCnpj() + "   -   " + s.getCorporateName());
         }
-        
-        
-        clearFields();
     }//GEN-LAST:event_searchSupplierActionPerformed
 
     private void checkBoxAvailableInStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBoxAvailableInStockActionPerformed

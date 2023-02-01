@@ -31,6 +31,7 @@ public class ProductTableModel extends AbstractTableModel implements TableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if(rowIndex == 0) return null;
         Product productTemp = this.productsList.get(rowIndex);
         switch (columnIndex){
             case 0: return productTemp.getId();

@@ -3,6 +3,7 @@ package view.supplier;
 import controller.SupplierController;
 import interfaces.RegistrationDialog;
 import interfaces.TablePanel;
+import javax.swing.JOptionPane;
 
 public class SupplierResgistrationDialog extends javax.swing.JDialog implements RegistrationDialog{
 
@@ -181,6 +182,19 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         supplierTablePanel.getTableModel().addObject(
                 controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
         supplierTablePanel.updateTable();
+        
+        int option = JOptionPane.showConfirmDialog(
+                this, 
+                "Wanna register another supplier?", 
+                "PRODUCT REGISTERED SUCCESSFULLY!", 
+                JOptionPane.YES_NO_OPTION);
+        
+        if(option != JOptionPane.YES_OPTION){
+            this.dispose();
+        } else{
+            clearFields();
+        }
+        this.supplierTablePanel.updateTable();
         //clearFields();
     }//GEN-LAST:event_btnRegisterSupplierActionPerformed
 

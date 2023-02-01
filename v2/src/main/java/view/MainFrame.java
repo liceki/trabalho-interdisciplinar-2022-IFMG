@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import javax.swing.JPanel;
 import view.client.ClientMainPanel;
+import view.login.Login;
 import view.product.ProductMainPanel;
 import view.supplier.SupplierMainPanel;
 
@@ -17,17 +18,19 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         
+        this.content = this.getContentPane();
         this.setLayout(new BorderLayout());
         this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
-        this.content = this.getContentPane();
+        changeContent(new Login(this));
         
+    }
+    
+    public void configuraFrame(){
         this.supplierMainPanel = new SupplierMainPanel(this);
         this.clientMainPanel = new ClientMainPanel();
         this.productMainPanel = new ProductMainPanel(this);
-        
-        changeContent(this.supplierMainPanel);
-        
+        changeContent(productMainPanel);
     }
     
     

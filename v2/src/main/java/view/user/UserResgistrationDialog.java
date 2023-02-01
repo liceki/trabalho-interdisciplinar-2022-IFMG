@@ -187,6 +187,7 @@ public class UserResgistrationDialog extends javax.swing.JDialog implements Regi
                 passwordString);
         
         if(user == null) {
+            JOptionPane.showMessageDialog(this, "This login has already been taken.");
             return;
         }
         

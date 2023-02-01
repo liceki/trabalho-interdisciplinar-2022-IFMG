@@ -41,8 +41,7 @@ public class MainFrame extends javax.swing.JFrame {
         changeContent(this.productMainPanel);
     }
     
-    
-    
+
     public void configureFrame(){
         this.supplierMainPanel = new SupplierMainPanel(this);
         this.clientMainPanel = new ClientMainPanel();
@@ -53,13 +52,17 @@ public class MainFrame extends javax.swing.JFrame {
     }
     
     
-    public void changeContent(JPanel panel){
+    public void changeContent(JPanel newPanel){
+        menuBar.setVisible(true);
+        
+        if(newPanel instanceof UserLogin) menuBar.setVisible(false);;
+        
         content.removeAll();
         
-        content.add(panel);
+        content.add(newPanel);
         
         validate();
-        panel.setVisible(true);
+        newPanel.setVisible(true);
         content.repaint();
     }
     
@@ -197,6 +200,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void menuItemSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSignOutActionPerformed
         this.menuBar.setVisible(false);
+        changeContent(new UserLogin(this));
     }//GEN-LAST:event_menuItemSignOutActionPerformed
 
     private void menuItemRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegisterUserActionPerformed

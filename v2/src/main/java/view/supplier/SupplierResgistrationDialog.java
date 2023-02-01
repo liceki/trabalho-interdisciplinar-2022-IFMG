@@ -4,6 +4,7 @@ import controller.SupplierController;
 import interfaces.RegistrationDialog;
 import interfaces.TablePanel;
 import javax.swing.JOptionPane;
+import tools.CpfAndCnpjValidator;
 
 public class SupplierResgistrationDialog extends javax.swing.JDialog implements RegistrationDialog{
 
@@ -15,6 +16,8 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
         initComponents();
         this.controller = new SupplierController();
         this.supplierTablePanel = supplierTablePanel;
+        
+        //this.setIconImage(getClass().getResource(""));
     }
 
     @SuppressWarnings("unchecked")
@@ -179,8 +182,18 @@ public class SupplierResgistrationDialog extends javax.swing.JDialog implements 
     }//GEN-LAST:event_myButton12ActionPerformed
 
     private void btnRegisterSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterSupplierActionPerformed
+        String cnpj = txtFieldCnpj.getText();
+        cnpj = cnpj.replace(".", "");
+        cnpj = cnpj.replace("-", "");
+        cnpj = cnpj.replace("/", "");
+        
+        if(!CpfAndCnpjValidator.isCnpj(cnpj)){
+            JOptionPane.showMessageDialog(this, "This CNPJ is invalid, try it again.", "INVALID CNPJ!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         supplierTablePanel.getTableModel().addObject(
-                controller.saveSupplier(txtFieldCorporateName.getText(), txtFieldCnpj.getText(), txtFieldEmail.getText()));
+                controller.saveSupplier(txtFieldCorporateName.getText(), cnpj, txtFieldEmail.getText()));
         supplierTablePanel.updateTable();
         
         int option = JOptionPane.showConfirmDialog(

@@ -1,22 +1,39 @@
 package view.client;
 
+import interfaces.MainPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
 import java.awt.BorderLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import my_components.MyScrollPane1;
+import my_components.MySplitPane1;
+import view.client.ClientFiltersPanel;
+import view.client.ClientPropertiesPanel;
+import view.client.ClientTablePanel;
 
-public class ClientMainPanel extends javax.swing.JPanel {
-    JScrollPane clientFiltersPanel;
-    JScrollPane clientTablePanel;
-    JScrollPane clientPropertiesPanel;
+public class ClientMainPanel extends javax.swing.JPanel implements MainPanel{
+    public static JFrame parent;
+    
+    RelationalPanel filtersPanel;
+    RelationalPanel tablePanel;
+    RelationalPanel propertiesPanel;
+    
+    MySplitPane1 splitPaneFiltersTable;
+    MySplitPane1 splitPaneFiltersTableProperties;
     
     
-    public ClientMainPanel() {
+public ClientMainPanel(JFrame parent) {
+        this.parent = parent;
+        
         initComponents();
-        
         this.setLayout(new BorderLayout());
-        
         configurePanel();
-        
-    }
+    }  
+
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,21 +56,46 @@ public class ClientMainPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void configurePanel() {
-        this.clientFiltersPanel = new JScrollPane(new ClientFiltersPanel());
-        this.clientTablePanel = new JScrollPane(new ClientTablePanel());
-        this.clientPropertiesPanel = new JScrollPane(new ClientPropertiesPanel());
+      private void configurePanel() {
+        // inicializing the panels
+        this.filtersPanel = new ClientFiltersPanel();
+        this.tablePanel = new ClientTablePanel();
+        this.propertiesPanel = new ClientPropertiesPanel();
         
-        this.add(clientFiltersPanel);
-        clientFiltersPanel.setBounds(0, 0, 400, 1000);
+        // setting relations between the panels
+        filtersPanel.setRelations(tablePanel, propertiesPanel);
+        tablePanel.setRelations(filtersPanel, propertiesPanel);
+        propertiesPanel.setRelations(filtersPanel, tablePanel);
         
-        this.add(clientTablePanel);
-        clientTablePanel.setBounds(400, 0, 800, 1000);
+        // creating JSplitPane 1
+        this.splitPaneFiltersTable = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, 
+                new MyScrollPane1((JPanel) filtersPanel), 
+                (JPanel) this.tablePanel);          
+        this.splitPaneFiltersTable.setDividerLocation(400);
         
-        this.add(clientPropertiesPanel);
-        clientPropertiesPanel.setBounds(1200, 0, 400, 1000);
+        // creating JSplitPane 2
+        this.splitPaneFiltersTableProperties = new MySplitPane1(
+                this, 
+                JSplitPane.HORIZONTAL_SPLIT, splitPaneFiltersTable, 
+                new MyScrollPane1((JPanel) propertiesPanel));           
+        this.splitPaneFiltersTableProperties.setDividerLocation(1280);
         
+        // adding the JSplitPane to the main panel
+        this.add(splitPaneFiltersTableProperties);
         
+        //validate();
+    }
+    
+    @Override
+    public void resizeComponents(){
+        if(this.splitPaneFiltersTableProperties == null) return;
+            
+        int firstDividerLocation = this.splitPaneFiltersTable.getDividerLocation();
+        int secondDividerLocation = this.splitPaneFiltersTableProperties.getDividerLocation();
+        
+        ((TablePanel)tablePanel).resizeScrollPanelTable(firstDividerLocation, secondDividerLocation);
     }
     
 

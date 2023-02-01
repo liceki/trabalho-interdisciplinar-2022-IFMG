@@ -53,7 +53,7 @@ public class ClientRepository implements Repository {
 
     @Override
     public List getAllObjects(){
-        return entityManager.createNamedQuery("GET_ALL_SUPPLIERS").getResultList();
+        return entityManager.createNamedQuery("GET_ALL_CLIENTS").getResultList();
     }
 
     @Override

@@ -1,11 +1,30 @@
 package view.client;
 
-public class ClientFiltersPanel extends javax.swing.JPanel {
+import controller.ClientController;
+import interfaces.FiltersPanel;
+import interfaces.PropertiesPanel;
+import interfaces.RelationalPanel;
+import interfaces.TablePanel;
 
-    public ClientFiltersPanel() {
+public class ClientFiltersPanel extends javax.swing.JPanel implements RelationalPanel, FiltersPanel{
+    //relations with other panels
+    private TablePanel clientTablePanel;
+    private PropertiesPanel clientPropertiesPanel;
+    
+    private ClientController controller;
+
+    public ClientFiltersPanel() {  
+        this.controller = new ClientController();
+        
         initComponents();
     }
 
+     @Override
+    public void setRelations(RelationalPanel clientTablePanel, RelationalPanel clientPropertiesPanel){
+        this.clientTablePanel = (TablePanel) clientTablePanel;
+        this.clientPropertiesPanel = (PropertiesPanel) clientPropertiesPanel;
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -25,6 +44,7 @@ public class ClientFiltersPanel extends javax.swing.JPanel {
             .addGap(0, 1400, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

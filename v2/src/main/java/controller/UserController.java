@@ -16,10 +16,11 @@ public class UserController {
     }
     
     public boolean isLoginAvailable(String login){
-        return ((UserRepository) repository).isLoginAvailable(login) == null;
+        return ((UserRepository)repository).isLoginAvailable(login).isEmpty();
     }
     
     public User registerUser(String name, String login, String password){
+        System.out.println(isLoginAvailable(login));
         if(isLoginAvailable(login)){
             return (User) repository.saveObject(new User(name, login, password));
         }

@@ -9,6 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import interfaces.TableModel;
 import interfaces.TablePanel;
 import java.awt.Color;
+import javax.swing.ImageIcon;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel implements RelationalPanel, TablePanel{
@@ -22,6 +23,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     public SupplierTablePanel() {
         initComponents();
         configureTable();
+        System.out.println(getClass());
+        btnRefreshTable.setIcon(new ImageIcon(getClass().getResource("/images/refresh-icon.png")));
     }
     
     @Override
@@ -43,6 +46,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
 
     @Override
     public void resizeScrollPanelTable(int firstDivider, int secondDivider){
+        if(jScrollPane7.getPreferredSize().getWidth() == tableSupplier.getPreferredSize().getWidth()) return;
         int width = (secondDivider - firstDivider) - 80;
         this.jScrollPane7.setPreferredSize(new Dimension(width, jScrollPane7.getHeight()));
     }
@@ -108,6 +112,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         scrollPanelTable.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPanelTable.setMinimumSize(new java.awt.Dimension(16, 20));
 
+        jScrollPane7.setViewportView(tableSupplier);
+
         tableSupplier.setAutoCreateRowSorter(true);
         tableSupplier.setBackground(new java.awt.Color(73, 80, 87));
         tableSupplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -141,12 +147,12 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1025, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         scrollPanelTable.setViewportView(jPanel2);
@@ -192,7 +198,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
     private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed
-        // TODO add your handling code here:
+        this.tableModel.loadObjects();
+        tableSupplier.updateUI();
     }//GEN-LAST:event_btnRefreshTableActionPerformed
       
 

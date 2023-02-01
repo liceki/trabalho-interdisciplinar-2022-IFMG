@@ -8,7 +8,7 @@ import model.Supplier;
 import repository.ProductRepository;
 
 public class ProductController implements Controller {
-     private ProductRepository repository;
+    private ProductRepository repository;
 
     public ProductController() {
         repository = new ProductRepository();

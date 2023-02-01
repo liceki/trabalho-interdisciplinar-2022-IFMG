@@ -31,7 +31,8 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if(this.suppliersList.isEmpty()) return null;
+        if(this.suppliersList.isEmpty() || rowIndex >= suppliersList.size()) return null;
+        
         Supplier supplierTemp = this.suppliersList.get(rowIndex);
         if(supplierTemp == null) return null;
         switch (columnIndex){
@@ -73,7 +74,10 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
 
     @Override
     public Supplier getObjectAtRowIndex(int rowIndex){
-        return this.suppliersList.get(rowIndex);
+        if(rowIndex < suppliersList.size()){
+            return this.suppliersList.get(rowIndex);
+        }
+        return null;
     }
 
     @Override

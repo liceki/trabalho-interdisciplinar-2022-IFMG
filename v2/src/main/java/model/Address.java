@@ -23,8 +23,8 @@ public class Address {
     @Column(name = "neighbourhood", length = 450)
     private String neighbourhood;
 
-    @Column(name = "postal_code", length = 450)
-    private String postalCode;
+    @Column(name = "zip_code", length = 450)
+    private String zipCode;
 
     @Column(name = "street", length = 450)
     private String street;
@@ -38,21 +38,21 @@ public class Address {
     public Address() {
     }
 
-    public Address(String state, String city, String neighbourhood, String postalCode, String street, int number) {
+    public Address(String state, String city, String neighbourhood, String zipCode, String street, int number) {
         this.state = state;
         this.city = city;
         this.neighbourhood = neighbourhood;
-        this.postalCode = postalCode;
+        this.zipCode = zipCode;
         this.street = street;
         this.number = number;
     }
 
-    public Address(Client client, String state, String city, String neighbourhood, String postalCode, String street, int number) {
+    public Address(Client client, String state, String city, String neighbourhood, String zipCode, String street, int number) {
         this.client = client;
         this.state = state;
         this.city = city;
         this.neighbourhood = neighbourhood;
-        this.postalCode = postalCode;
+        this.zipCode = zipCode;
         this.street = street;
         this.number = number;
     }
@@ -98,11 +98,11 @@ public class Address {
     }
 
     public String getPostalCode() {
-        return postalCode;
+        return zipCode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getStreet() {
@@ -125,7 +125,7 @@ public class Address {
         this.client = address.getClient();
         this.state = address.getState();
         this.neighbourhood = address.getNeighbourhood();
-        this.postalCode = address.getPostalCode();
+        this.zipCode = address.getPostalCode();
         this.street = address.getStreet();
         this.number = address.getNumber();
     }
@@ -137,7 +137,7 @@ public class Address {
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", neighbourhood='" + neighbourhood + '\'' +
-                ", postalCode='" + postalCode + '\'' +
+                ", zipCode='" + zipCode + '\'' +
                 ", street='" + street + '\'' +
                 ", number=" + number +
                 ", client=" + client +
@@ -150,7 +150,7 @@ public class Address {
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", neighbourhood='" + neighbourhood + '\'' +
-                ", postalCode='" + postalCode + '\'' +
+                ", zipCode='" + zipCode + '\'' +
                 ", street='" + street + '\'' +
                 ", number=" + number +
                 '}';

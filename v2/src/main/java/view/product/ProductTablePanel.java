@@ -7,6 +7,7 @@ import interfaces.RelationalPanel;
 import interfaces.TableModel;
 import interfaces.TablePanel;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
 import javax.swing.event.ListSelectionEvent;
 import table_model.ProductTableModel;
 
@@ -21,6 +22,7 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         initComponents();
         
         configureTable();
+        btnRefreshTable.setIcon(new ImageIcon(getClass().getResource("/images/refresh-icon.png")));
     }
 
     @Override
@@ -42,7 +44,8 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     @Override
     public void resizeScrollPanelTable(int firstDivider, int secondDivider) {
         int width = (secondDivider - firstDivider) - 80;
-        this.jScrollPane7.setPreferredSize(new Dimension(width, jScrollPane7.getHeight()));    }
+        this.jScrollPane7.setPreferredSize(new Dimension(width, jScrollPane7.getHeight()));    
+    }
 
     @Override
     public void configureTable() {
@@ -73,7 +76,6 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnAddProduct = new javax.swing.JButton();
         scrollPanelTable = new my_components.MyScrollPane1();
@@ -82,9 +84,7 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         tableProduct = new javax.swing.JTable();
         btnRefreshTable = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(73, 80, 87));
-
-        jPanel1.setBackground(new java.awt.Color(52, 58, 64));
+        setBackground(new java.awt.Color(52, 58, 64));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(152, 158, 164));
@@ -153,15 +153,15 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRefreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,29 +169,18 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
                         .addComponent(btnAddProduct)))
                 .addGap(30, 30, 30))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnAddProduct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnRefreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addGap(9, 9, 9)
                 .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,7 +192,8 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     }//GEN-LAST:event_btnAddProductActionPerformed
 
     private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed
-        // TODO add your handling code here:
+        this.tableModel.loadObjects();
+        tableProduct.updateUI();
     }//GEN-LAST:event_btnRefreshTableActionPerformed
 
 
@@ -215,7 +205,6 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     private javax.swing.JButton btnAddProduct;
     private javax.swing.JButton btnRefreshTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane7;
     private my_components.MyScrollPane1 scrollPanelTable;

@@ -2,7 +2,9 @@ package view;
 
 import interfaces.RegistrationDialog;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.User;
 import view.client.ClientMainPanel;
@@ -42,15 +44,24 @@ public class MainFrame extends javax.swing.JFrame {
             this.menuItemRegisterUser.setVisible(true);
         }
 
-        changeContent(new MenuPanel(this));
+        changeContent(new WelcomePanel(this));
     }
     
 
     public void configureFrame(){
         this.supplierMainPanel = new SupplierMainPanel(this);
-        this.clientMainPanel = new ClientMainPanel();
+        this.clientMainPanel = new ClientMainPanel(this);
         this.productMainPanel = new ProductMainPanel(this);
         this.menuItemRegisterUser.setVisible(false);
+        
+        menuBar.setBackground(Color.red);
+        menuMenu.setIcon(new ImageIcon(getClass().getResource("/images/menu-icon.png")));
+        menuItemSignOut.setIcon(new ImageIcon(getClass().getResource("/images/sign-out-icon.png")));
+        menuItemProducts.setIcon(new ImageIcon(getClass().getResource("/images/product-icon.png")));
+        menuItemSuppliers.setIcon(new ImageIcon(getClass().getResource("/images/supplier-icon.png")));
+        menuItemRegisterUser.setIcon(new ImageIcon(getClass().getResource("/images/user-icon.png")));
+        menuItemClients.setIcon(new ImageIcon(getClass().getResource("/images/client-icon.png")));
+        menuItemInvoices.setIcon(new ImageIcon(getClass().getResource("/images/invoice-icon.png")));
     }
     
     
@@ -83,6 +94,7 @@ public class MainFrame extends javax.swing.JFrame {
         menuItemSuppliers = new javax.swing.JMenuItem();
         menuItemProducts = new javax.swing.JMenuItem();
         menuItemClients = new javax.swing.JMenuItem();
+        menuItemInvoices = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("interdisciplinar");
@@ -117,7 +129,6 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        menuMenu.setText("MENU");
         menuMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuItemRegisterUser.setText("REGISTER USER");
@@ -169,6 +180,10 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuItemClients);
+
+        menuItemInvoices.setText("INVOICES");
+        menuItemInvoices.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.add(menuItemInvoices);
 
         menuBar.add(jMenu1);
 
@@ -245,6 +260,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuItemClients;
+    private javax.swing.JMenuItem menuItemInvoices;
     private javax.swing.JMenuItem menuItemProducts;
     private javax.swing.JMenuItem menuItemRegisterUser;
     private javax.swing.JMenuItem menuItemSignOut;

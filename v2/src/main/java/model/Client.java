@@ -1,9 +1,13 @@
 package model;
 
 import jakarta.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Entity
 @Table(name = "client", schema = "espaco_mix")
@@ -53,6 +57,8 @@ public class Client {
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.birthDate = birthDate;
+        
+        formatBirthDate();
     }
 
     public Client(String cpf, String name, String email, String phoneNumber, String gender, Date birthDate, Address address, List<Invoice> invoices) {
@@ -64,6 +70,8 @@ public class Client {
         this.birthDate = birthDate;
         this.address = address;
         this.invoices = invoices;
+        
+        formatBirthDate();
     }
 
     public int getId() {
@@ -120,6 +128,7 @@ public class Client {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+        formatBirthDate();
     }
 
     public Address getAddress() {
@@ -179,5 +188,14 @@ public class Client {
                 ", birthDate=" + birthDate +
                 "\n     , address=" + address.toStringFromClient() +
                 '}';
+    }
+    
+    
+    public void formatBirthDate(){
+        try {
+            this.birthDate = new SimpleDateFormat("yyyy-MM-dd").parse(this.birthDate.toString());
+        } catch (ParseException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

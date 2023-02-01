@@ -19,10 +19,10 @@ public class ClientController {
     public Client saveClient(String cpf, String name, String email, 
             String phoneNumber, Object gender, Object year, Object month, Object day){
         
-//        String genderStr = (String) gender;
-//        String yearStr = (String) year;
-//        String monthStr = (String) month;
-//        String dayStr = (String) day;
+        phoneNumber = phoneNumber.replace("(", "");
+        phoneNumber = phoneNumber.replace(")", "");
+        phoneNumber = phoneNumber.replace("-", "");
+        phoneNumber = phoneNumber.replace(" ", "");
         
         Date birthDate = null;
         try {

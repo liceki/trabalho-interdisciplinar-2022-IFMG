@@ -61,7 +61,7 @@ public class ClientTablePanel extends javax.swing.JPanel implements RelationalPa
         this.tableClient.getColumnModel().getColumn(0).setPreferredWidth(70);
         this.tableClient.getColumnModel().getColumn(1).setPreferredWidth(250);
         this.tableClient.getColumnModel().getColumn(2).setPreferredWidth(100);
-        this.tableClient.getColumnModel().getColumn(3).setPreferredWidth(300);
+        this.tableClient.getColumnModel().getColumn(3).setPreferredWidth(250);
         this.tableClient.getColumnModel().getColumn(4).setPreferredWidth(100);
         this.tableClient.getColumnModel().getColumn(5).setPreferredWidth(100);
         this.tableClient.getColumnModel().getColumn(6).setPreferredWidth(100);
@@ -191,7 +191,8 @@ public class ClientTablePanel extends javax.swing.JPanel implements RelationalPa
     }//GEN-LAST:event_btnAddClientActionPerformed
 
     private void btnRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshTableActionPerformed
-        // TODO add your handling code here:
+        this.tableModel.loadObjects();
+        tableClient.updateUI();
     }//GEN-LAST:event_btnRefreshTableActionPerformed
 
 

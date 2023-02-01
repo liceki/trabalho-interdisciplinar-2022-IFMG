@@ -4,7 +4,9 @@ import controller.AddressController;
 import controller.ClientController;
 import interfaces.RegistrationDialog;
 import interfaces.TablePanel;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import model.Address;
 import model.Client;
 import tools.CpfAndCnpjValidator;
@@ -15,6 +17,8 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
     private final AddressController addressController;
     private final TablePanel clientTablePanel;
     
+    private ArrayList<JTextField> textFields;
+    
     public ClientResgistrationDialog(java.awt.Frame parent, boolean modal, TablePanel clientTablePanel) {
         super(parent, modal);
         initComponents();
@@ -22,7 +26,23 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         this.clientController = new ClientController();
         this.addressController = new AddressController();
         this.clientTablePanel = clientTablePanel;
+        
+        this.textFields = new ArrayList<>();
 
+        configureTextFieldArray();
+    }
+    
+    private void configureTextFieldArray(){
+        textFields.add(txtFieldCity);
+        textFields.add(txtFieldClientName);
+        textFields.add(txtFieldCpf);
+        textFields.add(txtFieldEmail);
+        textFields.add(txtFieldNeighbourhood);
+        textFields.add(txtFieldNumber);
+        textFields.add(txtFieldPhoneNumber);
+        textFields.add(txtFieldState);
+        textFields.add(txtFieldStreet);
+        textFields.add(txtFieldZipCode); 
     }
 
     @SuppressWarnings("unchecked")
@@ -152,7 +172,7 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         comboBoxYear.setBackground(new java.awt.Color(52, 58, 64));
         comboBoxYear.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxYear.setForeground(new java.awt.Color(52, 58, 64));
-        comboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
+        comboBoxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2022", "2021", "2020", "2019", "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910", "1909", "1908", "1907", "1906", "1905", "1904", "1903", "1902", "1901" }));
         comboBoxYear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboBoxYear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,7 +183,7 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         comboBoxMonth.setBackground(new java.awt.Color(52, 58, 64));
         comboBoxMonth.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxMonth.setForeground(new java.awt.Color(52, 58, 64));
-        comboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
+        comboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER" }));
         comboBoxMonth.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboBoxMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +194,7 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         comboBoxDay.setBackground(new java.awt.Color(52, 58, 64));
         comboBoxDay.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxDay.setForeground(new java.awt.Color(52, 58, 64));
-        comboBoxDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE", "OTHER" }));
+        comboBoxDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         comboBoxDay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         comboBoxDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -420,6 +440,11 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         cpf = cpf.replace(".", "");
         cpf = cpf.replace("-", "");
         
+        if(!areAllTheFieldsFilled()){
+            JOptionPane.showMessageDialog(this, "All the fields must be filled.", "FIELD(S) UNFILLED!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         if(!CpfAndCnpjValidator.isCpf(cpf)){
             JOptionPane.showMessageDialog(this, "This CPF is invalid, try it again.", "INVALID CPF!", JOptionPane.ERROR_MESSAGE);
             return;
@@ -441,7 +466,7 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
                 txtFieldPhoneNumber.getText(), 
                 comboBoxGender.getSelectedItem(), 
                 comboBoxYear.getSelectedItem(),
-                comboBoxMonth.getSelectedItem(),
+                comboBoxMonth.getSelectedIndex()+1,
                 comboBoxDay.getSelectedItem()
         );
         
@@ -466,6 +491,21 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
         this.clientTablePanel.updateTable();
     }//GEN-LAST:event_btnRegisterClientActionPerformed
 
+    
+    private boolean areAllTheFieldsFilled(){
+        for(JTextField textField: this.textFields){
+            if(textField.getText().equals("")) return false;
+        }
+        
+        return true;
+    }
+    
+    private void clearFields() {
+        for(JTextField textField: this.textFields){
+            textField.setText("");
+        }
+    }
+    
     private void comboBoxGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxGenderActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxGenderActionPerformed
@@ -556,9 +596,5 @@ public class ClientResgistrationDialog extends javax.swing.JDialog implements Re
     private my_components.MyTextField1 txtFieldZipCode;
     // End of variables declaration//GEN-END:variables
 
-    private void clearFields() {
-        txtFieldClientName.setText("");
-//        txtFieldCostPrice.setText("");
-//        txtFieldSellingPrice.setText("");
-    }
+  
 }

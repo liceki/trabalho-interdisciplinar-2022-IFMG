@@ -2,7 +2,11 @@ package table_model;
 
 import controller.ClientController;
 import interfaces.TableModel;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import model.Client;
 
@@ -43,13 +47,15 @@ public class ClientTableModel extends AbstractTableModel implements TableModel{
             case 3: return clientTemp.getEmail();
             case 4: return clientTemp.getPhoneNumber();
             case 5: return clientTemp.getGender();
-            case 6: return clientTemp.getBirthDate();
+            case 6: return clientTemp.getBirthDate().toString().split(" ")[0];
             case 7: 
+                if(clientTemp.getInvoices() == null) return 0;
+                
                 if(!clientTemp.getInvoices().isEmpty()){
                     return clientTemp.getInvoices().size();
-                } else{
-                    return 0;
                 }
+                return 0;
+                
             default: return null;
         }
     }

@@ -179,7 +179,6 @@ public class ProductPropertiesPanel extends javax.swing.JPanel implements Relati
         jLabel15.setText("Size:");
 
         comboBoxSize.setBackground(new java.awt.Color(52, 58, 64));
-        comboBoxSize.setEditable(true);
         comboBoxSize.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxSize.setForeground(new java.awt.Color(52, 58, 64));
         comboBoxSize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

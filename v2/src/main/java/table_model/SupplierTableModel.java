@@ -31,7 +31,9 @@ public class SupplierTableModel extends AbstractTableModel implements TableModel
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
+        if(this.suppliersList.isEmpty()) return null;
         Supplier supplierTemp = this.suppliersList.get(rowIndex);
+        if(supplierTemp == null) return null;
         switch (columnIndex){
             case 0: return supplierTemp.getId();
             case 1: return supplierTemp.getCorporateName();

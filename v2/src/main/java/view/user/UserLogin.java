@@ -1,15 +1,15 @@
-package view.login;
+package view.user;
 
 import controller.UserController;
 import javax.swing.JOptionPane;
 import model.User;
 import view.MainFrame;
 
-public class Login extends javax.swing.JPanel {
+public class UserLogin extends javax.swing.JPanel {
     private MainFrame parent;
     private UserController controller;
     
-    public Login(MainFrame parent) {
+    public UserLogin(MainFrame parent) {
         initComponents();
         
         this.parent = parent;
@@ -121,8 +121,9 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
+        User user;
         try{
-            User u = controller.verifyLogin(
+            user = controller.verifyCredentials(
                     txtFieldLogin.getText(),
                     new String(passwordFieldPassword.getPassword())
             );
@@ -130,8 +131,7 @@ public class Login extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Crendentials invalid!");
             return;
         }
-  
-        parent.configuraFrame();
+        parent.login(user);
         
     }//GEN-LAST:event_btnSignInActionPerformed
 

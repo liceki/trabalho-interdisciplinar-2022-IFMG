@@ -16,7 +16,10 @@ import jakarta.persistence.Table;
         @NamedQuery(name = "VERIFY_LOGIN",
                 query = "SELECT u FROM User u " +
                         "WHERE (u.login) = (:login)" +
-                        "AND (u.password) = (:password)")
+                        "AND (u.password) = (:password)"),
+        @NamedQuery(name = "IS_LOGIN_AVAILABLE",
+                query = "SELECT u FROM User u " +
+                        "WHERE (u.login) = (:login)")
     })
 public class User {
     @Id
@@ -36,6 +39,10 @@ public class User {
     public User() {
     }
 
+    public User(String login) {
+        this.login = login;
+    }
+    
     public User(String login, String password) {
         this.login = login;
         this.password = password;

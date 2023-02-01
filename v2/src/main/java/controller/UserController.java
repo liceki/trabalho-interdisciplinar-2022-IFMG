@@ -11,9 +11,18 @@ public class UserController {
         this.repository = new UserRepository();
     }
     
-    
-    
-    public User verifyLogin(String login, String password){
+    public User verifyCredentials(String login, String password){
         return (User) repository.findObjectsWithFilters(new User(login, password)).get(0);
+    }
+    
+    public boolean isLoginAvailable(String login){
+        return (User) (repository.findObjectsWithFilters(new User(login, ""))).get(0) == null;
+    }
+    
+    public User registerUser(String name, String login, String password){
+        //if(isLoginAvailable(login)){
+            return (User) repository.saveObject(new User(name, login, password));
+        //}
+        //return null;
     }
 }

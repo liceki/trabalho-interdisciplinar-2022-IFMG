@@ -1,12 +1,15 @@
 package view;
 
+import interfaces.RegistrationDialog;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import javax.swing.JPanel;
+import model.User;
 import view.client.ClientMainPanel;
-import view.login.Login;
+import view.user.UserLogin;
 import view.product.ProductMainPanel;
 import view.supplier.SupplierMainPanel;
+import view.user.UserResgistrationDialog;
 
 public class MainFrame extends javax.swing.JFrame {
     private ClientMainPanel clientMainPanel;
@@ -14,6 +17,7 @@ public class MainFrame extends javax.swing.JFrame {
     private SupplierMainPanel supplierMainPanel;
     
     private Container content;
+    private User user;
     
     public MainFrame() {
         initComponents();
@@ -22,14 +26,29 @@ public class MainFrame extends javax.swing.JFrame {
         this.setLayout(new BorderLayout());
         this.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         
-        changeContent(new Login(this));
+        changeContent(new UserLogin(this));
         
     }
+
+    public void login(User user){
+        this.user = user;
+        
+        configureFrame();
+        if(user.getLogin().equals("admin")){
+            this.menuItemRegisterUser.setVisible(true);
+        }
+
+        changeContent(this.productMainPanel);
+    }
     
-    public void configuraFrame(){
+    
+    
+    public void configureFrame(){
         this.supplierMainPanel = new SupplierMainPanel(this);
         this.clientMainPanel = new ClientMainPanel();
         this.productMainPanel = new ProductMainPanel(this);
+        this.menuItemRegisterUser.setVisible(false);
+
         changeContent(productMainPanel);
     }
     
@@ -37,17 +56,10 @@ public class MainFrame extends javax.swing.JFrame {
     public void changeContent(JPanel panel){
         content.removeAll();
         
-        //talvez o painel seja maior que o frame
-        //entao vamos add barras de rolagem
-        //JScrollPane painelBarraRolagem = new JScrollPane(painelNovo);
-        
         content.add(panel);
         
-        //refresh da interf. gráfica
         validate();
-        //painel setado como visivel
         panel.setVisible(true);
-        //render da tela como um todo.
         content.repaint();
     }
     
@@ -58,7 +70,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         contentPanel = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenuBar();
+        menuMenu = new javax.swing.JMenu();
+        menuItemRegisterUser = new javax.swing.JMenuItem();
+        menuItemSignOut = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuItemSuppliers = new javax.swing.JMenuItem();
         menuItemProducts = new javax.swing.JMenuItem();
@@ -97,6 +112,29 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        menuMenu.setText("MENU");
+        menuMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        menuItemRegisterUser.setText("REGISTER USER");
+        menuItemRegisterUser.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuItemRegisterUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegisterUserActionPerformed(evt);
+            }
+        });
+        menuMenu.add(menuItemRegisterUser);
+
+        menuItemSignOut.setText("SIGN OUT");
+        menuItemSignOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuItemSignOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSignOutActionPerformed(evt);
+            }
+        });
+        menuMenu.add(menuItemSignOut);
+
+        menuBar.add(menuMenu);
+
         jMenu1.setText("WINDOW");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -127,9 +165,9 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu1.add(menuItemClients);
 
-        jMenuBar1.add(jMenu1);
+        menuBar.add(jMenu1);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,6 +194,15 @@ public class MainFrame extends javax.swing.JFrame {
     private void menuItemClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemClientsActionPerformed
         changeContent(this.clientMainPanel);
     }//GEN-LAST:event_menuItemClientsActionPerformed
+
+    private void menuItemSignOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSignOutActionPerformed
+        this.menuBar.setVisible(false);
+    }//GEN-LAST:event_menuItemSignOutActionPerformed
+
+    private void menuItemRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegisterUserActionPerformed
+        RegistrationDialog registrationDialog = new UserResgistrationDialog(this, true);
+        registrationDialog.setVisible(true);
+    }//GEN-LAST:event_menuItemRegisterUserActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -189,10 +236,13 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel contentPanel;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuItemClients;
     private javax.swing.JMenuItem menuItemProducts;
+    private javax.swing.JMenuItem menuItemRegisterUser;
+    private javax.swing.JMenuItem menuItemSignOut;
     private javax.swing.JMenuItem menuItemSuppliers;
+    private javax.swing.JMenu menuMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -186,7 +186,6 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
         jLabel14.setText("Sub Category:");
 
         comboBoxSize.setBackground(new java.awt.Color(52, 58, 64));
-        comboBoxSize.setEditable(true);
         comboBoxSize.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         comboBoxSize.setForeground(new java.awt.Color(52, 58, 64));
         comboBoxSize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

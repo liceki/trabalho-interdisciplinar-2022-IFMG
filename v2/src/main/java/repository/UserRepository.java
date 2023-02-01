@@ -61,9 +61,14 @@ public class UserRepository implements Repository{
         Query query = entityManager.createNamedQuery("VERIFY_LOGIN");
         query.setParameter("login", UserFilter.getLogin());
         query.setParameter("password", UserFilter.getPassword());
-        
         return query.getResultList();
     }
+    
+     public List isLoginAvailable(String login){
+        Query query = entityManager.createNamedQuery("IS_LOGIN_AVAILABLE");
+        query.setParameter("login", login);
+        return query.getResultList();
+     }
 
     @Override
     public void close(){

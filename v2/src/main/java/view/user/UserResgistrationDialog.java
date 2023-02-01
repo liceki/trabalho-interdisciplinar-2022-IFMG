@@ -179,6 +179,7 @@ public class UserResgistrationDialog extends javax.swing.JDialog implements Regi
         
         if(!passwordString.equals(confirmPasswordString)){
             JOptionPane.showMessageDialog(this, "The password has to be the same in both fields.");
+            return;
         }
         
         User user = controller.registerUser(

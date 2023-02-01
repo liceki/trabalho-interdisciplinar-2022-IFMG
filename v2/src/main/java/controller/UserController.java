@@ -16,13 +16,13 @@ public class UserController {
     }
     
     public boolean isLoginAvailable(String login){
-        return (User) (repository.findObjectsWithFilters(new User(login, ""))).get(0) == null;
+        return ((UserRepository) repository).isLoginAvailable(login) == null;
     }
     
     public User registerUser(String name, String login, String password){
-        //if(isLoginAvailable(login)){
+        if(isLoginAvailable(login)){
             return (User) repository.saveObject(new User(name, login, password));
-        //}
-        //return null;
+        }
+        return null;
     }
 }

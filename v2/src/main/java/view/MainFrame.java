@@ -30,6 +30,10 @@ public class MainFrame extends javax.swing.JFrame {
         
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void login(User user){
         this.user = user;
         
@@ -38,7 +42,7 @@ public class MainFrame extends javax.swing.JFrame {
             this.menuItemRegisterUser.setVisible(true);
         }
 
-        changeContent(this.productMainPanel);
+        changeContent(new MenuPanel(this));
     }
     
 
@@ -47,8 +51,6 @@ public class MainFrame extends javax.swing.JFrame {
         this.clientMainPanel = new ClientMainPanel();
         this.productMainPanel = new ProductMainPanel(this);
         this.menuItemRegisterUser.setVisible(false);
-
-        changeContent(productMainPanel);
     }
     
     

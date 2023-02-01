@@ -61,7 +61,10 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         this.tableProduct.getColumnModel().getColumn(3).setPreferredWidth(100);
         this.tableProduct.getColumnModel().getColumn(4).setPreferredWidth(100);
         this.tableProduct.getColumnModel().getColumn(5).setPreferredWidth(100);
-        this.tableProduct.getColumnModel().getColumn(6).setPreferredWidth(600);
+        this.tableProduct.getColumnModel().getColumn(6).setPreferredWidth(300);
+        this.tableProduct.getColumnModel().getColumn(7).setPreferredWidth(300);
+        this.tableProduct.getColumnModel().getColumn(8).setPreferredWidth(200);
+        this.tableProduct.getColumnModel().getColumn(9).setPreferredWidth(600);
         
  
     }
@@ -132,7 +135,7 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(

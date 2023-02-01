@@ -15,6 +15,12 @@ import java.math.BigDecimal;
                         "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') "*/)
 })
 public  class Product {
+    public static final String[] CATEGORIES = {"FEMALE CLOTHES", "MALE CLOTHES", "ACCESSORIES", "COSMETICS"};
+    
+    public static final String[] SUB_CATEGORIES_CLOTHES = {"JEANS", "T-SHIRT", "DRESS", "CROPPED"};
+    
+    public static final String[] SIZES_CLOTHES = {"PP", "P", "M", "G", "GG"};
+    
     @Id
     @Column(name = "product_id", nullable = false)
     @GeneratedValue(generator = "increment")
@@ -37,7 +43,16 @@ public  class Product {
 
     @Column(name = "image", length = 2048)
     private String image;
+    
+    @Column(name = "category", length = 2048)
+    private String category;
 
+    @Column(name = "sub_category", length = 2048)
+    private String subCategory;
+    
+    @Column(name = "size", length = 2048)
+    private String size;
+    
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
@@ -50,15 +65,22 @@ public  class Product {
     public Product() {
     }
 
-    public Product(String name, BigDecimal sellingPrice, BigDecimal costPrice, Boolean availableInStock) {
+    public Product(String name, BigDecimal sellingPrice, BigDecimal costPrice, 
+            Boolean availableInStock, String category, String subCategory, String size, Supplier supplier) {
         this.name = name;
         this.sellingPrice = sellingPrice;
         this.costPrice = costPrice;
         this.profit = sellingPrice.subtract(costPrice);
         this.availableInStock = availableInStock;
-        //this.image = image;
-
+        this.category = category;
+        this.subCategory = subCategory;
+        this.size = size;
+        this.supplier = supplier;
     }
+
+    
+
+    
 
     public int getId() {
         return id;
@@ -92,19 +114,11 @@ public  class Product {
         this.costPrice = costPrice;
     }
 
-    public BigDecimal getProfit() {
-        return profit;
-    }
-
-    public void setProfit(BigDecimal profit) {
-        this.profit = profit;
-    }
-
-    public boolean isAvailableInStock() {
+    public Boolean isAvailableInStock() {
         return availableInStock;
     }
 
-    public void setAvailableInStock(boolean availableInStock) {
+    public void setAvailableInStock(Boolean availableInStock) {
         this.availableInStock = availableInStock;
     }
 
@@ -114,6 +128,22 @@ public  class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 
     public Supplier getSupplier() {
@@ -131,6 +161,24 @@ public  class Product {
     public void setInvoice(Invoice invoice) {
         this.invoice = invoice;
     }
+
+    public BigDecimal getProfit() {
+        return profit;
+    }
+
+    public void setProfit(BigDecimal profit) {
+        this.profit = profit;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    
 
     public void updateProduct(Product product){
         this.name = product.getName();

@@ -36,7 +36,7 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
 
     @Override
     public void updateTable() {
-        this.tableProducts.updateUI();
+        this.tableProduct.updateUI();
     }
 
     @Override
@@ -47,19 +47,21 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     @Override
     public void configureTable() {
         this.tableModel = new ProductTableModel();
-        this.tableProducts.setModel((ProductTableModel) tableModel);
+        this.tableProduct.setModel((ProductTableModel) tableModel);
         
         
-//        tableProduct.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
-//            productPropertiesPanel.showProperties(tableProduct.getSelectedRow(),
-//                    tableModel.getObjectAtRowIndex(tableProduct.getSelectedRow()));
-//        });
-//        
-//        this.tableProduct.getColumnModel().getColumn(0).setPreferredWidth(100);
-//        this.tableProduct.getColumnModel().getColumn(1).setPreferredWidth(300);
-//        this.tableProduct.getColumnModel().getColumn(2).setPreferredWidth(150);
-//        this.tableProduct.getColumnModel().getColumn(3).setPreferredWidth(350);
-//        this.tableProduct.getColumnModel().getColumn(4).setPreferredWidth(100);
+        tableProduct.getSelectionModel().addListSelectionListener((ListSelectionEvent event) -> {
+            productPropertiesPanel.showProperties(tableProduct.getSelectedRow(),
+                    tableModel.getObjectAtRowIndex(tableProduct.getSelectedRow()));
+        });
+        
+        this.tableProduct.getColumnModel().getColumn(0).setPreferredWidth(100);
+        this.tableProduct.getColumnModel().getColumn(1).setPreferredWidth(300);
+        this.tableProduct.getColumnModel().getColumn(2).setPreferredWidth(100);
+        this.tableProduct.getColumnModel().getColumn(3).setPreferredWidth(100);
+        this.tableProduct.getColumnModel().getColumn(4).setPreferredWidth(100);
+        this.tableProduct.getColumnModel().getColumn(5).setPreferredWidth(100);
+        this.tableProduct.getColumnModel().getColumn(6).setPreferredWidth(600);
         
  
     }
@@ -74,12 +76,12 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         scrollPanelTable = new my_components.MyScrollPane1();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tableProducts = new javax.swing.JTable();
+        tableProduct = new javax.swing.JTable();
         btnRefreshTable = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(73, 80, 87));
 
-        jPanel1.setBackground(new java.awt.Color(73, 80, 87));
+        jPanel1.setBackground(new java.awt.Color(52, 58, 64));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(152, 158, 164));
@@ -97,8 +99,11 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         scrollPanelTable.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPanelTable.setMinimumSize(new java.awt.Dimension(16, 20));
 
-        tableProducts.setAutoCreateRowSorter(true);
-        tableProducts.setModel(new javax.swing.table.DefaultTableModel(
+        tableProduct.setAutoCreateRowSorter(true);
+        tableProduct.setBackground(new java.awt.Color(73, 80, 87));
+        tableProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tableProduct.setForeground(new java.awt.Color(255, 255, 255));
+        tableProduct.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -109,16 +114,17 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
-        tableProducts.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tableProducts.setFillsViewportHeight(true);
-        tableProducts.setFocusCycleRoot(true);
-        tableProducts.setMaximumSize(new java.awt.Dimension(1000, 999999));
-        tableProducts.setMinimumSize(new java.awt.Dimension(1000, 800));
-        tableProducts.setPreferredSize(new java.awt.Dimension(1000, 800));
-        tableProducts.setSelectionBackground(new java.awt.Color(52, 58, 64));
-        tableProducts.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tableProducts.setShowGrid(true);
-        jScrollPane7.setViewportView(tableProducts);
+        tableProduct.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tableProduct.setFillsViewportHeight(true);
+        tableProduct.setFocusCycleRoot(true);
+        tableProduct.setMaximumSize(new java.awt.Dimension(1000, 999999));
+        tableProduct.setMinimumSize(new java.awt.Dimension(1000, 800));
+        tableProduct.setPreferredSize(new java.awt.Dimension(1000, 800));
+        tableProduct.setSelectionBackground(new java.awt.Color(52, 58, 64));
+        tableProduct.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tableProduct.setShowGrid(true);
+        tableProduct.setShowHorizontalLines(false);
+        jScrollPane7.setViewportView(tableProduct);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,10 +137,7 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
         );
 
         scrollPanelTable.setViewportView(jPanel2);
@@ -173,29 +176,19 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
                         .addComponent(btnRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1))
                 .addGap(9, 9, 9)
-                .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 972, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,6 +216,6 @@ public class ProductTablePanel extends javax.swing.JPanel implements RelationalP
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane7;
     private my_components.MyScrollPane1 scrollPanelTable;
-    private javax.swing.JTable tableProducts;
+    private javax.swing.JTable tableProduct;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,10 @@ public class SupplierController {
     public Supplier saveSupplier(String corporateName, String cnpf, String email){
         return (Supplier) repository.saveObject(new Supplier(corporateName, cnpf, email));
     }
+    
+    public Supplier getSupplierById(int id){
+        return (Supplier) repository.findObjectById(id);
+    }
 
     public List<Supplier> getAllSuppliers(){
         return (List<Supplier>) repository.getAllObjects();

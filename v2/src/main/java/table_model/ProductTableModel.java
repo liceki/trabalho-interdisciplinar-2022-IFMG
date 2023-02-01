@@ -9,8 +9,8 @@ import model.Product;
 public class ProductTableModel extends AbstractTableModel implements TableModel{
     private List<Product> productsList;
     private ProductController controller;
-    private String[] header = {"ID", "NAME", "AVAILABLE", 
-        "COST PRICE", "SELLING PRICE", "PROFIT", "SUPPLIER"};
+    private String[] header = {"ID", "NAME", "AVAILABLE", "COST PRICE", "SELLING PRICE", 
+        "PROFIT", "CATEGORY", "SUBCATEGORY", "SIZE", "SUPPLIER"};
 
     public ProductTableModel() {
         this.controller = new ProductController();
@@ -39,7 +39,10 @@ public class ProductTableModel extends AbstractTableModel implements TableModel{
             case 3: return productTemp.getCostPrice();
             case 4: return productTemp.getSellingPrice();
             case 5: return productTemp.getProfit();
-            case 6: return productTemp.getSupplier().getCnpj() + " - " + productTemp.getSupplier().getCorporateName();
+            case 6: return productTemp.getCategory();
+            case 7: return productTemp.getSubCategory();
+            case 8: return productTemp.getSize();
+            case 9: return productTemp.getSupplier().getCnpj() + "         -         " + productTemp.getSupplier().getCorporateName();
             default: return null;
         }
     }

@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import javax.swing.event.ListSelectionEvent;
 import interfaces.TableModel;
 import interfaces.TablePanel;
+import java.awt.Color;
 import table_model.SupplierTableModel;
 
 public class SupplierTablePanel extends javax.swing.JPanel implements RelationalPanel, TablePanel{
@@ -48,6 +49,8 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     
     @Override
     public void configureTable(){
+        tableSupplier.getTableHeader().setBackground(new Color(52,58,64));
+        
         this.tableModel = new SupplierTableModel();
         this.tableSupplier.setModel((SupplierTableModel) tableModel);
         
@@ -73,13 +76,13 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
 
         jLabel1 = new javax.swing.JLabel();
         btnAddSupplier = new javax.swing.JButton();
+        btnRefreshTable = new javax.swing.JButton();
         scrollPanelTable = new my_components.MyScrollPane1();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tableSupplier = new javax.swing.JTable();
-        btnRefreshTable = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(73, 80, 87));
+        setBackground(new java.awt.Color(52, 58, 64));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(152, 158, 164));
@@ -94,10 +97,21 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             }
         });
 
+        btnRefreshTable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRefreshTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRefreshTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshTableActionPerformed(evt);
+            }
+        });
+
         scrollPanelTable.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPanelTable.setMinimumSize(new java.awt.Dimension(16, 20));
 
         tableSupplier.setAutoCreateRowSorter(true);
+        tableSupplier.setBackground(new java.awt.Color(73, 80, 87));
+        tableSupplier.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tableSupplier.setForeground(new java.awt.Color(255, 255, 255));
         tableSupplier.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -112,41 +126,30 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
         tableSupplier.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         tableSupplier.setFillsViewportHeight(true);
         tableSupplier.setFocusCycleRoot(true);
-        tableSupplier.setFocusTraversalPolicyProvider(true);
         tableSupplier.setMaximumSize(new java.awt.Dimension(1000, 999999));
         tableSupplier.setMinimumSize(new java.awt.Dimension(1000, 800));
         tableSupplier.setPreferredSize(new java.awt.Dimension(1000, 800));
         tableSupplier.setSelectionBackground(new java.awt.Color(52, 58, 64));
         tableSupplier.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tableSupplier.setShowGrid(true);
+        tableSupplier.setShowHorizontalLines(false);
         jScrollPane7.setViewportView(tableSupplier);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
-                .addGap(2, 2, 2))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(2, 2, 2)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+        );
 
-        scrollPanelTable.setViewportView(jPanel1);
-
-        btnRefreshTable.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnRefreshTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRefreshTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRefreshTableActionPerformed(evt);
-            }
-        });
+        scrollPanelTable.setViewportView(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,10 +158,10 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 517, Short.MAX_VALUE)
                         .addComponent(btnRefreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAddSupplier)))
@@ -173,9 +176,9 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
                         .addComponent(btnAddSupplier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel1))
-                .addGap(9, 9, 9)
-                .addComponent(scrollPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollPanelTable, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,7 +200,7 @@ public class SupplierTablePanel extends javax.swing.JPanel implements Relational
     private javax.swing.JButton btnAddSupplier;
     private javax.swing.JButton btnRefreshTable;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane7;
     private my_components.MyScrollPane1 scrollPanelTable;
     private javax.swing.JTable tableSupplier;

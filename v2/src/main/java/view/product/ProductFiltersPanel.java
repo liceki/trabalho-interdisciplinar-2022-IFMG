@@ -687,10 +687,11 @@ public class ProductFiltersPanel extends javax.swing.JPanel implements Relationa
     }//GEN-LAST:event_comboBoxSizeActionPerformed
 
     private void btnFilterResultsProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterResultsProductActionPerformed
-        String idSelectedSupplier = "0", category = "", subCategory = "", size = "";
+        String category = "", subCategory = "", size = "";
+        Integer idSelectedSupplier = 0;
         
         if(!listSupplier.isSelectionEmpty()){
-            idSelectedSupplier = listSupplier.getSelectedValue().split("-")[0].trim();
+            idSelectedSupplier = Integer.parseInt(listSupplier.getSelectedValue().split("-")[0].trim());
         }
         
         if(comboBoxCategory.getSelectedItem() != null){

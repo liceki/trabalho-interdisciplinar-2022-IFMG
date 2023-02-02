@@ -34,7 +34,7 @@ public class ProductController implements Controller {
     
     public List<Product> getFilteredProducts(Integer costPriceMin, Integer costPriceMax, Integer sellingPriceMin, 
             Integer sellingPriceMax, Integer profitMin, Integer profitMax, String name, Boolean availableInStock, 
-            String category, String subCategory, String size, String supplierId){
+            String category, String subCategory, String size, Integer supplierId){
         
         ProductFilter filter = new ProductFilter();
         filter.setName(name);
@@ -48,7 +48,7 @@ public class ProductController implements Controller {
         filter.setSellingPriceMax(sellingPriceMax);
         filter.setProfitMin(profitMin);
         filter.setProfitMax(profitMax);
-        filter.setSupplierId(Integer.parseInt(supplierId));
+        filter.setSupplierId(supplierId);
         
         return (List<Product>) repository.findObjectsWithFilters(filter);
     }

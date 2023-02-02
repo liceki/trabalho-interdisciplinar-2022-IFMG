@@ -22,10 +22,6 @@ import java.math.BigDecimal;
                         "and (p.supplier.id = :supplierId OR :supplierId = 0)"
         )
 })
-/* query = "SELECT s FROM Supplier s " +
-                        "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
-                        "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
-                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') ")*/
 public class Product {
     public static final String[] CATEGORIES = {"FEMALE CLOTHES", "MALE CLOTHES", "ACCESSORIES", "COSMETICS"};
     

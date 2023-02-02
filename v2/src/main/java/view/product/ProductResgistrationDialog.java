@@ -429,6 +429,11 @@ public class ProductResgistrationDialog extends javax.swing.JDialog implements R
     }//GEN-LAST:event_txtFieldSupplierCorporateNameActionPerformed
 
     private void btnRegisterProduct1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterProduct1ActionPerformed
+        if(listSupplier.getSelectedValue() == null){
+            JOptionPane.showMessageDialog(this, "You have to select the product supplier to add it in the system", "SUPPLIER MUST BE SELECTED!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         int idSelectedSupplier = Integer.parseInt(listSupplier.getSelectedValue().split("-")[0].trim());
 
         Product p = productController.saveProduct(

@@ -8,12 +8,24 @@ import java.math.BigDecimal;
 @NamedQueries({
         @NamedQuery(name = "GET_ALL_PRODUCTS",
                 query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "FIND_PRODUCTS_WITH_FILTERS",
-                query = "SELECT p FROM Product p " + ""
-                        /*"WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
-                        "AND (upper(p.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
-                        "AND (p.cost_price) like upper(concat('%', :email, '%')) OR :email = '') "*/)
+
+        @NamedQuery(name = "FIND_FILTERED_PRODUCTS",
+                query = "select p from Product p " +
+                        "where (upper(p.name) like upper(concat('%', :name, '%')) OR :name = '') and " +
+                        "p.costPrice between :costPriceMin and :costPriceMax " +
+                        "and p.sellingPrice between :sellingPriceMin and :sellingPriceMax " +
+                        "and p.profit between :profitMin and :profitMax " +
+                        "and p.availableInStock = :availableInStock " +
+                        "and (p.category = :category OR :cateogory = '') " +
+                        "and (p.subCategory = :subCategory OR :subCateogory = '') " +
+                        "and (p.size = :size OR :size = '')" +
+                        "and (p.supplier.id = :supplierId OR :supplierId = '')"
+        )
 })
+/* query = "SELECT s FROM Supplier s " +
+                        "WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
+                        "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
+                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') ")*/
 public class Product {
     public static final String[] CATEGORIES = {"FEMALE CLOTHES", "MALE CLOTHES", "ACCESSORIES", "COSMETICS"};
     

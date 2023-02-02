@@ -59,10 +59,17 @@ public class ProductRepository implements Repository{
     @Override
     public List findObjectsWithFilters(Object objFilter){
         ProductFilter productFilter = (ProductFilter) objFilter;
-        Query query = entityManager.createNamedQuery("FIND_PRODUCTS_WITH_FILTERS");
-//        query.setParameter("corporateName", productFilter.getCorporateName());
-//        query.setParameter("cnpj", productFilter.getCnpj());
-//        query.setParameter("email", productFilter.getEmail());
+        Query query = entityManager.createNamedQuery("FIND_FILTERED_PRODUCTS");
+        query.setParameter("name", productFilter.getName());
+        query.setParameter("costPriceMin", productFilter.getCostPriceMin());
+        query.setParameter("costPriceMax", productFilter.getCostPriceMax());
+        query.setParameter("sellingPriceMin", productFilter.getSellingPriceMin());
+        query.setParameter("sellingPriceMax", productFilter.getSellingPriceMax());
+        query.setParameter("availableInStock", productFilter.getAvailableInStock());
+        query.setParameter("category", productFilter.getCategory());
+        query.setParameter("subCategory", productFilter.getSubCategory());
+        query.setParameter("size", productFilter.getSize());
+        query.setParameter("supplierId", productFilter.getSupplierId());
         return query.getResultList();
     }
 

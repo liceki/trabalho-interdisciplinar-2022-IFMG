@@ -677,6 +677,9 @@ public class ProductFiltersPanel extends javax.swing.JPanel implements Relationa
             comboBoxSubCategory.setEnabled(false);
             comboBoxSize.setEnabled(false);
         }
+        
+        comboBoxSubCategory.setSelectedIndex(-1);
+        comboBoxSize.setSelectedIndex(-1);
     }//GEN-LAST:event_comboBoxCategoryActionPerformed
 
     private void comboBoxSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxSizeActionPerformed
@@ -684,10 +687,22 @@ public class ProductFiltersPanel extends javax.swing.JPanel implements Relationa
     }//GEN-LAST:event_comboBoxSizeActionPerformed
 
     private void btnFilterResultsProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterResultsProductActionPerformed
-        int idSelectedSupplier = 0;
+        String idSelectedSupplier = "0", category = "", subCategory = "", size = "";
         
         if(!listSupplier.isSelectionEmpty()){
-            idSelectedSupplier = Integer.parseInt(listSupplier.getSelectedValue().split("-")[0].trim());
+            idSelectedSupplier = listSupplier.getSelectedValue().split("-")[0].trim();
+        }
+        
+        if(comboBoxCategory.getSelectedItem() != null){
+            category = (String) comboBoxCategory.getSelectedItem();
+        }
+        
+        if(comboBoxSubCategory.getSelectedItem() != null){
+            subCategory = (String) comboBoxSubCategory.getSelectedItem();
+        }
+        
+        if(comboBoxSize.getSelectedItem() != null){
+            size = (String) comboBoxSize.getSelectedItem();
         }
 
         productTablePanel.getTableModel().setResults(
@@ -702,9 +717,9 @@ public class ProductFiltersPanel extends javax.swing.JPanel implements Relationa
                     txtFieldProductName.getText(), 
                     checkBoxAvailableInStock.isSelected(), 
                     
-                    comboBoxCategory.getSelectedItem(), 
-                    comboBoxSubCategory.getSelectedItem(), 
-                    comboBoxSize.getSelectedItem(), 
+                    category, 
+                    subCategory, 
+                    size, 
                     
                     idSelectedSupplier
             )

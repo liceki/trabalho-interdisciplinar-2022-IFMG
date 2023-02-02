@@ -1,91 +1,99 @@
 package model.filters;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import model.Supplier;
 
 public class ProductFilter{
-    private String costPriceMin; 
-    private String costPriceMax; 
-    private String sellingPriceMin;       
-    private String sellingPriceMax; 
-    private String profitMin; 
-    private String profitMax; 
+    private Integer costPriceMin; 
+    private Integer costPriceMax; 
+    private Integer sellingPriceMin;       
+    private Integer sellingPriceMax; 
+    private Integer profitMin; 
+    private Integer profitMax; 
+    private Integer supplierId;
+    
     private String name; 
-    private String availableInStock; 
     private String category; 
     private String subCategory; 
     private String size; 
-    private String supplierId;
     
-    private ArrayList<String> array; 
+    private Boolean availableInStock; 
+    
+    
+    private ArrayList<String> arrayString; 
+    private ArrayList<Integer> arrayInteger; 
 
     public ProductFilter() {
-        array = new ArrayList<>();
+        arrayString = new ArrayList<>();
+        arrayInteger = new ArrayList<>(); 
         
-        array.add(costPriceMin); 
-        array.add(costPriceMax); 
-        array.add(sellingPriceMin);       
-        array.add(sellingPriceMax); 
-        array.add(profitMin); 
-        array.add(profitMax); 
-        array.add(name); 
-        array.add(availableInStock); 
-        array.add(category); 
-        array.add(subCategory); 
-        array.add(size); 
-        array.add(supplierId);
+        arrayInteger.add(costPriceMin); 
+        arrayInteger.add(costPriceMax); 
+        arrayInteger.add(sellingPriceMin);       
+        arrayInteger.add(sellingPriceMax); 
+        arrayInteger.add(profitMin); 
+        arrayInteger.add(profitMax); 
+        arrayInteger.add(supplierId);
         
-        for(String s: array){
+        arrayString.add(name); 
+        arrayString.add(category); 
+        arrayString.add(subCategory); 
+        arrayString.add(size); 
+        
+        
+        for(Integer i: arrayInteger){
+            i = 0;
+        }
+        
+        for(String s: arrayString){
             s = "";
         }
     }
 
-    public String getCostPriceMin() {
+    public Integer getCostPriceMin() {
         return costPriceMin;
     }
 
-    public void setCostPriceMin(String costPriceMin) {
+    public void setCostPriceMin(Integer costPriceMin) {
         this.costPriceMin = costPriceMin;
     }
 
-    public String getCostPriceMax() {
+    public Integer getCostPriceMax() {
         return costPriceMax;
     }
 
-    public void setCostPriceMax(String costPriceMax) {
+    public void setCostPriceMax(Integer costPriceMax) {
         this.costPriceMax = costPriceMax;
     }
 
-    public String getSellingPriceMin() {
+    public Integer getSellingPriceMin() {
         return sellingPriceMin;
     }
 
-    public void setSellingPriceMin(String sellingPriceMin) {
+    public void setSellingPriceMin(Integer sellingPriceMin) {
         this.sellingPriceMin = sellingPriceMin;
     }
 
-    public String getSellingPriceMax() {
+    public Integer getSellingPriceMax() {
         return sellingPriceMax;
     }
 
-    public void setSellingPriceMax(String sellingPriceMax) {
+    public void setSellingPriceMax(Integer sellingPriceMax) {
         this.sellingPriceMax = sellingPriceMax;
     }
 
-    public String getProfitMin() {
+    public Integer getProfitMin() {
         return profitMin;
     }
 
-    public void setProfitMin(String profitMin) {
+    public void setProfitMin(Integer profitMin) {
         this.profitMin = profitMin;
     }
 
-    public String getProfitMax() {
+    public Integer getProfitMax() {
         return profitMax;
     }
 
-    public void setProfitMax(String profitMax) {
+    public void setProfitMax(Integer profitMax) {
         this.profitMax = profitMax;
     }
 
@@ -97,11 +105,11 @@ public class ProductFilter{
         this.name = name;
     }
 
-    public String getAvailableInStock() {
+    public Boolean getAvailableInStock() {
         return availableInStock;
     }
 
-    public void setAvailableInStock(String availableInStock) {
+    public void setAvailableInStock(Boolean availableInStock) {
         this.availableInStock = availableInStock;
     }
 
@@ -129,20 +137,20 @@ public class ProductFilter{
         this.size = size;
     }
 
-    public String getSupplierId() {
+    public Integer getSupplierId() {
         return supplierId;
     }
 
-    public void setSupplierId(String supplierId) {
+    public void setSupplierId(Integer supplierId) {
         this.supplierId = supplierId;
     }
 
     public ArrayList<String> getArray() {
-        return array;
+        return arrayString;
     }
 
     public void setArray(ArrayList<String> array) {
-        this.array = array;
+        this.arrayString = array;
     }
     
     

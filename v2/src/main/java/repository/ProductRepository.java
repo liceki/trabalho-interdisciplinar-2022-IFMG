@@ -65,6 +65,8 @@ public class ProductRepository implements Repository{
         query.setParameter("costPriceMax", productFilter.getCostPriceMax());
         query.setParameter("sellingPriceMin", productFilter.getSellingPriceMin());
         query.setParameter("sellingPriceMax", productFilter.getSellingPriceMax());
+        query.setParameter("profitMin", productFilter.getProfitMin());
+        query.setParameter("profitMax", productFilter.getProfitMax());
         query.setParameter("availableInStock", productFilter.getAvailableInStock());
         query.setParameter("category", productFilter.getCategory());
         query.setParameter("subCategory", productFilter.getSubCategory());

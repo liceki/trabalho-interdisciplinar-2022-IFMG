@@ -16,10 +16,10 @@ import java.math.BigDecimal;
                         "and p.sellingPrice between :sellingPriceMin and :sellingPriceMax " +
                         "and p.profit between :profitMin and :profitMax " +
                         "and p.availableInStock = :availableInStock " +
-                        "and (p.category = :category OR :cateogory = '') " +
-                        "and (p.subCategory = :subCategory OR :subCateogory = '') " +
+                        "and (p.category = :category OR :category = '') " +
+                        "and (p.subCategory = :subCategory OR :subCategory = '') " +
                         "and (p.size = :size OR :size = '')" +
-                        "and (p.supplier.id = :supplierId OR :supplierId = '')"
+                        "and (p.supplier.id = :supplierId OR :supplierId = 0)"
         )
 })
 /* query = "SELECT s FROM Supplier s " +

@@ -32,23 +32,23 @@ public class ProductController implements Controller {
         return (Product) repository.updateObject(product);
     }
     
-    public List<Product> getFilteredProducts(double costPriceMin, double costPriceMax, double sellingPriceMin, 
-            double sellingPriceMax, double profitMin, double profitMax, String name, Boolean availableInStock, 
-            Object category, Object subCategory, Object size, int supplierId){
+    public List<Product> getFilteredProducts(Integer costPriceMin, Integer costPriceMax, Integer sellingPriceMin, 
+            Integer sellingPriceMax, Integer profitMin, Integer profitMax, String name, Boolean availableInStock, 
+            String category, String subCategory, String size, String supplierId){
         
         ProductFilter filter = new ProductFilter();
         filter.setName(name);
-        filter.setAvailableInStock(availableInStock.toString());
-        filter.setCategory((String)category);
-        filter.setSubCategory((String) subCategory);
-        filter.setSize((String) size);
-        filter.setCostPriceMin(costPriceMin+"");
-        filter.setCostPriceMax(costPriceMax+"");
-        filter.setSellingPriceMin(sellingPriceMin+"");
-        filter.setSellingPriceMax(sellingPriceMax+"");
-        filter.setProfitMin(profitMin+"");
-        filter.setProfitMax(profitMax+"");
-        filter.setSupplierId(supplierId+"");
+        filter.setAvailableInStock(availableInStock);
+        filter.setCategory(category);
+        filter.setSubCategory(subCategory);
+        filter.setSize(size);
+        filter.setCostPriceMin(costPriceMin);
+        filter.setCostPriceMax(costPriceMax);
+        filter.setSellingPriceMin(sellingPriceMin);
+        filter.setSellingPriceMax(sellingPriceMax);
+        filter.setProfitMin(profitMin);
+        filter.setProfitMax(profitMax);
+        filter.setSupplierId(Integer.parseInt(supplierId));
         
         return (List<Product>) repository.findObjectsWithFilters(filter);
     }

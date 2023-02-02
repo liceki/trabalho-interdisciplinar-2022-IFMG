@@ -94,7 +94,7 @@ public class SupplierFiltersPanel extends javax.swing.JPanel implements Relation
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(68, 68, 68)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFieldCorporateNameFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,9 +106,9 @@ public class SupplierFiltersPanel extends javax.swing.JPanel implements Relation
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtFieldEmailFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(136, 136, 136)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                 .addComponent(btnFilterResults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(382, Short.MAX_VALUE))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

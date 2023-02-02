@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import model.Product;
 import model.Supplier;
+import model.filters.ProductFilter;
 import repository.ProductRepository;
 
 public class ProductController implements Controller {
@@ -31,8 +32,25 @@ public class ProductController implements Controller {
         return (Product) repository.updateObject(product);
     }
     
-    public List<Product> getFilteredProducts(String nome, BigDecimal sellingPrice){
-        return (List<Product>) repository.findObjectsWithFilters(new Product());
+    public List<Product> getFilteredProducts(double costPriceMin, double costPriceMax, double sellingPriceMin, 
+            double sellingPriceMax, double profitMin, double profitMax, String name, Boolean availableInStock, 
+            Object category, Object subCategory, Object size, int supplierId){
+        
+        ProductFilter filter = new ProductFilter();
+        filter.setName(name);
+        filter.setAvailableInStock(availableInStock.toString());
+        filter.setCategory((String)category);
+        filter.setSubCategory((String) subCategory);
+        filter.setSize((String) size);
+        filter.setCostPriceMin(costPriceMin+"");
+        filter.setCostPriceMax(costPriceMax+"");
+        filter.setSellingPriceMin(sellingPriceMin+"");
+        filter.setSellingPriceMax(sellingPriceMax+"");
+        filter.setProfitMin(profitMin+"");
+        filter.setProfitMax(profitMax+"");
+        filter.setSupplierId(supplierId+"");
+        
+        return (List<Product>) repository.findObjectsWithFilters(filter);
     }
 
     public void removeProduct(Product productToRemove){

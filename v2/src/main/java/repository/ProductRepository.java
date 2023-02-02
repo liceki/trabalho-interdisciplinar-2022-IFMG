@@ -7,6 +7,7 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
 import java.util.List;
 import model.Product;
+import model.filters.ProductFilter;
 
 public class ProductRepository implements Repository{
     private EntityManagerFactory entityManagerFactory;
@@ -57,7 +58,7 @@ public class ProductRepository implements Repository{
 
     @Override
     public List findObjectsWithFilters(Object objFilter){
-        Product productFilter = (Product) objFilter;
+        ProductFilter productFilter = (ProductFilter) objFilter;
         Query query = entityManager.createNamedQuery("FIND_PRODUCTS_WITH_FILTERS");
 //        query.setParameter("corporateName", productFilter.getCorporateName());
 //        query.setParameter("cnpj", productFilter.getCnpj());

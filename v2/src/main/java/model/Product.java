@@ -11,8 +11,8 @@ import java.math.BigDecimal;
         @NamedQuery(name = "FIND_PRODUCTS_WITH_FILTERS",
                 query = "SELECT p FROM Product p " + ""
                         /*"WHERE (upper(s.corporateName) like upper(concat('%', :corporateName, '%')) OR :corporateName = '') " +
-                        "AND (upper(s.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
-                        "AND (upper(s.email) like upper(concat('%', :email, '%')) OR :email = '') "*/)
+                        "AND (upper(p.cnpj) like upper(concat('%', :cnpj, '%')) OR :cnpj = '') " +
+                        "AND (p.cost_price) like upper(concat('%', :email, '%')) OR :email = '') "*/)
 })
 public class Product {
     public static final String[] CATEGORIES = {"FEMALE CLOTHES", "MALE CLOTHES", "ACCESSORIES", "COSMETICS"};
@@ -65,6 +65,15 @@ public class Product {
     public Product() {
     }
 
+    public Product(String name, Boolean availableInStock, String category, String subCategory, String size) {
+        this.name = name;
+        this.profit = sellingPrice.subtract(costPrice);
+        this.availableInStock = availableInStock;
+        this.category = category;
+        this.subCategory = subCategory;
+        this.size = size;
+    }
+    
     public Product(String name, BigDecimal sellingPrice, BigDecimal costPrice, 
             Boolean availableInStock, String category, String subCategory, String size, Supplier supplier) {
         this.name = name;

@@ -2,11 +2,7 @@ package table_model;
 
 import controller.ClientController;
 import interfaces.TableModel;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import model.Client;
 
